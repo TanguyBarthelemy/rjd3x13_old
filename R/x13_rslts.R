@@ -23,6 +23,7 @@ p2r_x13_rslts<-function(p){
   return (structure(
     list(
       preprocessing=p2r_regarima_rslts(p$preprocessing),
+      preadjust=p2r_x13_preadjust(p$final),
       decomposition=p2r_x11_rslts(p$decomposition),
       final=p2r_x13_final(p$final),
       mstats=p$diagnostics_x13$mstatistics$as.list(),
@@ -31,8 +32,6 @@ p2r_x13_rslts<-function(p){
     ,
     class= "JD3X13_RSLTS"))
 }
-
-
 
 p2r_x11_rslts<-function(p){
   return (structure(
@@ -56,8 +55,7 @@ p2r_x11_rslts<-function(p){
 
 
 p2r_x13_final<-function(p){
-  return (structure(
-    list(
+  return (list(
       d10final=p2r_ts(p$d10final),
       d11final=p2r_ts(p$d11final),
       d12final=p2r_ts(p$d12final),
@@ -69,7 +67,53 @@ p2r_x13_final<-function(p){
       d12a=p2r_ts(p$d12a),
       d16a=p2r_ts(p$d16a),
       d18a=p2r_ts(p$d18a)
-    ),
-    class= "JD3X11_RSLTS"))
+    ))
 }
+
+p2r_x13_preadjust<-function(p){
+  return (list(
+      a1=p2r_ts(p$a1),
+      a1a=p2r_ts(p$a1a),
+      a6=p2r_ts(p$a6),
+      a7=p2r_ts(p$a7),
+      a8=p2r_ts(p$a8),
+      a9=p2r_ts(p$a9)
+    ))
+}
+
+
+############################# Generics
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+sa.decomposition.JD3X13_RSLTS<-function(x){
+  if (is.null(x)) return (NULL)
+  return (rjd3sa::sadecomposition(x$preadjust$a1,
+                                  x$final$d11final,
+                                  x$final$d12final,
+                                  x$final$d10final,
+                                  x$final$d13final,
+                                  x$preprocessing$description$log
+  ))
+
+}
+
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
+sa.decomposition.JD3X13_OUTPUT<-function(x){
+  return (sa.decomposition(x$result))
+}
+
 

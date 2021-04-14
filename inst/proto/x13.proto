@@ -234,6 +234,7 @@ message X11Results{
  }
  
  message X13Finals{
+ 
     jd3.TsData d10final = 1;
 	jd3.TsData d11final = 2;
 	jd3.TsData d12final = 3;
@@ -245,11 +246,18 @@ message X11Results{
 	jd3.TsData d12a = 9;
 	jd3.TsData d16a = 10;
 	jd3.TsData d18a = 11;
+	
+	jd3.TsData a1 = 12;
+	jd3.TsData a1a = 13;
+	jd3.TsData a6 = 14;
+	jd3.TsData a7 = 15;
+	jd3.TsData a8 = 16;
+	jd3.TsData a9 = 17;
     
-	jd3.TsData e1 = 12;
-	jd3.TsData e2 = 13;
-	jd3.TsData e3 = 14;
-	jd3.TsData e11 = 15;
+	jd3.TsData e1 = 30;
+	jd3.TsData e2 = 31;
+	jd3.TsData e3 = 32;
+	jd3.TsData e11 = 33;
 
  }
  
