@@ -1,4 +1,4 @@
-#' @include utils.R regarima_rslts.R x13_spec.R
+#' @include utils.R x13_spec.R
 NULL
 
 #' Title
