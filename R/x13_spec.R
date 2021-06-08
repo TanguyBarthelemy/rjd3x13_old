@@ -86,8 +86,8 @@ p2r_spec_regarima<-function(pspec){
     preprocessing = pspec$basic$preprocessing,
     preliminaryCheck = pspec$basic$preliminary_check)
   transform=list(
-    fn=enum_extract(modelling.Transformation, pspec$transform$transformation),
-    adjust=enum_extract(modelling.LengthOfPeriod, pspec$transform$adjust),
+    fn=.JD3_ENV$enum_extract(modelling.Transformation, pspec$transform$transformation),
+    adjust=.JD3_ENV$enum_extract(modelling.LengthOfPeriod, pspec$transform$adjust),
     aicdiff=pspec$transform$aicdiff)
 
   automodel=list(
@@ -112,28 +112,28 @@ p2r_spec_regarima<-function(pspec){
     outliers=lapply(pspec$outlier$outliers, function(z){list(type=z$code, va=z$va)} ),
     span=p2r_span(pspec$outlier$span),
     defva=pspec$outlier$defva,
-    method=enum_extract(x13.OutlierMethod, pspec$outlier$method),
+    method=.JD3_ENV$enum_extract(x13.OutlierMethod, pspec$outlier$method),
     monthlytcrate=pspec$outlier$monthly_tc_rate,
     maxiter=pspec$outlier$maxiter,
     lsrun=pspec$outlier$lsrun
   )
 
   td<-list(
-    td=enum_extract(modelling.TradingDays, pspec$regression$td$td),
-    lp=enum_extract(modelling.LengthOfPeriod, pspec$regression$td$lp),
+    td=.JD3_ENV$enum_extract(modelling.TradingDays, pspec$regression$td$td),
+    lp=.JD3_ENV$enum_extract(modelling.LengthOfPeriod, pspec$regression$td$lp),
     holidays=pspec$regression$td$holidays,
     users=unlist(pspec$regression$td$users),
     w=pspec$regression$td$w,
-    test=enum_extract(x13.RegressionTest, pspec$regression$td$test),
+    test=.JD3_ENV$enum_extract(x13.RegressionTest, pspec$regression$td$test),
     autoadjust=pspec$regression$td$auto_adjust,
     tdcoefficients=p2r_parameters(pspec$regression$td$tdcoefficients),
     lpcoefficient=p2r_parameter(pspec$regression$td$lpcoefficient)
   )
 
   easter<-list(
-    type=enum_extract(x13.EasterType, pspec$regression$easter$type),
+    type=.JD3_ENV$enum_extract(x13.EasterType, pspec$regression$easter$type),
     duration=pspec$regression$easter$duration,
-    test=enum_extract(x13.RegressionTest, pspec$regression$easter$test),
+    test=.JD3_ENV$enum_extract(x13.RegressionTest, pspec$regression$easter$test),
     coefficient=p2r_parameter(pspec$regression$easter$coefficient)
   )
 
@@ -172,8 +172,8 @@ r2p_spec_regarima<-function(r){
   p$basic$span<-r2p_span(r$basic$span)
 
   # TRANSFORM
-  p$transform$transformation<-enum_of(modelling.Transformation, r$transform$fn, "FN")
-  p$transform$adjust<-enum_of(modelling.LengthOfPeriod, r$transform$adjust, "LP")
+  p$transform$transformation<-.JD3_ENV$enum_of(modelling.Transformation, r$transform$fn, "FN")
+  p$transform$adjust<-.JD3_ENV$enum_of(modelling.LengthOfPeriod, r$transform$adjust, "LP")
   p$transform$aicdiff<-r$transform$aicdiff
 
   # OUTLIER
@@ -181,7 +181,7 @@ r2p_spec_regarima<-function(r){
     {t<-x13.RegArimaSpec$OutlierSpec$Type$new();t$code=z$type; t$va=z$va; return (t)})
   p$outlier$span<-r2p_span(r$outlier$span)
   p$outlier$defva<-r$outlier$defva
-  p$outlier$method<-enum_of(x13.OutlierMethod, r$outlier$method, "OUTLIER")
+  p$outlier$method<-.JD3_ENV$enum_of(x13.OutlierMethod, r$outlier$method, "OUTLIER")
   p$outlier$monthly_tc_rate<-r$outlier$monthlytcrate
   p$outlier$maxiter<-r$outlier$maxiter
   p$outlier$lsrun<-r$outlier$lsrun
@@ -212,20 +212,20 @@ r2p_spec_regarima<-function(r){
   p$regression$ramps=r2p_ramps(r$regression$ramps)
 
   #TD
-  p$regression$td$td<-enum_of(modelling.TradingDays, r$regression$td$td, "TD")
-  p$regression$td$lp<-enum_of(modelling.LengthOfPeriod, r$regression$td$lp, "LP")
+  p$regression$td$td<-.JD3_ENV$enum_of(modelling.TradingDays, r$regression$td$td, "TD")
+  p$regression$td$lp<-.JD3_ENV$enum_of(modelling.LengthOfPeriod, r$regression$td$lp, "LP")
   p$regression$td$holidays<-r$regression$td$holidays
   p$regression$td$users<-r$regression$td$users
   p$regression$td$w<-r$regression$td$w
-  p$regression$td$test <-enum_of(x13.RegressionTest, r$regression$td$test, "TEST")
+  p$regression$td$test <-.JD3_ENV$enum_of(x13.RegressionTest, r$regression$td$test, "TEST")
   p$regression$td$auto_adjust <-r$regression$td$autoadjust
   p$regression$td$tdcoefficients<-r2p_parameters(r$regression$td$tdcoefficients)
   p$regression$td$lpcoefficient<-r2p_parameter(r$regression$td$lpcoefficient)
 
   #EASTER
-  p$regression$easter$type<-enum_of(x13.EasterType, r$regression$easter$type, "EASTER")
+  p$regression$easter$type<-.JD3_ENV$enum_of(x13.EasterType, r$regression$easter$type, "EASTER")
   p$regression$easter$duration<-r$regression$easter$duration
-  p$regression$easter$test<-enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
+  p$regression$easter$test<-.JD3_ENV$enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
   p$regression$easter$coefficient<-r2p_parameter(r$regression$easter$coefficient)
 
   #ESTIMATE
@@ -239,36 +239,36 @@ r2p_spec_regarima<-function(r){
 p2r_spec_x11<-function(p){
 
   return (list(
-    mode=enum_extract(sa.DecompositionMode, p$mode),
+    mode=.JD3_ENV$enum_extract(sa.DecompositionMode, p$mode),
     seasonal=p$seasonal,
     henderson=p$henderson,
-    sfilters=sapply(p$sfilters, function(z){enum_extract(x13.SeasonalFilter, z)}),
+    sfilters=sapply(p$sfilters, function(z){.JD3_ENV$enum_extract(x13.SeasonalFilter, z)}),
     lsig=p$lsig,
     usig=p$usig,
     nfcasts=p$nfcasts,
     nbcasts=p$nbcasts,
-    sigma=enum_extract(x13.CalendarSigma, p$sigma),
+    sigma=.JD3_ENV$enum_extract(x13.CalendarSigma, p$sigma),
     vsigmas=p$vsigmas,
     excludefcasts=p$exclude_fcasts,
-    bias=enum_extract(x13.BiasCorrection, p$bias)
+    bias=.JD3_ENV$enum_extract(x13.BiasCorrection, p$bias)
   ))
 }
 
 
 r2p_spec_x11<-function(r){
   p<-x13.X11Spec$new()
-  p$mode<- enum_of(x13.DecompositionMode, r$mode, "MODE")
+  p$mode<- .JD3_ENV$enum_of(x13.DecompositionMode, r$mode, "MODE")
   p$seasonal<-r$seasonal
   p$henderson<-r$henderson
-  p$sfilters<-sapply(r$sfilters, function(z){enum_of(x13.SeasonalFilter, z, "SEASONAL")} )
+  p$sfilters<-sapply(r$sfilters, function(z){.JD3_ENV$enum_of(x13.SeasonalFilter, z, "SEASONAL")} )
   p$lsig<-r$lsig
   p$usig<-r$usig
   p$nfcasts<-r$nfcasts
   p$nbcasts<-r$nbcasts
-  p$sigma<-enum_of(x13.CalendarSigma, r$sigma, "SIGMA")
+  p$sigma<-.JD3_ENV$enum_of(x13.CalendarSigma, r$sigma, "SIGMA")
   p$vsigmas<-r$vsigmas
   p$exclude_fcasts<-r$excludefcasts
-  p$bias<-enum_of(x13.BiasCorrection, r$bias, "BIAS")
+  p$bias<-.JD3_ENV$enum_of(x13.BiasCorrection, r$bias, "BIAS")
   return (p)
 }
 

@@ -43,7 +43,7 @@ r2p_date<-function(s){
 # Span
 
 p2r_span<-function(span){
-  type<-enum_extract(jd3.SelectionType, span$type)
+  type<-.JD3_ENV$enum_extract(jd3.SelectionType, span$type)
   dt0<-p2r_date(span$d0)
   dt1<-p2r_date(span$d1)
 
@@ -52,7 +52,7 @@ p2r_span<-function(span){
 
 r2p_span<-function(rspan){
   pspan<-jd3.TimeSelector$new()
-  pspan$type<-enum_of(jd3.SelectionType, rspan$type, "SPAN")
+  pspan$type<-.JD3_ENV$enum_of(jd3.SelectionType, rspan$type, "SPAN")
   pspan$n0<-rspan$n0
   pspan$n1<-rspan$n1
   pspan$d0<-r2p_date(rspan$d0)
@@ -71,13 +71,13 @@ r2p_parameter<-function(r){
   if (is.null(r)) return (p)
 
   p$value<-r$value
-  p$type<-enum_of(jd3.ParameterType, r$type, "PARAMETER")
+  p$type<-.JD3_ENV$enum_of(jd3.ParameterType, r$type, "PARAMETER")
   return (p)
 }
 
 p2r_parameter<-function(p){
   if (! p$has("type")) return (NULL)
-  return (list(value = p$value, type=enum_extract(jd3.ParameterType, p$type)))
+  return (list(value = p$value, type=.JD3_ENV$enum_extract(jd3.ParameterType, p$type)))
 }
 
 r2p_parameters<-function(r){
@@ -91,7 +91,7 @@ r2p_parameters<-function(r){
 p2r_parameters<-function(p){
   n<-length(p)
   if (n == 0) return (NULL)
-  r<-sapply(p, function(z){list(value=z$value, type=enum_extract(jd3.ParameterType, z$type))})
+  r<-sapply(p, function(z){list(value=z$value, type=.JD3_ENV$enum_extract(jd3.ParameterType, z$type))})
   return (r)
 }
 
@@ -243,10 +243,10 @@ r2p_uservars<-function(r){
 p2r_spec_benchmarking<-function(p){
   return (list(
     enabled=p$enabled,
-    target=enum_extract(sa.BenchmarkingTarget, p$target),
+    target=.JD3_ENV$enum_extract(sa.BenchmarkingTarget, p$target),
     lambda=p$lambda,
     rho=p$rho,
-    bias=enum_extract(sa.BenchmarkingBias, p$bias),
+    bias=.JD3_ENV$enum_extract(sa.BenchmarkingBias, p$bias),
     forecast=p$forecast
   ))
 }
@@ -254,10 +254,10 @@ p2r_spec_benchmarking<-function(p){
 r2p_spec_benchmarking<-function(r){
   p<-sa.BenchmarkingSpec$new()
   p$enabled<-r$enabled
-  p$target<-enum_of(sa.BenchmarkingTarget, r$target, "BENCH")
+  p$target<-.JD3_ENV$enum_of(sa.BenchmarkingTarget, r$target, "BENCH")
   p$lambda<-r$lambda
   p$rho<-r$rho
-  p$bias<-enum_of(sa.BenchmarkingBias, r$bias, "BENCH")
+  p$bias<-.JD3_ENV$enum_of(sa.BenchmarkingBias, r$bias, "BENCH")
   p$forecast<-r$forecast
   return (p)
 }
@@ -269,10 +269,10 @@ r2p_spec_benchmarking<-function(r){
 p2r_spec_benchmarking<-function(p){
   return (list(
     enabled=p$enabled,
-    target=enum_extract(sa.BenchmarkingTarget, p$target),
+    target=.JD3_ENV$enum_extract(sa.BenchmarkingTarget, p$target),
     lambda=p$lambda,
     rho=p$rho,
-    bias=enum_extract(sa.BenchmarkingBias, p$bias),
+    bias=.JD3_ENV$enum_extract(sa.BenchmarkingBias, p$bias),
     forecast=p$forecast
   ))
 }
@@ -280,10 +280,10 @@ p2r_spec_benchmarking<-function(p){
 r2p_spec_benchmarking<-function(r){
   p<-sa.BenchmarkingSpec$new()
   p$enabled<-r$enabled
-  p$target<-enum_of(sa.BenchmarkingTarget, r$target, "BENCH")
+  p$target<-.JD3_ENV$enum_of(sa.BenchmarkingTarget, r$target, "BENCH")
   p$lambda<-r$lambda
   p$rho<-r$rho
-  p$bias<-enum_of(sa.BenchmarkingBias, r$bias, "BENCH")
+  p$bias<-.JD3_ENV$enum_of(sa.BenchmarkingBias, r$bias, "BENCH")
   p$forecast<-r$forecast
   return (p)
 }

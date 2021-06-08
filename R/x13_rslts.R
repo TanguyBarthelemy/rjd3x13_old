@@ -22,12 +22,12 @@ p2r_x13_rslts<-function(p){
 
   return (structure(
     list(
-      preprocessing=p2r_regarima_rslts(p$preprocessing),
+      preprocessing=.JD3_ENV$p2r_regarima_rslts(p$preprocessing),
       preadjust=p2r_x13_preadjust(p$final),
       decomposition=p2r_x11_rslts(p$decomposition),
       final=p2r_x13_final(p$final),
       mstats=p$diagnostics_x13$mstatistics$as.list(),
-      diagnostics=p2r_sa_diagnostics(p$diagnostics_sa)
+      diagnostics=.JD3_ENV$p2r_sa_diagnostics(p$diagnostics_sa)
       )
     ,
     class= "JD3X13_RSLTS"))
@@ -36,18 +36,18 @@ p2r_x13_rslts<-function(p){
 p2r_x11_rslts<-function(p){
   return (structure(
     list(
-      d1=p2r_ts(p$d1),
-      d2=p2r_ts(p$d2),
-      d4=p2r_ts(p$d4),
-      d5=p2r_ts(p$d5),
-      d6=p2r_ts(p$d6),
-      d7=p2r_ts(p$d7),
-      d8=p2r_ts(p$d8),
-      d9=p2r_ts(p$d9),
-      d10=p2r_ts(p$d10),
-      d11=p2r_ts(p$d11),
-      d12=p2r_ts(p$d12),
-      d13=p2r_ts(p$d13),
+      d1=.JD3_ENV$p2r_ts(p$d1),
+      d2=.JD3_ENV$p2r_ts(p$d2),
+      d4=.JD3_ENV$p2r_ts(p$d4),
+      d5=.JD3_ENV$p2r_ts(p$d5),
+      d6=.JD3_ENV$p2r_ts(p$d6),
+      d7=.JD3_ENV$p2r_ts(p$d7),
+      d8=.JD3_ENV$p2r_ts(p$d8),
+      d9=.JD3_ENV$p2r_ts(p$d9),
+      d10=.JD3_ENV$p2r_ts(p$d10),
+      d11=.JD3_ENV$p2r_ts(p$d11),
+      d12=.JD3_ENV$p2r_ts(p$d12),
+      d13=.JD3_ENV$p2r_ts(p$d13),
       final_henderson=p$final_henderson_filter
     ),
     class= "JD3X11"))
@@ -56,28 +56,28 @@ p2r_x11_rslts<-function(p){
 
 p2r_x13_final<-function(p){
   return (list(
-      d10final=p2r_ts(p$d10final),
-      d11final=p2r_ts(p$d11final),
-      d12final=p2r_ts(p$d12final),
-      d13final=p2r_ts(p$d13final),
-      d16=p2r_ts(p$d16),
-      d18=p2r_ts(p$d18),
-      d10a=p2r_ts(p$d10a),
-      d11a=p2r_ts(p$d11a),
-      d12a=p2r_ts(p$d12a),
-      d16a=p2r_ts(p$d16a),
-      d18a=p2r_ts(p$d18a)
+      d10final=.JD3_ENV$p2r_ts(p$d10final),
+      d11final=.JD3_ENV$p2r_ts(p$d11final),
+      d12final=.JD3_ENV$p2r_ts(p$d12final),
+      d13final=.JD3_ENV$p2r_ts(p$d13final),
+      d16=.JD3_ENV$p2r_ts(p$d16),
+      d18=.JD3_ENV$p2r_ts(p$d18),
+      d10a=.JD3_ENV$p2r_ts(p$d10a),
+      d11a=.JD3_ENV$p2r_ts(p$d11a),
+      d12a=.JD3_ENV$p2r_ts(p$d12a),
+      d16a=.JD3_ENV$p2r_ts(p$d16a),
+      d18a=.JD3_ENV$p2r_ts(p$d18a)
     ))
 }
 
 p2r_x13_preadjust<-function(p){
   return (list(
-      a1=p2r_ts(p$a1),
-      a1a=p2r_ts(p$a1a),
-      a6=p2r_ts(p$a6),
-      a7=p2r_ts(p$a7),
-      a8=p2r_ts(p$a8),
-      a9=p2r_ts(p$a9)
+      a1=.JD3_ENV$p2r_ts(p$a1),
+      a1a=.JD3_ENV$p2r_ts(p$a1a),
+      a6=.JD3_ENV$p2r_ts(p$a6),
+      a7=.JD3_ENV$p2r_ts(p$a7),
+      a8=.JD3_ENV$p2r_ts(p$a8),
+      a9=.JD3_ENV$p2r_ts(p$a9)
     ))
 }
 
