@@ -1,4 +1,4 @@
-#' @include utils.R x13_spec.R
+#' @include utils.R x13_spec.R x13_rslts.R
 NULL
 
 #' Title
@@ -42,18 +42,18 @@ regarima<-function(ts, spec="rg4", context=NULL){
 fast.regarima<-function(ts, spec="rg4", context=NULL){
   jts<-.JD3_ENV$ts_r2jd(ts)
   if (is.character(spec)){
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ldemetra/x13/r/RegArima$Results;", "process", jts, spec)
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_tramo(spec)
     if (is.null(context)){
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ldemetra/x13/r/RegArima$Results;", "process", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext )
   }
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (.JD3_ENV$regarima_rslts(jrslt))
+    return (regarima_rslts(jrslt))
   }
 }
 
@@ -113,13 +113,13 @@ x13<-function(ts, spec="rsa4", context=NULL){
 fast.x13<-function(ts, spec="rsa4", context=NULL){
   jts<-.JD3_ENV$ts_r2jd(ts)
   if (is.character(spec)){
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/r/X13$Results;", "process", jts, spec)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/r/X13$Results;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -155,7 +155,7 @@ x13_output<-function(jq){
 x11<-function(ts, spec){
   jts<-.JD3_ENV$ts_r2jd(ts)
   jspec<-r2jd_spec_x11(spec)
-  jrslt<-.jcall("demetra/x13/r/X11", "Ldemetra/x13/r/X11$Results;", "process", jts, jspec)
+  jrslt<-.jcall("demetra/x13/r/X11", "Ldemetra/x11/X11Results;", "process", jts, jspec)
   if (is.jnull(jrslt)){
     return (NULL)
   }else{

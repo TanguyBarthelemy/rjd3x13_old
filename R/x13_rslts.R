@@ -1,11 +1,19 @@
 #' @include utils.R
 NULL
 
+regarima_rslts <- function(jrslts){
+  if (is.jnull(jrslts))
+    return (NULL)
+  q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jrslts)
+  rq<-RProtoBuf::read(regarima.RegArimaModel, q)
+  return (.JD3_ENV$p2r_regarima_rslts(rq))
+}
+
 
 x13_rslts<-function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
-  q<-.jcall(jrslts, "[B", "buffer")
+  q<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(x13.X13Results, q)
   return (p2r_x13_rslts(rq))
 }
@@ -13,7 +21,7 @@ x13_rslts<-function(jrslts){
 x11_rslts<-function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
-  q<-.jcall(jrslts, "[B", "buffer")
+  q<-.jcall("demetra/x13/r/X11", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(x13.X11Results, q)
   return (p2r_x11_rslts(rq))
 }
