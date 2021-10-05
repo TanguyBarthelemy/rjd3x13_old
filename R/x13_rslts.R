@@ -38,7 +38,7 @@ p2r_x13_rslts<-function(p){
       diagnostics=.JD3_ENV$p2r_sa_diagnostics(p$diagnostics_sa)
       )
     ,
-    class= "JD3X13_RSLTS"))
+    class= "JD3_X13_RSLTS"))
 }
 
 p2r_x11_rslts<-function(p){
@@ -100,7 +100,7 @@ p2r_x13_preadjust<-function(p){
 #' @export
 #'
 #' @examples
-sa.decomposition.JD3X13_RSLTS<-function(x){
+sa.decomposition.JD3_X13_RSLTS<-function(x){
   if (is.null(x)) return (NULL)
   return (rjd3sa::sadecomposition(x$preadjust$a1,
                                   x$final$d11final,
@@ -120,7 +120,7 @@ sa.decomposition.JD3X13_RSLTS<-function(x){
 #' @export
 #'
 #' @examples
-sa.decomposition.JD3X13_OUTPUT<-function(x){
+sa.decomposition.JD3_X13_OUTPUT<-function(x){
   return (sa.decomposition(x$result))
 }
 

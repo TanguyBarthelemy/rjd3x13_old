@@ -67,7 +67,7 @@ regarima_output<-function(jq){
     estimation_spec=p2r_spec_regarima(p$estimation_spec),
     result_spec=p2r_spec_regarima(p$result_spec)
   ),
-  class="JD3REGARIMA_OUTPUT")
+  class="JD3_REGARIMA_OUTPUT")
   )
 }
 
@@ -138,7 +138,7 @@ x13_output<-function(jq){
     estimation_spec=p2r_spec_x13(p$estimation_spec),
     result_spec=p2r_spec_x13(p$result_spec)
   ),
-  class="JD3X13_OUTPUT")
+  class="JD3_X13_OUTPUT")
   )
 
 }
@@ -178,13 +178,13 @@ x11<-function(ts, spec){
 #' @examples
 regarima.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
-  if (class(spec) != "JD3REGARIMASPEC") stop("Invalid specification type")
+  if (class(spec) != "JD3_REGARIMA_SPEC") stop("Invalid specification type")
   jspec<-r2jd_spec_regarima(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", "rg4")
 
   }else{
-    if (class(refspec) != "JD3REGARIMASPEC") stop("Invalid specification type")
+    if (class(refspec) != "JD3_REGARIMA_SPEC") stop("Invalid specification type")
     jrefspec<-r2jd_spec_regarima(refspec)
   }
   jdom<-jdomain(period, start, end)
@@ -207,13 +207,13 @@ regarima.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
 #' @examples
 x13.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
-  if (class(spec) != "JD3X13SPEC") stop("Invalid specification type")
+  if (class(spec) != "JD3_X13_SPEC") stop("Invalid specification type")
   jspec<-r2jd_spec_x13(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", "rsa4")
 
   }else{
-    if (class(refspec) != "JD3X13SPEC") stop("Invalid specification type")
+    if (class(refspec) != "JD3_X13_SPEC") stop("Invalid specification type")
     jrefspec<-r2jd_spec_x13(refspec)
   }
   jdom<-jdomain(period, start, end)

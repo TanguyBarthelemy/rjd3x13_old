@@ -1,4 +1,4 @@
-#' @include utils.R jd3_r.R protobuf.R
+#' @include utils.R jd3_r.R
 NULL
 
 
@@ -160,7 +160,7 @@ p2r_spec_regarima<-function(pspec){
       regression=regression,
       estimate=estimate
     ),
-    class="JD3REGARIMASPEC"))
+    class="JD3_REGARIMA_SPEC"))
 }
 
 
@@ -277,7 +277,7 @@ p2r_spec_x13<-function(pspec){
     regarima=p2r_spec_regarima(pspec$regarima),
     x11=p2r_spec_x11(pspec$x11),
     benchmarking=p2r_spec_benchmarking(pspec$benchmarking)
-  ), class="JD3X13SPEC"))
+  ), class="JD3_X13_SPEC"))
 }
 
 r2p_spec_x13<-function(r){
