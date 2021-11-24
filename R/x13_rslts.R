@@ -92,15 +92,9 @@ p2r_x13_preadjust<-function(p){
 
 ############################# Generics
 
-#' Title
-#'
-#' @param x
-#'
-#' @return
 #' @export
-#'
-#' @examples
-sa.decomposition.JD3_X13_RSLTS<-function(x){
+#' @importFrom rjd3sa sa.decomposition
+sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
   if (is.null(x)) return (NULL)
   return (rjd3sa::sadecomposition(x$preadjust$a1,
                                   x$final$d11final,
@@ -112,15 +106,9 @@ sa.decomposition.JD3_X13_RSLTS<-function(x){
 
 }
 
-#' Title
-#'
-#' @param x
-#'
 #' @return
 #' @export
-#'
-#' @examples
-sa.decomposition.JD3_X13_OUTPUT<-function(x){
+sa.decomposition.JD3_X13_OUTPUT<-function(x, ...){
   return (sa.decomposition(x$result))
 }
 

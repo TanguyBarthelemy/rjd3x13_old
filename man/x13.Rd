@@ -2,16 +2,32 @@
 % Please edit documentation in R/x13.R
 \name{x13}
 \alias{x13}
-\title{Title}
+\alias{fast.x13}
+\title{Seasonal Adjustment with  X13-ARIMA}
 \usage{
 x13(ts, spec = "rsa4", context = NULL)
+
+fast.x13(ts, spec = "rsa4", context = NULL)
 }
 \arguments{
-\item{context}{}
-}
-\value{
+\item{ts}{a univariate time series}
 
+\item{spec}{the model specification. Can be either the name of a predifined specification (`"rsa0"`, `"rsa1"`, `"rsa2c"`, `"rsa3"`, `"rsa4"` or `"rsa5c"`, see details) or a user-defined specification.
+
+The available predefined 'JDemetra+' model specifications are described in the table below:
+
+\tabular{rrrrrrr}{
+\strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
+RSA0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
+RSA1 |\tab automatic |\tab AO/LS/TC  |\tab \emph{NA} |\tab Airline(+mean)\cr
+RSA2c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
+RSA3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
+RSA4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
+RSA5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic\cr
+}}
+
+\item{context}{the dictionnary of variables.}
 }
 \description{
-Title
+Seasonal Adjustment with  X13-ARIMA
 }

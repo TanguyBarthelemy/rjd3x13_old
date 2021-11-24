@@ -2,10 +2,9 @@
 NULL
 
 
-#' Title
+#' RegARIMA Default Specification
 #'
-#' @param name
-#'
+#' @param name the name of a predifined specification (`"rg0"`, `"rg1"`, `"rg2c"`, `"rg3"`, `"rg4"` or `"rg5c"`, see details).#'
 #' @return
 #' @export
 #'
@@ -14,9 +13,9 @@ spec_regarima_default<-function(name="rg4"){
   return (jd2r_spec_regarima(.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", name)))
 }
 
-#' Title
+#' X13-ARIMA Default Specification
 #'
-#' @param name
+#' @param name the name of a predifined specification (`"rsa0"`, `"rsa1"`, `"rsa2c"`, `"rsa3"`, `"rsa4"` or `"rsa5c"`, see details).
 #'
 #' @return
 #' @export
@@ -26,9 +25,7 @@ spec_x13_default<-function(name="rsa4"){
   return (jd2r_spec_x13(.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", name)))
 }
 
-#' Title
-#'
-#' @param name
+#' X11 Default Specification
 #'
 #' @return
 #' @export

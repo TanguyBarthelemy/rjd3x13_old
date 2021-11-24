@@ -2,16 +2,13 @@
 % Please edit documentation in R/x13_spec.R
 \name{spec_x11_default}
 \alias{spec_x11_default}
-\title{Title}
+\title{X11 Default Specification}
 \usage{
 spec_x11_default()
-}
-\arguments{
-\item{name}{}
 }
 \value{
 
 }
 \description{
-Title
+X11 Default Specification
 }

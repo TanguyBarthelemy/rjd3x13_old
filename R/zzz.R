@@ -1,4 +1,8 @@
 #' @importFrom rjd3toolkit .JD3_ENV
+#' @import rjd3sa
+#' @import rJava
+#' @importFrom RProtoBuf readProtoFiles2
+#' @importFrom stats is.ts start
 NULL
 
 

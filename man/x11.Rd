@@ -2,16 +2,18 @@
 % Please edit documentation in R/x13.R
 \name{x11}
 \alias{x11}
-\title{Title}
+\title{X11 Decomposition Algorithm}
 \usage{
-x11(ts, spec)
+x11(ts, spec = spec_x11_default())
 }
 \arguments{
-\item{spec}{}
+\item{ts}{a univariate time series}
+
+\item{spec}{the specification}
 }
 \value{
 
 }
 \description{
-Title
+X11 Decomposition Algorithm
 }

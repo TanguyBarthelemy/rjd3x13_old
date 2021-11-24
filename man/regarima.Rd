@@ -2,16 +2,36 @@
 % Please edit documentation in R/x13.R
 \name{regarima}
 \alias{regarima}
-\title{Title}
+\alias{fast.regarima}
+\title{RegARIMA model, pre-adjustment in X13}
 \usage{
 regarima(ts, spec = "rg4", context = NULL)
+
+fast.regarima(ts, spec = "rg4", context = NULL)
 }
 \arguments{
-\item{context}{}
+\item{ts}{a univariate time series}
+
+\item{spec}{the model specification. Can be either the name of a predifined specification (\code{"rg0"}, \code{"rg1"}, \code{"rg2c"}, \code{"rg3"}, \code{"rg4"} or \code{"rg5c"}, see details) or a user-defined specification.}
+
+\item{context}{the dictionnary of variables.}
 }
 \value{
 
 }
 \description{
-Title
+RegARIMA model, pre-adjustment in X13
+}
+\details{
+The available predefined 'JDemetra+' model specifications are described in the table below:
+
+\tabular{rrrrrrr}{
+\strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
+RG0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
+RG1 |\tab automatic |\tab AO/LS/TC  |\tab \emph{NA} |\tab Airline(+mean)\cr
+RG2c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
+RG3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
+RG4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
+RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic
+}
 }

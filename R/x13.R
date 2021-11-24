@@ -1,12 +1,24 @@
 #' @include utils.R x13_spec.R x13_rslts.R
 NULL
 
-#' Title
+#' RegARIMA model, pre-adjustment in X13
 #'
-#' @param ts
-#' @param spec
-#' @param context
+#' @param ts a univariate time series
+#' @param spec the model specification. Can be either the name of a predifined specification (`"rg0"`, `"rg1"`, `"rg2c"`, `"rg3"`, `"rg4"` or `"rg5c"`, see details) or a user-defined specification.
+#' @param context the dictionnary of variables.
+#' @details
+#' The available predefined 'JDemetra+' model specifications are described in the table below:
 #'
+#' \tabular{rrrrrrr}{
+#' \strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
+#' RG0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RG1 |\tab automatic |\tab AO/LS/TC  |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RG2c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
+#' RG3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
+#' RG4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
+#' RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic
+#' }
+#' @md
 #' @return
 #' @export
 #'
@@ -29,22 +41,14 @@ regarima<-function(ts, spec="rg4", context=NULL){
   }
 }
 
-#' Title
-#'
-#' @param ts
-#' @param spec
-#' @param context
-#'
-#' @return
 #' @export
-#'
-#' @examples
+#' @rdname regarima
 fast.regarima<-function(ts, spec="rg4", context=NULL){
   jts<-.JD3_ENV$ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   }else{
-    jspec<-r2jd_spec_tramo(spec)
+    jspec<-r2jd_spec_regarima(spec)
     if (is.null(context)){
       jcontext<-.jnull("demetra/util/r/Dictionary")
     }
@@ -71,13 +75,22 @@ regarima_output<-function(jq){
   )
 }
 
-#' Title
+#' Seasonal Adjustment with  X13-ARIMA
 #'
-#' @param ts
-#' @param spec
-#' @param context
+#' @inheritParams regarima
+#' @param spec the model specification. Can be either the name of a predifined specification (`"rsa0"`, `"rsa1"`, `"rsa2c"`, `"rsa3"`, `"rsa4"` or `"rsa5c"`, see details) or a user-defined specification.
 #'
-#' @return
+#' The available predefined 'JDemetra+' model specifications are described in the table below:
+#'
+#' \tabular{rrrrrrr}{
+#' \strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
+#' RSA0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RSA1 |\tab automatic |\tab AO/LS/TC  |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RSA2c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
+#' RSA3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
+#' RSA4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
+#' RSA5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic\cr
+#' }
 #' @export
 #'
 #' @examples
@@ -100,16 +113,8 @@ x13<-function(ts, spec="rsa4", context=NULL){
 }
 
 
-#' Title
-#'
-#' @param ts
-#' @param spec
-#' @param context
-#'
-#' @return
 #' @export
-#'
-#' @examples
+#' @rdname x13
 fast.x13<-function(ts, spec="rsa4", context=NULL){
   jts<-.JD3_ENV$ts_r2jd(ts)
   if (is.character(spec)){
@@ -143,16 +148,16 @@ x13_output<-function(jq){
 
 }
 
-#' Title
+#' X11 Decomposition Algorithm
 #'
-#' @param ts
-#' @param spec
+#' @inheritParams x13
+#' @param spec the specification
 #'
 #' @return
 #' @export
 #'
 #' @examples
-x11<-function(ts, spec){
+x11<-function(ts, spec=spec_x11_default()){
   jts<-.JD3_ENV$ts_r2jd(ts)
   jspec<-r2jd_spec_x11(spec)
   jrslt<-.jcall("demetra/x13/r/X11", "Ldemetra/x11/X11Results;", "process", jts, jspec)
