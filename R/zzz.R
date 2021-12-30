@@ -73,5 +73,17 @@ r2p_spec_benchmarking<-NULL
   r2p_spec_benchmarking<<-.JD3_ENV$r2p_spec_benchmarking
   DATE_MIN<<-.JD3_ENV$DATE_MIN
   DATE_MAX<<-.JD3_ENV$DATE_MAX
+
+  ###
+  .JD3_ENV$jd2r_spec_regarima<-jd2r_spec_regarima
+  .JD3_ENV$r2jd_spec_regarima<-r2jd_spec_regarima
+  .JD3_ENV$jd2r_spec_x11<-jd2r_spec_x11
+  .JD3_ENV$r2jd_spec_x11<-r2jd_spec_x11
+  .JD3_ENV$jd2r_spec_x13<-jd2r_spec_x13
+  .JD3_ENV$r2jd_spec_x13<-r2jd_spec_x13
+  .JD3_ENV$x13_rslts<-x13_rslts
+  .JD3_ENV$x11_rslts<-x11_rslts
+  .JD3_ENV$regarima_rslts<-regarima_rslts
+
 }
 
