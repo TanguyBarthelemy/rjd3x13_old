@@ -116,7 +116,7 @@ p2r_spec_regarima<-function(pspec){
   )
 
   td<-list(
-    td=.JD3_ENV$enum_extract(modelling.TradingDays, pspec$regression$td$td),
+    td=.JD3_ENV$enum_sextract(modelling.TradingDays, pspec$regression$td$td),
     lp=.JD3_ENV$enum_extract(modelling.LengthOfPeriod, pspec$regression$td$lp),
     holidays=pspec$regression$td$holidays,
     users=unlist(pspec$regression$td$users),
@@ -209,7 +209,7 @@ r2p_spec_regarima<-function(r){
   p$regression$ramps=r2p_ramps(r$regression$ramps)
 
   #TD
-  p$regression$td$td<-.JD3_ENV$enum_of(modelling.TradingDays, r$regression$td$td, "TD")
+  p$regression$td$td<-.JD3_ENV$enum_sof(modelling.TradingDays, r$regression$td$td)
   p$regression$td$lp<-.JD3_ENV$enum_of(modelling.LengthOfPeriod, r$regression$td$lp, "LP")
   p$regression$td$holidays<-r$regression$td$holidays
   p$regression$td$users<-r$regression$td$users
