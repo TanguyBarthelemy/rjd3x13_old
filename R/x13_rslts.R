@@ -1,4 +1,5 @@
 #' @include utils.R
+#' @importFrom rjd3sa sa.decomposition
 NULL
 
 regarima_rslts <- function(jrslts){
@@ -121,7 +122,7 @@ sa.decomposition.JD3_X13_RSLTS<-function(x){
 #'
 #' @examples
 sa.decomposition.JD3_X13_OUTPUT<-function(x){
-  return (sa.decomposition(x$result))
+  return (rjd3sa::sadecomposition(x$result))
 }
 
 
