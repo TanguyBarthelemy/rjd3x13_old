@@ -30,9 +30,9 @@ regarima<-function(ts, spec="rg4", context=NULL){
   }else{
     jspec<-r2jd_spec_regarima(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, context)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -50,9 +50,9 @@ fast.regarima<-function(ts, spec="rg4", context=NULL){
   }else{
     jspec<-r2jd_spec_regarima(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, context )
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -101,9 +101,9 @@ x13<-function(ts, spec="rsa4", context=NULL){
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, context )
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -122,9 +122,9 @@ fast.x13<-function(ts, spec="rsa4", context=NULL){
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, context)
   }
   if (is.jnull(jrslt)){
     return (NULL)
