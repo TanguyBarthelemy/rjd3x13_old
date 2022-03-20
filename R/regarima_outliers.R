@@ -32,19 +32,19 @@ regarima.outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
 
 
   jregarima<-.jcall("demetra/x13/r/RegArimaOutliersDetection", "Ldemetra/x13/r/RegArimaOutliersDetection$Results;", "process",
-                    rjd3toolkit:::ts_r2jd(y), as.integer(order), as.integer(seasonal), mean, rjd3toolkit:::matrix_r2jd(X),
+                    rjd3toolkit::ts_r2jd(y), as.integer(order), as.integer(seasonal), mean, rjd3toolkit::matrix_r2jd(X),
                  ao, ls, tc, so, cv)
   model<-list(
     y=as.numeric(y),
-    variables=rjd3toolkit:::proc_vector(jregarima, "variables"),
-    X=rjd3toolkit:::proc_matrix(jregarima, "regressors"),
-    b=rjd3toolkit:::proc_vector(jregarima, "b"),
-    bcov=rjd3toolkit:::proc_matrix(jregarima, "bvar"),
-    linearized=rjd3toolkit:::proc_vector(jregarima, "linearized")
+    variables=rjd3toolkit::proc_vector(jregarima, "variables"),
+    X=rjd3toolkit::proc_matrix(jregarima, "regressors"),
+    b=rjd3toolkit::proc_vector(jregarima, "b"),
+    bcov=rjd3toolkit::proc_matrix(jregarima, "bvar"),
+    linearized=rjd3toolkit::proc_vector(jregarima, "linearized")
   )
 
-  ll0<-rjd3toolkit:::proc_likelihood(jregarima, "initiallikelihood.")
-  ll1<-rjd3toolkit:::proc_likelihood(jregarima, "finallikelihood.")
+  ll0<-rjd3toolkit::proc_likelihood(jregarima, "initiallikelihood.")
+  ll1<-rjd3toolkit::proc_likelihood(jregarima, "finallikelihood.")
 
   return(structure(list(
     model=model,
