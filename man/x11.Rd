@@ -4,7 +4,7 @@
 \alias{x11}
 \title{X11 Decomposition Algorithm}
 \usage{
-x11(ts, spec = spec_x11_default())
+x11(ts, spec)
 }
 \arguments{
 \item{ts}{a univariate time series}

@@ -233,31 +233,34 @@ message X11Results{
 	double qm2 = 13; 
  }
  
- message X13Finals{
+  message X13Preadjustment{
  
-    jd3.TsData d10final = 1;
-	jd3.TsData d11final = 2;
-	jd3.TsData d12final = 3;
-	jd3.TsData d13final = 4;
-	jd3.TsData d16 = 5;
-	jd3.TsData d18 = 6;
-    jd3.TsData d10a = 7;
-	jd3.TsData d11a = 8;
-	jd3.TsData d12a = 9;
-	jd3.TsData d16a = 10;
-	jd3.TsData d18a = 11;
+	jd3.TsData a1 = 1;
+	jd3.TsData a1a = 2;
+	jd3.TsData a1b = 3;
+	jd3.TsData a6 = 4;
+	jd3.TsData a7 = 5;
+	jd3.TsData a8 = 6;
+	jd3.TsData a9 = 7;
+ }
+
+ 
+  message X13Finals{
+ 
+	jd3.TsData d11final = 1;
+	jd3.TsData d12final = 2;
+	jd3.TsData d13final = 3;
+	jd3.TsData d16 = 4;
+	jd3.TsData d18 = 5;
+	jd3.TsData d11a = 6;
+	jd3.TsData d12a = 7;
+	jd3.TsData d16a = 8;
+	jd3.TsData d18a = 9;
 	
-	jd3.TsData a1 = 12;
-	jd3.TsData a1a = 13;
-	jd3.TsData a6 = 14;
-	jd3.TsData a7 = 15;
-	jd3.TsData a8 = 16;
-	jd3.TsData a9 = 17;
-    
-	jd3.TsData e1 = 30;
-	jd3.TsData e2 = 31;
-	jd3.TsData e3 = 32;
-	jd3.TsData e11 = 33;
+	jd3.TsData e1 = 10;
+	jd3.TsData e2 = 11;
+	jd3.TsData e3 = 12;
+	jd3.TsData e11 = 13;
 
  }
  
@@ -267,12 +270,13 @@ message X11Results{
  }
  
  message X13Results{
-	regarima.RegArimaModel preprocessing = 1;
-	X11Results decomposition = 2;
-    X13Finals final = 3;
+    X13Preadjustment preadjustment = 1;
+	regarima.RegArimaModel preprocessing = 2;
+	X11Results decomposition = 3;
+    X13Finals final = 4;
 
-	Diagnostics diagnostics_x13= 4;
-	sa.Diagnostics diagnostics_sa= 5;
+	Diagnostics diagnostics_x13= 5;
+	sa.Diagnostics diagnostics_sa= 6;
 }
 
 
