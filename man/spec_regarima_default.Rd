@@ -2,16 +2,16 @@
 % Please edit documentation in R/x13_spec.R
 \name{spec_regarima_default}
 \alias{spec_regarima_default}
-\title{Title}
+\title{RegARIMA Default Specification}
 \usage{
 spec_regarima_default(name = "rg4")
 }
 \arguments{
-\item{name}{}
+\item{name}{the name of a predifined specification (`"rg0"`, `"rg1"`, `"rg2c"`, `"rg3"`, `"rg4"` or `"rg5c"`, see details).#'}
 }
 \value{
 
 }
 \description{
-Title
+RegARIMA Default Specification
 }

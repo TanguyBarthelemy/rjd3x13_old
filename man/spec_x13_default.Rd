@@ -2,16 +2,16 @@
 % Please edit documentation in R/x13_spec.R
 \name{spec_x13_default}
 \alias{spec_x13_default}
-\title{Title}
+\title{X13-ARIMA Default Specification}
 \usage{
 spec_x13_default(name = "rsa4")
 }
 \arguments{
-\item{name}{}
+\item{name}{the name of a predifined specification (`"rsa0"`, `"rsa1"`, `"rsa2c"`, `"rsa3"`, `"rsa4"` or `"rsa5c"`, see details).}
 }
 \value{
 
 }
 \description{
-Title
+X13-ARIMA Default Specification
 }

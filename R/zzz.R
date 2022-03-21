@@ -1,3 +1,5 @@
+#' @importFrom RProtoBuf readProtoFiles2
+#' @importFrom stats is.ts start
 #' @include utils.R
 
 
