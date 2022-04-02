@@ -70,3 +70,10 @@ set_transform.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
+#' @importFrom rjd3arima set_benchmarking
+#' @export
+set_benchmarking.JD3_X13_SPEC <- function(x, ...) {
+  x$benchmarking <- set_benchmarking(x$benchmarking, ...)
+
+  x
+}
