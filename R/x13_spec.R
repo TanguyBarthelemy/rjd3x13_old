@@ -4,12 +4,16 @@ NULL
 
 #' RegARIMA Default Specification
 #'
-#' @param name the name of a predifined specification (`"rg0"`, `"rg1"`, `"rg2c"`, `"rg3"`, `"rg4"` or `"rg5c"`, see details).#'
+#' @param name the name of a predifined specification (`"rg0"`, `"rg1"`, `"rg2c"`, `"rg3"`, `"rg4"` or `"rg5c"`, see details).
 #' @return
 #' @export
 #'
 #' @examples
-spec_regarima_default<-function(name="rg4"){
+spec_regarima_default<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")){
+  name = gsub("sa", "g", tolower(name), fixed = TRUE)
+  name = match.arg(name[1],
+                   choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
+                   )
   return (jd2r_spec_regarima(.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", name)))
 }
 
@@ -21,7 +25,11 @@ spec_regarima_default<-function(name="rg4"){
 #' @export
 #'
 #' @examples
-spec_x13_default<-function(name="rsa4"){
+spec_x13_default<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
+  name = gsub("g", "sa", tolower(name), fixed = TRUE)
+  name = match.arg(name[1],
+                   choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
+  )
   return (jd2r_spec_x13(.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", name)))
 }
 
@@ -235,7 +243,7 @@ r2p_spec_regarima<-function(r){
 
 p2r_spec_x11<-function(p){
 
-  return (list(
+  return (structure(list(
     mode=rjd3toolkit::enum_extract(sa.DecompositionMode, p$mode),
     seasonal=p$seasonal,
     henderson=p$henderson,
@@ -248,7 +256,7 @@ p2r_spec_x11<-function(p){
     vsigmas=p$vsigmas,
     excludefcasts=p$exclude_fcasts,
     bias=rjd3toolkit::enum_extract(x13.BiasCorrection, p$bias)
-  ))
+  ), class="JD3_X11_SPEC"))
 }
 
 
