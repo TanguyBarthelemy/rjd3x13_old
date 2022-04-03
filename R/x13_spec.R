@@ -2,13 +2,31 @@
 NULL
 
 
-#' RegARIMA Default Specification
+#' RegARIMA/X-13 Default Specification
 #'
-#' @param name the name of a predifined specification (`"rg0"`, `"rg1"`, `"rg2c"`, `"rg3"`, `"rg4"` or `"rg5c"`, see details).
-#' @return
+#' Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method
+#'
+#' @param name the name of a predefined specification.
+#'
+#' @return an object of class `"JD3_X13_SPEC"` (`spec_x13_default()`),
+#' `"JD3_REGARIMA_SPEC"` (`spec_regarima_default()`) or
+#' `"JD3_X11_SPEC"` (`spec_x11_default()`).
+#'
+#' @details
+#' The available predefined 'JDemetra+' model specifications are described in the table below:
+#'
+#' \tabular{rrrrrrr}{
+#' \strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
+#' RSA0/RG0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RSA1/RG1 |\tab automatic |\tab AO/LS/TC  |\tab \emph{NA} |\tab Airline(+mean)\cr
+#' RSA2c/RG2c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
+#' RSA3/RG3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
+#' RSA4c/RG4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
+#' RSA5c/RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic
+#' }
+#' @name x13_spec
+#' @rdname x13_spec
 #' @export
-#'
-#' @examples
 spec_regarima_default<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")){
   name = gsub("sa", "g", tolower(name), fixed = TRUE)
   name = match.arg(name[1],
@@ -17,14 +35,9 @@ spec_regarima_default<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c"
   return (jd2r_spec_regarima(.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", name)))
 }
 
-#' X13-ARIMA Default Specification
-#'
-#' @param name the name of a predifined specification (`"rsa0"`, `"rsa1"`, `"rsa2c"`, `"rsa3"`, `"rsa4"` or `"rsa5c"`, see details).
-#'
-#' @return
+
+#' @rdname x13_spec
 #' @export
-#'
-#' @examples
 spec_x13_default<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
   name = gsub("g", "sa", tolower(name), fixed = TRUE)
   name = match.arg(name[1],
@@ -33,12 +46,9 @@ spec_x13_default<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa
   return (jd2r_spec_x13(.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", name)))
 }
 
-#' X11 Default Specification
-#'
-#' @return
+
+#' @rdname x13_spec
 #' @export
-#'
-#' @examples
 spec_x11_default<-function(){
   return (jd2r_spec_x11(.jfield("demetra/x11/X11Spec", "Ldemetra/x11/X11Spec;", "DEFAULT")))
 }
