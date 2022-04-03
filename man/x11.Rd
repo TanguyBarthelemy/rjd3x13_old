@@ -2,18 +2,22 @@
 % Please edit documentation in R/x13.R
 \name{x11}
 \alias{x11}
-\title{X11 Decomposition Algorithm}
+\title{X-11 Decomposition Algorithm}
 \usage{
 x11(ts, spec)
 }
 \arguments{
 \item{ts}{a univariate time series}
 
-\item{spec}{the specification}
-}
-\value{
-
+\item{spec}{the specification.}
 }
 \description{
-X11 Decomposition Algorithm
+X-11 Decomposition Algorithm
+}
+\examples{
+y <- rjd3toolkit::ABS$X0.2.09.10.M
+x11_spec <- spec_x11_default()
+x11(y, x11_spec)
+x11_spec <- set_x11(x11_spec, henderson.filter = 13)
+x11(y, x11_spec)
 }

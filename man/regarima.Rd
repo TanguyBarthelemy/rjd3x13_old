@@ -12,26 +12,30 @@ fast.regarima(ts, spec = "rg4", context = NULL)
 \arguments{
 \item{ts}{a univariate time series}
 
-\item{spec}{the model specification. Can be either the name of a predifined specification (\code{"rg0"}, \code{"rg1"}, \code{"rg2c"}, \code{"rg3"}, \code{"rg4"} or \code{"rg5c"}, see details) or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predifined specification or a user-defined specification.}
 
 \item{context}{the dictionnary of variables.}
 }
 \value{
-
+the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast.regarima()} is a faster function that only returns the results.
 }
 \description{
 RegARIMA model, pre-adjustment in X13
 }
-\details{
-The available predefined 'JDemetra+' model specifications are described in the table below:
-
-\tabular{rrrrrrr}{
-\strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
-RG0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
-RG1 |\tab automatic |\tab AO/LS/TC  |\tab \emph{NA} |\tab Airline(+mean)\cr
-RG2c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
-RG3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
-RG4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
-RG5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic
-}
+\examples{
+y = rjd3toolkit::ABS$X0.2.09.10.M
+sp = spec_regarima_default("rg5c")
+sp = add_outlier(sp,
+                 type = c("AO"), c("2015-01-01", "2010-01-01"))
+fast.regarima(y, spec = sp)
+sp = set_transform(
+  set_tradingdays(
+    set_easter(sp, enabled = FALSE),
+    option = "workingdays"
+  ),
+  fun = "None"
+)
+fast.regarima(y, spec = sp)
+sp = set_outlier(sp, outliers.type = c("AO"))
+fast.regarima(y, spec = sp)
 }
