@@ -12,22 +12,31 @@ fast.x13(ts, spec = "rsa4", context = NULL)
 \arguments{
 \item{ts}{a univariate time series}
 
-\item{spec}{the model specification. Can be either the name of a predifined specification (`"rsa0"`, `"rsa1"`, `"rsa2c"`, `"rsa3"`, `"rsa4"` or `"rsa5c"`, see details) or a user-defined specification.
-
-The available predefined 'JDemetra+' model specifications are described in the table below:
-
-\tabular{rrrrrrr}{
-\strong{Identifier} |\tab \strong{Log/level detection} |\tab \strong{Outliers detection} |\tab \strong{Calendar effects} |\tab \strong{ARIMA}\cr
-RSA0 |\tab \emph{NA} |\tab \emph{NA} |\tab \emph{NA} |\tab Airline(+mean)\cr
-RSA1 |\tab automatic |\tab AO/LS/TC  |\tab \emph{NA} |\tab Airline(+mean)\cr
-RSA2c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab Airline(+mean)\cr
-RSA3 |\tab automatic |\tab AO/LS/TC |\tab \emph{NA} |\tab automatic\cr
-RSA4c |\tab automatic |\tab AO/LS/TC |\tab 2 td vars + Easter |\tab automatic\cr
-RSA5c |\tab automatic |\tab AO/LS/TC |\tab 7 td vars + Easter |\tab automatic\cr
-}}
+\item{spec}{the model specification. Can be either the name of a predifined specification or a user-defined specification.}
 
 \item{context}{the dictionnary of variables.}
 }
+\value{
+the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast.regarima()} is a faster function that only returns the results.
+}
 \description{
 Seasonal Adjustment with  X13-ARIMA
+}
+\examples{
+sp = spec_x13_default("rg5c")
+y = rjd3toolkit::ABS$X0.2.09.10.M
+fast.x13(y, spec = sp)
+sp = add_outlier(sp,
+                 type = c("AO"), c("2015-01-01", "2010-01-01"))
+sp = set_transform(
+  set_tradingdays(
+    set_easter(sp, enabled = FALSE),
+    option = "workingdays"
+  ),
+  fun = "None"
+)
+sp = set_x11(sp,
+             henderson.filter = 13)
+fast.x13(y, spec = sp)
+
 }
