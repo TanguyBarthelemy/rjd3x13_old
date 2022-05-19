@@ -1,26 +1,41 @@
 #' @include utils.R x13_spec.R x13_rslts.R
 NULL
 
-#' Title
+#' RegARIMA model, pre-adjustment in X13
 #'
-#' @param ts
-#' @param spec
-#' @param context
+#' @param ts a univariate time series
+#' @param spec the model specification. Can be either the name of a predifined specification or a user-defined specification.
+#' @param context the dictionnary of variables.
 #'
-#' @return
-#' @export
+#' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast.regarima()` is a faster function that only returns the results.
 #'
 #' @examples
+#' y = rjd3toolkit::ABS$X0.2.09.10.M
+#' sp = spec_regarima_default("rg5c")
+#' sp = add_outlier(sp,
+#'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
+#' fast.regarima(y, spec = sp)
+#' sp = set_transform(
+#'   set_tradingdays(
+#'     set_easter(sp, enabled = FALSE),
+#'     option = "workingdays"
+#'   ),
+#'   fun = "None"
+#' )
+#' fast.regarima(y, spec = sp)
+#' sp = set_outlier(sp, outliers.type = c("AO"))
+#' fast.regarima(y, spec = sp)
+#' @export
 regarima<-function(ts, spec="rg4", context=NULL){
-  jts<-rjd3toolkit:::ts_r2jd(ts)
+  jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
   }else{
     jspec<-r2jd_spec_regarima(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, context)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -28,27 +43,18 @@ regarima<-function(ts, spec="rg4", context=NULL){
     return (regarima_output(jrslt))
   }
 }
-
-#' Title
-#'
-#' @param ts
-#' @param spec
-#' @param context
-#'
-#' @return
 #' @export
-#'
-#' @examples
+#' @rdname regarima
 fast.regarima<-function(ts, spec="rg4", context=NULL){
-  jts<-rjd3toolkit:::ts_r2jd(ts)
+  jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_regarima(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, context)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -71,26 +77,40 @@ regarima_output<-function(jq){
   )
 }
 
-#' Title
+#' Seasonal Adjustment with  X13-ARIMA
 #'
-#' @param ts
-#' @param spec
-#' @param context
-#'
-#' @return
-#' @export
+#' @inheritParams regarima
+#' @param spec the model specification. Can be either the name of a predifined specification or a user-defined specification.
 #'
 #' @examples
+#' sp = spec_x13_default("rg5c")
+#' y = rjd3toolkit::ABS$X0.2.09.10.M
+#' fast.x13(y, spec = sp)
+#' sp = add_outlier(sp,
+#'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
+#' sp = set_transform(
+#'   set_tradingdays(
+#'     set_easter(sp, enabled = FALSE),
+#'     option = "workingdays"
+#'   ),
+#'   fun = "None"
+#' )
+#' sp = set_x11(sp,
+#'              henderson.filter = 13)
+#' fast.x13(y, spec = sp)
+#'
+#' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast.regarima()` is a faster function that only returns the results.
+#' @export
 x13<-function(ts, spec="rsa4", context=NULL){
-  jts<-rjd3toolkit:::ts_r2jd(ts)
+  jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, spec)
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, jcontext )
+    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, context )
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -100,26 +120,18 @@ x13<-function(ts, spec="rsa4", context=NULL){
 }
 
 
-#' Title
-#'
-#' @param ts
-#' @param spec
-#' @param context
-#'
-#' @return
 #' @export
-#'
-#' @examples
+#' @rdname x13
 fast.x13<-function(ts, spec="rsa4", context=NULL){
-  jts<-rjd3toolkit:::ts_r2jd(ts)
+  jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
-      jcontext<-.jnull("demetra/util/r/Dictionary")
+      context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, context)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -143,17 +155,20 @@ x13_output<-function(jq){
 
 }
 
-#' Title
+#' X-11 Decomposition Algorithm
 #'
-#' @param ts
-#' @param spec
-#'
-#' @return
-#' @export
+#' @inheritParams x13
+#' @param spec the specification.
 #'
 #' @examples
-x11<-function(ts, spec){
-  jts<-rjd3toolkit:::ts_r2jd(ts)
+#' y <- rjd3toolkit::ABS$X0.2.09.10.M
+#' x11_spec <- spec_x11_default()
+#' x11(y, x11_spec)
+#' x11_spec <- set_x11(x11_spec, henderson.filter = 13)
+#' x11(y, x11_spec)
+#' @export
+x11 <- function(ts, spec){
+  jts<-rjd3toolkit::ts_r2jd(ts)
   jspec<-r2jd_spec_x11(spec)
   jrslt<-.jcall("demetra/x13/r/X11", "Ljdplus/x11/X11Results;", "process", jts, jspec)
   if (is.jnull(jrslt)){
@@ -163,19 +178,33 @@ x11<-function(ts, spec){
   }
 }
 
-#' Title
+#' Refresh Policy
 #'
-#' @param spec
-#' @param refspec
-#' @param policy
-#' @param period
-#' @param start
-#' @param end
+#' @param spec the current specification
+#' @param refspec the reference specification. By default this is the `"RG4"` or `"RSA4"` specification. TODO to explain.
+#' @param policy the refresh policy
+#' @param period,start,end to specify the frozen domain when `policy` equals to `"Outliers"` or `"Outliers_StochasticComponent"`.
 #'
-#' @return
-#' @export
-#'
+#' @return a new specification
 #' @examples
+#' y = rjd3toolkit::ABS$X0.2.08.10.M
+#' y_anc = window(y,end = 2009)
+#' mod_anc = regarima(y_anc, spec_regarima_default())
+#' res_spec = mod_anc$result_spec
+#' mod_anc
+#' # ARIMA parameters fixed
+#' fast.regarima(y,
+#'               regarima.refresh(res_spec,
+#'                                mod_anc$estimation_spec,
+#'                                policy = "FixedParameters"))
+#' # Outlier detection
+#' fast.regarima(y,
+#'               regarima.refresh(res_spec,
+#'                                policy = "Outliers"))
+#'
+#' @name refresh
+#' @rdname refresh
+#' @export
 regarima.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
   if (class(spec) != "JD3_REGARIMA_SPEC") stop("Invalid specification type")
@@ -187,24 +216,13 @@ regarima.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
     if (class(refspec) != "JD3_REGARIMA_SPEC") stop("Invalid specification type")
     jrefspec<-r2jd_spec_regarima(refspec)
   }
-  jdom<-rjd3toolkit:::jdomain(period, start, end)
+  jdom<-rjd3toolkit::jdomain(period, start, end)
   jnspec<-.jcall("demetra/x13/r/RegArima", "Ldemetra/regarima/RegArimaSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (jd2r_spec_regarima(jnspec))
 }
 
-#' Title
-#'
-#' @param spec
-#' @param refspec
-#' @param policy
-#' @param period
-#' @param start
-#' @param end
-#'
-#' @return
+#' @rdname refresh
 #' @export
-#'
-#' @examples
 x13.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
   if (class(spec) != "JD3_X13_SPEC") stop("Invalid specification type")
@@ -216,9 +234,8 @@ x13.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
     if (class(refspec) != "JD3_X13_SPEC") stop("Invalid specification type")
     jrefspec<-r2jd_spec_x13(refspec)
   }
-  jdom<-rjd3toolkit:::jdomain(period, start, end)
+  jdom<-rjd3toolkit::jdomain(period, start, end)
   jnspec<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/X13Spec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (jd2r_spec_x13(jnspec))
-
 }
 

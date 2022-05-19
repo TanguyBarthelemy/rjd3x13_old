@@ -2,16 +2,40 @@
 % Please edit documentation in R/x13.R
 \name{regarima}
 \alias{regarima}
-\title{Title}
+\alias{fast.regarima}
+\title{RegARIMA model, pre-adjustment in X13}
 \usage{
 regarima(ts, spec = "rg4", context = NULL)
+
+fast.regarima(ts, spec = "rg4", context = NULL)
 }
 \arguments{
-\item{context}{}
+\item{ts}{a univariate time series}
+
+\item{spec}{the model specification. Can be either the name of a predifined specification or a user-defined specification.}
+
+\item{context}{the dictionnary of variables.}
 }
 \value{
-
+the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast.regarima()} is a faster function that only returns the results.
 }
 \description{
-Title
+RegARIMA model, pre-adjustment in X13
+}
+\examples{
+y = rjd3toolkit::ABS$X0.2.09.10.M
+sp = spec_regarima_default("rg5c")
+sp = add_outlier(sp,
+                 type = c("AO"), c("2015-01-01", "2010-01-01"))
+fast.regarima(y, spec = sp)
+sp = set_transform(
+  set_tradingdays(
+    set_easter(sp, enabled = FALSE),
+    option = "workingdays"
+  ),
+  fun = "None"
+)
+fast.regarima(y, spec = sp)
+sp = set_outlier(sp, outliers.type = c("AO"))
+fast.regarima(y, spec = sp)
 }
