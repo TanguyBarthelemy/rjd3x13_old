@@ -38,12 +38,16 @@ spec_x11_default<-function(){
   return (jd2r_spec_x11(.jfield("demetra/x11/X11Spec", "Ldemetra/x11/X11Spec;", "DEFAULT")))
 }
 
+#' @export
+#' @rdname jd3_utilities
 jd2r_spec_x11<-function(spec){
   b<-.jcall("demetra/x13/r/X11", "[B", "toBuffer", spec)
   p<-RProtoBuf::read(x13.X11Spec, b)
   return (p2r_spec_x11(p))
 }
 
+#' @export
+#' @rdname jd3_utilities
 r2jd_spec_x11<-function(spec){
   p<-r2p_spec_x11(spec)
   b<-RProtoBuf::serialize(p, NULL)
@@ -51,6 +55,8 @@ r2jd_spec_x11<-function(spec){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 r2jd_spec_regarima<-function(spec){
   p<-r2p_spec_regarima(spec)
   b<-RProtoBuf::serialize(p, NULL)
@@ -58,6 +64,8 @@ r2jd_spec_regarima<-function(spec){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 jd2r_spec_regarima<-function(spec){
   b<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", spec)
   p<-RProtoBuf::read(x13.RegArimaSpec, b)
@@ -65,6 +73,8 @@ jd2r_spec_regarima<-function(spec){
 }
 
 
+#' @export
+#' @rdname jd3_utilities
 r2jd_spec_x13<-function(spec){
   p<-r2p_spec_x13(spec)
   b<-RProtoBuf::serialize(p, NULL)
@@ -72,6 +82,8 @@ r2jd_spec_x13<-function(spec){
   return (nspec)
 }
 
+#' @export
+#' @rdname jd3_utilities
 jd2r_spec_x13<-function(spec){
   b<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", spec)
   p<-RProtoBuf::read(x13.Spec, b)
