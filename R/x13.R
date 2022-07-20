@@ -213,13 +213,15 @@ x11 <- function(ts, spec = spec_x11_default(), userdefined = NULL){
 #' @export
 regarima.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
-  if (class(spec) != "JD3_REGARIMA_SPEC") stop("Invalid specification type")
+  if (!inherits(spec, "JD3_REGARIMA_SPEC"))
+    stop("Invalid specification type")
   jspec<-r2jd_spec_regarima(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", "rg4")
 
   }else{
-    if (class(refspec) != "JD3_REGARIMA_SPEC") stop("Invalid specification type")
+    if (!inherits(refspec, "JD3_REGARIMA_SPEC"))
+      stop("Invalid specification type")
     jrefspec<-r2jd_spec_regarima(refspec)
   }
   jdom<-rjd3toolkit::jdomain(period, start, end)
@@ -231,13 +233,15 @@ regarima.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
 #' @export
 x13.refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
-  if (class(spec) != "JD3_X13_SPEC") stop("Invalid specification type")
+  if (!inherits(spec, "JD3_X13_SPEC"))
+    stop("Invalid specification type")
   jspec<-r2jd_spec_x13(spec)
   if (is.null(refspec)){
     jrefspec<-.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", "rsa4")
 
   }else{
-    if (class(refspec) != "JD3_X13_SPEC") stop("Invalid specification type")
+    if (!inherits(refspec, "JD3_X13_SPEC"))
+      stop("Invalid specification type")
     jrefspec<-r2jd_spec_x13(refspec)
   }
   jdom<-rjd3toolkit::jdomain(period, start, end)
