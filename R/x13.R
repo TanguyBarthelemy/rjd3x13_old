@@ -4,7 +4,7 @@ NULL
 #' RegARIMA model, pre-adjustment in X13
 #'
 #' @param ts a univariate time series
-#' @param spec the model specification. Can be either the name of a predifined specification or a user-defined specification.
+#' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
 #' @param context the dictionnary of variables.
 #' @param userdefined a vector containing the additional output variables.
 #'
@@ -83,7 +83,6 @@ regarima_output<-function(jq){
 #' Seasonal Adjustment with  X13-ARIMA
 #'
 #' @inheritParams regarima
-#' @param spec the model specification. Can be either the name of a predifined specification or a user-defined specification.
 #'
 #' @examples
 #' sp = spec_x13_default("rg5c")
@@ -102,7 +101,6 @@ regarima_output<-function(jq){
 #'              henderson.filter = 13)
 #' fast.x13(y, spec = sp)
 #'
-#' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast.regarima()` is a faster function that only returns the results.
 #' @export
 x13<-function(ts, spec="rsa4", context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)

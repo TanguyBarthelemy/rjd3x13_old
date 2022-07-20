@@ -12,7 +12,7 @@ fast.regarima(ts, spec = "rg4", context = NULL, userdefined = NULL)
 \arguments{
 \item{ts}{a univariate time series}
 
-\item{spec}{the model specification. Can be either the name of a predifined specification or a user-defined specification.}
+\item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 
 \item{context}{the dictionnary of variables.}
 
