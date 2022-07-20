@@ -4,12 +4,14 @@
 \alias{x11}
 \title{X-11 Decomposition Algorithm}
 \usage{
-x11(ts, spec)
+x11(ts, spec = spec_x11_default(), userdefined = NULL)
 }
 \arguments{
 \item{ts}{a univariate time series}
 
 \item{spec}{the specification.}
+
+\item{userdefined}{a vector containing the additional output variables.}
 }
 \description{
 X-11 Decomposition Algorithm

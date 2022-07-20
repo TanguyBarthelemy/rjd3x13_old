@@ -5,9 +5,9 @@
 \alias{fast.regarima}
 \title{RegARIMA model, pre-adjustment in X13}
 \usage{
-regarima(ts, spec = "rg4", context = NULL)
+regarima(ts, spec = "rg4", context = NULL, userdefined = NULL)
 
-fast.regarima(ts, spec = "rg4", context = NULL)
+fast.regarima(ts, spec = "rg4", context = NULL, userdefined = NULL)
 }
 \arguments{
 \item{ts}{a univariate time series}
@@ -15,6 +15,8 @@ fast.regarima(ts, spec = "rg4", context = NULL)
 \item{spec}{the model specification. Can be either the name of a predifined specification or a user-defined specification.}
 
 \item{context}{the dictionnary of variables.}
+
+\item{userdefined}{a vector containing the additional output variables.}
 }
 \value{
 the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast.regarima()} is a faster function that only returns the results.

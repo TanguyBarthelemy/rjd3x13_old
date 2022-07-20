@@ -6,6 +6,7 @@ NULL
 #' @param ts a univariate time series
 #' @param spec the model specification. Can be either the name of a predifined specification or a user-defined specification.
 #' @param context the dictionnary of variables.
+#' @param userdefined a vector containing the additional output variables.
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast.regarima()` is a faster function that only returns the results.
 #'
@@ -26,7 +27,7 @@ NULL
 #' sp = set_outlier(sp, outliers.type = c("AO"))
 #' fast.regarima(y, spec = sp)
 #' @export
-regarima<-function(ts, spec="rg4", context=NULL){
+regarima<-function(ts, spec="rg4", context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
@@ -40,12 +41,13 @@ regarima<-function(ts, spec="rg4", context=NULL){
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (regarima_output(jrslt))
+    res = regarima_output(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined))
   }
 }
 #' @export
 #' @rdname regarima
-fast.regarima<-function(ts, spec="rg4", context=NULL){
+fast.regarima<-function(ts, spec="rg4", context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
@@ -59,7 +61,8 @@ fast.regarima<-function(ts, spec="rg4", context=NULL){
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (regarima_rslts(jrslt))
+    res = regarima_rslts(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
@@ -101,7 +104,7 @@ regarima_output<-function(jq){
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast.regarima()` is a faster function that only returns the results.
 #' @export
-x13<-function(ts, spec="rsa4", context=NULL){
+x13<-function(ts, spec="rsa4", context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, spec)
@@ -110,19 +113,20 @@ x13<-function(ts, spec="rsa4", context=NULL){
     if (is.null(context)){
       context<-.jnull("demetra/util/r/Dictionary")
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, context )
+    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, context)
   }
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (x13_output(jrslt))
+    res = x13_output(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/X13Results;"))
   }
 }
 
 
 #' @export
 #' @rdname x13
-fast.x13<-function(ts, spec="rsa4", context=NULL){
+fast.x13<-function(ts, spec="rsa4", context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
     jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
@@ -136,7 +140,8 @@ fast.x13<-function(ts, spec="rsa4", context=NULL){
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (x13_rslts(jrslt))
+    res = x13_rslts(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
@@ -167,14 +172,15 @@ x13_output<-function(jq){
 #' x11_spec <- set_x11(x11_spec, henderson.filter = 13)
 #' x11(y, x11_spec)
 #' @export
-x11 <- function(ts, spec){
+x11 <- function(ts, spec = spec_x11_default(), userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   jspec<-r2jd_spec_x11(spec)
   jrslt<-.jcall("demetra/x13/r/X11", "Ljdplus/x11/X11Results;", "process", jts, jspec)
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
-    return (x11_rslts(jrslt))
+    res = x11_rslts(jrslt)
+    return (add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
   }
 }
 
