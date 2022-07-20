@@ -7,7 +7,7 @@ regarima_rslts <- function(jrslts){
     return (NULL)
   q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(regarima.RegArimaModel, q)
-  return (rjd3modelling:::p2r_regarima_rslts(rq))
+  return (rjd3modelling::p2r_regarima_rslts(rq))
 }
 
 
@@ -31,12 +31,12 @@ p2r_x13_rslts<-function(p){
 
   return (structure(
     list(
-      preprocessing=rjd3modelling:::p2r_regarima_rslts(p$preprocessing),
+      preprocessing=rjd3modelling::p2r_regarima_rslts(p$preprocessing),
       preadjust=p2r_x13_preadjust(p$preadjustment),
       decomposition=p2r_x11_rslts(p$decomposition),
       final=p2r_x13_final(p$final),
       mstats=p$diagnostics_x13$mstatistics$as.list(),
-      diagnostics=rjd3sa:::p2r_sa_diagnostics(p$diagnostics_sa)
+      diagnostics=rjd3sa::p2r_sa_diagnostics(p$diagnostics_sa)
       )
     ,
     class= "JD3_X13_RSLTS"))

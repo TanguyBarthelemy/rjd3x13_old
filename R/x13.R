@@ -72,7 +72,7 @@ regarima_output<-function(jq){
   q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(x13.RegArimaOutput, q)
   return (structure(list(
-    result=rjd3modelling:::p2r_regarima_rslts(p$result),
+    result=rjd3modelling::p2r_regarima_rslts(p$result),
     estimation_spec=p2r_spec_regarima(p$estimation_spec),
     result_spec=p2r_spec_regarima(p$result_spec)
   ),
