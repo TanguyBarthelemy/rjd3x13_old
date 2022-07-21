@@ -58,6 +58,7 @@ p2r_x11_rslts<-function(p){
       d11=rjd3toolkit::p2r_ts(p$d11),
       d12=rjd3toolkit::p2r_ts(p$d12),
       d13=rjd3toolkit::p2r_ts(p$d13),
+      final_seasonal=p$final_seasonal_filters,
       final_henderson=p$final_henderson_filter
     ),
     class= "JD3X11"))
@@ -105,6 +106,7 @@ sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
                                   x$final$d11final,
                                   x$final$d12final,
                                   x$final$d10final,
+                                  # x$decomposition$d10,
                                   x$final$d13final,
                                   x$preprocessing$description$log
   ))
