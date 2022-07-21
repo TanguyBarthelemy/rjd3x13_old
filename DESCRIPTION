@@ -9,8 +9,8 @@ Authors@R: c(
                  email = "alain.quartier@yahoo.fr",
                  comment = c(ORCID = "0000-0001-7890-3857")))
 Description: Interface around 'JDemetra+ 3.x' (<https://github.com/jdemetra/jdemetra-core>) seasonal adjustment software, STACE project.
-It offers full acces to options and outputs of X-13, including RegARIMA modeling (automatic ARIMA model with outlier detection and 
-trading days adjustment) and X-11 decomposition.
+ It offers full acces to options and outputs of X-13, including RegARIMA modelling (automatic ARIMA model with outlier detection and 
+ trading days adjustment) and X-11 decomposition.
 Depends:
   R (>= 3.6.0),
   rjd3arima (>= 0.3.2)
