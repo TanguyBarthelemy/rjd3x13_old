@@ -26,7 +26,7 @@ r2jd_spec_x13(spec)
 jd2r_spec_x13(spec)
 }
 \arguments{
-\item{spec}{parameters.}
+\item{spec, jrslts}{parameters.}
 }
 \description{
 These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.
