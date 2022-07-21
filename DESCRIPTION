@@ -26,6 +26,7 @@ Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/jdemetra/rjdemetra3/issues
 Encoding: UTF-8
 Collate: 
+    'print.R'
     'regarima_generic.R'
     'utils.R'
     'regarima_outliers.R'
