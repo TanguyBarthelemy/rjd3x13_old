@@ -89,7 +89,7 @@ set_x11.JD3_X11_SPEC <- function(x,
   }
 
   if (!any(is.na(seasonal.filter))) {
-    x$seasonal <- sprintf("FILTER_%s", seasonal.filter)
+    x$sfilters <- sprintf("FILTER_%s", seasonal.filter)
   }
   if (!is.na(henderson.filter)) {
     if ((henderson.filter != 0) && (henderson.filter %% 2 == 0)) {
@@ -98,9 +98,7 @@ set_x11.JD3_X11_SPEC <- function(x,
       x$henderson = henderson.filter
     }
   }
-  if (!any(is.na(seasonal.filter))) {
-    x$seasonal <- seasonal.filter
-  }
+
   if (!is.na(lsigma)) {
     x$lsig <- lsigma
   }
