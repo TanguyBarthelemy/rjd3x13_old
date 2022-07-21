@@ -7,7 +7,7 @@
 userdefined_variables_x13(x = c("X-13", "RegArima", "X-11"))
 }
 \arguments{
-\item{x}{a character}
+\item{x}{a character.}
 }
 \description{
 Function to retrieve the names of the additional output variables that can be defined in \code{x13()}, \code{regarima()} and \code{x11()} functions.

@@ -3,7 +3,7 @@ NULL
 
 #' RegARIMA model, pre-adjustment in X13
 #'
-#' @param ts a univariate time series
+#' @param ts a univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
 #' @param context the dictionnary of variables.
 #' @param userdefined a vector containing the additional output variables.
@@ -185,11 +185,13 @@ x11 <- function(ts, spec = spec_x11_default(), userdefined = NULL){
 #' Refresh Policy
 #'
 #' @param spec the current specification
-#' @param refspec the reference specification. By default this is the `"RG4"` or `"RSA4"` specification. TODO to explain.
+#' @param refspec the reference specification (used to defined the set of models considered).
+#' By default this is the `"RG4"` or `"RSA4"` specification.
 #' @param policy the refresh policy
 #' @param period,start,end to specify the frozen domain when `policy` equals to `"Outliers"` or `"Outliers_StochasticComponent"`.
 #'
-#' @return a new specification
+#' @return a new specification.
+#'
 #' @examples
 #' y = rjd3toolkit::ABS$X0.2.08.10.M
 #' y_anc = window(y,end = 2009)

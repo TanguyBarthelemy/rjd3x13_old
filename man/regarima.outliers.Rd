@@ -21,7 +21,7 @@ regarima.outliers(
 \arguments{
 \item{y}{the dependent variable (\code{ts} object).}
 
-\item{order, seasonal}{the orders of the ARIMA model}
+\item{order, seasonal}{the orders of the ARIMA model.}
 
 \item{mean}{boolean to include or not the mean.}
 
@@ -29,7 +29,7 @@ regarima.outliers(
 
 \item{X.td}{trading days regressors.}
 
-\item{ao, ls, so, tc}{boolean to indicate which outliers are detected}
+\item{ao, ls, so, tc}{boolean to indicate which outliers are detected.}
 
 \item{cv}{\code{numeric}. The entered critical value for the outliers' detection procedure.
 If equal to 0 the critical value for the outliers' detection procedure is automatically determined

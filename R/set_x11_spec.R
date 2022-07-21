@@ -33,7 +33,8 @@
 #' @param sigma.vector a vector to specify one of the two groups of periods for whose standard errors used for extreme values
 #' detection and adjustment will be computed. Only used if `calendar.sigma = "Select"`. Possible values are: `1` or `2`.
 #' @param exclude.forecast boolean to exclude forecats and backcasts. If `TRUE`, the RegARIMA model forecasts and backcasts are not used during the detection of extreme values in the seasonal adjustment routines.
-#' @param bias TODO
+#' @param bias TODO.
+#'
 #' @export
 set_x11 <- function(x,
                     mode = c(NA, "Undefined", "Additive", "Multiplicative", "LogAdditive", "PseudoAdditive"),

@@ -7,7 +7,7 @@
 x11(ts, spec = spec_x11_default(), userdefined = NULL)
 }
 \arguments{
-\item{ts}{a univariate time series}
+\item{ts}{a univariate time series.}
 
 \item{spec}{the specification.}
 

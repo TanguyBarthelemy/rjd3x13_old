@@ -10,7 +10,7 @@ x13(ts, spec = "rsa4", context = NULL, userdefined = NULL)
 fast.x13(ts, spec = "rsa4", context = NULL, userdefined = NULL)
 }
 \arguments{
-\item{ts}{a univariate time series}
+\item{ts}{a univariate time series.}
 
 \item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 

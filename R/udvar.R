@@ -21,7 +21,7 @@ add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FAL
 #'
 #' Function to retrieve the names of the additional output variables that can be defined in `x13()`, `regarima()` and `x11()` functions.
 #'
-#'@param x a character
+#'@param x a character.
 #'
 #' @examples
 #' userdefined_variables_x13("x13")

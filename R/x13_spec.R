@@ -4,7 +4,7 @@ NULL
 
 #' RegARIMA/X-13 Default Specification
 #'
-#' Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method
+#' Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method.
 #'
 #' @param name the name of a predefined specification.
 #'

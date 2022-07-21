@@ -63,7 +63,7 @@ detection and adjustment will be computed. Only used if \code{calendar.sigma = "
 
 \item{exclude.forecast}{boolean to exclude forecats and backcasts. If \code{TRUE}, the RegARIMA model forecasts and backcasts are not used during the detection of extreme values in the seasonal adjustment routines.}
 
-\item{bias}{TODO}
+\item{bias}{TODO.}
 }
 \description{
 Set X-11 Specification
