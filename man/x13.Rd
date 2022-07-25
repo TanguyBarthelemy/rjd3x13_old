@@ -3,6 +3,7 @@
 \name{x13}
 \alias{x13}
 \alias{fast.x13}
+\alias{jx13}
 \title{Seasonal Adjustment with  X13-ARIMA}
 \usage{
 x13(
@@ -18,6 +19,13 @@ fast.x13(
   context = NULL,
   userdefined = NULL
 )
+
+jx13(
+  ts,
+  spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}
@@ -27,6 +35,11 @@ fast.x13(
 \item{context}{the dictionnary of variables.}
 
 \item{userdefined}{a vector containing the additional output variables.}
+}
+\value{
+the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{fast.x13()} is a faster function that only returns the results.
+The \code{jx13()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
+get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
 }
 \description{
 Seasonal Adjustment with  X13-ARIMA

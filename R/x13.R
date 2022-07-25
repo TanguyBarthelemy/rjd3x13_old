@@ -109,6 +109,9 @@ regarima_output<-function(jq){
 #'              henderson.filter = 13)
 #' fast.x13(y, spec = sp)
 #'
+#' @return the `x13()` function returns a list with the results, the estimation specification and the result specification, while `fast.x13()` is a faster function that only returns the results.
+#' The `jx13()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
+#' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
 #' @export
 x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
@@ -156,6 +159,31 @@ fast.x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
   }else{
     res = x13_rslts(jrslt)
     return (add_ud_var(res, jrslt, userdefined = userdefined, result = TRUE))
+  }
+}
+
+#' @export
+#' @rdname x13
+jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
+  jts<-rjd3toolkit::ts_r2jd(ts)
+  if (is.character(spec)){
+    spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
+    )
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
+  }else{
+    jspec<-r2jd_spec_x13(spec)
+    if (is.null(context)){
+      context<-.jnull("demetra/util/r/Dictionary")
+    }
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, context)
+  }
+  if (is.jnull(jrslt)){
+    return (NULL)
+  }else{
+    res = rjd3toolkit::jd3Object(jrslt, result = TRUE)
+    return (res)
   }
 }
 
