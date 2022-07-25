@@ -5,9 +5,19 @@
 \alias{fast.x13}
 \title{Seasonal Adjustment with  X13-ARIMA}
 \usage{
-x13(ts, spec = "rsa4", context = NULL, userdefined = NULL)
+x13(
+  ts,
+  spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
+  context = NULL,
+  userdefined = NULL
+)
 
-fast.x13(ts, spec = "rsa4", context = NULL, userdefined = NULL)
+fast.x13(
+  ts,
+  spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}

@@ -5,9 +5,19 @@
 \alias{fast.regarima}
 \title{RegARIMA model, pre-adjustment in X13}
 \usage{
-regarima(ts, spec = "rg4", context = NULL, userdefined = NULL)
+regarima(
+  ts,
+  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+  context = NULL,
+  userdefined = NULL
+)
 
-fast.regarima(ts, spec = "rg4", context = NULL, userdefined = NULL)
+fast.regarima(
+  ts,
+  spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
+  context = NULL,
+  userdefined = NULL
+)
 }
 \arguments{
 \item{ts}{a univariate time series.}

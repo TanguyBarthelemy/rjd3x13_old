@@ -27,9 +27,13 @@ NULL
 #' sp = set_outlier(sp, outliers.type = c("AO"))
 #' fast.regarima(y, spec = sp)
 #' @export
-regarima<-function(ts, spec="rg4", context=NULL, userdefined = NULL){
+regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("sa", "g", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
+    )
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
   }else{
     jspec<-r2jd_spec_regarima(spec)
@@ -47,9 +51,13 @@ regarima<-function(ts, spec="rg4", context=NULL, userdefined = NULL){
 }
 #' @export
 #' @rdname regarima
-fast.regarima<-function(ts, spec="rg4", context=NULL, userdefined = NULL){
+fast.regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("sa", "g", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
+    )
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_regarima(spec)
@@ -102,9 +110,13 @@ regarima_output<-function(jq){
 #' fast.x13(y, spec = sp)
 #'
 #' @export
-x13<-function(ts, spec="rsa4", context=NULL, userdefined = NULL){
+x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
+    )
     jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, spec)
   }else{
     jspec<-r2jd_spec_x13(spec)
@@ -124,9 +136,13 @@ x13<-function(ts, spec="rsa4", context=NULL, userdefined = NULL){
 
 #' @export
 #' @rdname x13
-fast.x13<-function(ts, spec="rsa4", context=NULL, userdefined = NULL){
+fast.x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::ts_r2jd(ts)
   if (is.character(spec)){
+    spec = gsub("g", "sa", tolower(spec), fixed = TRUE)
+    spec = match.arg(spec[1],
+                     choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
+    )
     jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
   }else{
     jspec<-r2jd_spec_x13(spec)
