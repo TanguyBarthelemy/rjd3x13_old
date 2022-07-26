@@ -114,8 +114,8 @@ sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
 }
 
 #' @export
-sa.decomposition.JD3_X13_OUTPUT<-function(x){
-  return (rjd3sa::sadecomposition(x$result))
+sa.decomposition.JD3_X13_OUTPUT<-function(x, ...){
+  return (rjd3sa::sadecomposition(x$result, ...))
 }
 
 

@@ -17,15 +17,9 @@ print_x11_decomp <- function(x, digits = max(3L, getOption("digits") - 3L), ...)
 }
 print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
                               ...){
-  variance_decomposition = x$diagnostics$vardecomposition
-  variance_decomposition = matrix(unlist(variance_decomposition),
-                                  ncol = 1,
-                                  dimnames = list(names(variance_decomposition), "Component"))
-  residuals_test = x$diagnostics[grep("test", names(x$diagnostics))]
-  residuals_test = lapply(residuals_test,function(test) test[["pvalue"]])
-  residuals_test = matrix(unlist(residuals_test),
-                          ncol = 1,
-                          dimnames = list(names(residuals_test), "P.value"))
+  diagnostics = rjd3toolkit::diagnostics(x)
+  variance_decomposition = diagnostics$variance_decomposition
+  residuals_test = diagnostics$residuals_test
 
   cat("Relative contribution of the components to the stationary",
       "portion of the variance in the original series,",
@@ -44,7 +38,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
   cat("\n")
   cat(paste0(" ",
              capture.output(
-               printCoefmat(residuals_test, digits = digits,
+               printCoefmat(residuals_test[,"P.value", drop = FALSE], digits = digits,
                             na.print = "NA", ...)
              )
   ),
@@ -106,4 +100,25 @@ plot.JD3_X13_OUTPUT <- function(x, first_date = NULL, last_date = NULL,
        caption = caption,
        colors = colors,
        ...)
+}
+
+#' @importFrom rjd3toolkit diagnostics
+#' @export
+diagnostics.JD3_X13_RSLTS<-function(x, ...){
+  if (is.null(x)) return (NULL)
+  variance_decomposition = x$diagnostics$vardecomposition
+  variance_decomposition = matrix(unlist(variance_decomposition),
+                                  ncol = 1,
+                                  dimnames = list(names(variance_decomposition), "Component"))
+  residuals_test = x$diagnostics[grep("test", names(x$diagnostics))]
+  residuals_test = data.frame(Statistic = sapply(residuals_test, function(test) test[["value"]]),
+                              P.value = sapply(residuals_test, function(test) test[["pvalue"]]),
+                              Description = sapply(residuals_test, function(test) test[["description"]]))
+  list(variance_decomposition = variance_decomposition,
+       residuals_test = residuals_test)
+}
+
+#' @export
+diagnostics.JD3_X13_OUTPUT<-function(x, ...){
+  return (rjd3toolkit::diagnostics(x$result, ...))
 }
