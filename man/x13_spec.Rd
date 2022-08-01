@@ -22,7 +22,7 @@ an object of class \code{"JD3_X13_SPEC"} (\code{spec_x13_default()}),
 \code{"JD3_X11_SPEC"} (\code{spec_x11_default()}).
 }
 \description{
-Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method
+Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method.
 }
 \details{
 The available predefined 'JDemetra+' model specifications are described in the table below:

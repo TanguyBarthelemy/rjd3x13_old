@@ -6,12 +6,28 @@ add_outlier.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
+#' @importFrom rjd3arima remove_outlier
+#' @export
+remove_outlier.JD3_X13_SPEC <- function(x,
+                                     ...){
+  x$regarima <- remove_outlier(x$regarima,
+                            ...)
+  x
+}
 #' @importFrom rjd3arima add_ramp
 #' @export
 add_ramp.JD3_X13_SPEC <- function(x,
                                      ...){
   x$regarima <- add_ramp(x$regarima,
                             ...)
+  x
+}
+#' @importFrom rjd3arima remove_ramp
+#' @export
+remove_ramp.JD3_X13_SPEC <- function(x,
+                                  ...){
+  x$regarima <- remove_ramp(x$regarima,
+                         ...)
   x
 }
 #' @importFrom rjd3arima set_arima

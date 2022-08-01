@@ -7,10 +7,11 @@ regarima_rslts <- function(jrslts){
     return (NULL)
   q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(regarima.RegArimaModel, q)
-  return (rjd3modelling:::p2r_regarima_rslts(rq))
+  return (rjd3modelling::p2r_regarima_rslts(rq))
 }
 
-
+#' @export
+#' @rdname jd3_utilities
 x13_rslts<-function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
@@ -31,12 +32,12 @@ p2r_x13_rslts<-function(p){
 
   return (structure(
     list(
-      preprocessing=rjd3modelling:::p2r_regarima_rslts(p$preprocessing),
+      preprocessing=rjd3modelling::p2r_regarima_rslts(p$preprocessing),
       preadjust=p2r_x13_preadjust(p$preadjustment),
       decomposition=p2r_x11_rslts(p$decomposition),
       final=p2r_x13_final(p$final),
       mstats=p$diagnostics_x13$mstatistics$as.list(),
-      diagnostics=rjd3sa:::p2r_sa_diagnostics(p$diagnostics_sa)
+      diagnostics=rjd3sa::p2r_sa_diagnostics(p$diagnostics_sa)
       )
     ,
     class= "JD3_X13_RSLTS"))
@@ -57,6 +58,7 @@ p2r_x11_rslts<-function(p){
       d11=rjd3toolkit::p2r_ts(p$d11),
       d12=rjd3toolkit::p2r_ts(p$d12),
       d13=rjd3toolkit::p2r_ts(p$d13),
+      final_seasonal=p$final_seasonal_filters,
       final_henderson=p$final_henderson_filter
     ),
     class= "JD3X11"))
@@ -104,6 +106,7 @@ sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
                                   x$final$d11final,
                                   x$final$d12final,
                                   x$final$d10final,
+                                  # x$decomposition$d10,
                                   x$final$d13final,
                                   x$preprocessing$description$log
   ))
@@ -111,8 +114,8 @@ sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
 }
 
 #' @export
-sa.decomposition.JD3_X13_OUTPUT<-function(x){
-  return (rjd3sa::sadecomposition(x$result))
+sa.decomposition.JD3_X13_OUTPUT<-function(x, ...){
+  return (rjd3sa::sadecomposition(x$result, ...))
 }
 
 

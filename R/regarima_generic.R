@@ -31,6 +31,10 @@ summary.JD3_REGARIMA_OUTPUT <- function(object, ...){
 print.JD3_REGARIMA_OUTPUT <- function(x, ...){
   print(x$result, ...)
 }
+#' @export
+diagnostics.JD3_REGARIMA_OUTPUT <- function(x, ...){
+  diagnostics(x$result, ...)
+}
 
 #' @export
 coef.JD3_X13_OUTPUT <- function(object, component = c("regression", "arima", "both"), ...){

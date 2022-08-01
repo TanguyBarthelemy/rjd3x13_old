@@ -4,7 +4,7 @@ NULL
 
 #' RegARIMA/X-13 Default Specification
 #'
-#' Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method
+#' Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method.
 #'
 #' @param name the name of a predefined specification.
 #'
@@ -133,7 +133,7 @@ p2r_spec_regarima<-function(pspec){
     balanced=pspec$automodel$balanced
   )
 
-  arima=rjd3modelling:::p2r_spec_sarima(pspec$arima)
+  arima=rjd3modelling::p2r_spec_sarima(pspec$arima)
 
   outlier<-list(
     outliers=lapply(pspec$outlier$outliers, function(z){list(type=z$code, va=z$va)} ),
@@ -169,8 +169,8 @@ p2r_spec_regarima<-function(pspec){
     mean=rjd3toolkit::p2r_parameter(pspec$regression$mean),
     td=td,
     easter=easter,
-    outliers=rjd3modelling:::p2r_outliers(pspec$regression$outliers),
-    ramps=rjd3modelling:::p2r_ramps(pspec$regression$ramps)
+    outliers=rjd3modelling::p2r_outliers(pspec$regression$outliers),
+    ramps=rjd3modelling::p2r_ramps(pspec$regression$ramps)
   )
 
   estimate<-list(
@@ -230,13 +230,13 @@ r2p_spec_regarima<-function(r){
   p$automodel$balanced<-r$automodel$balanced
 
   #ARIMA
-  p$arima<-rjd3modelling:::r2p_spec_sarima(r$arima)
+  p$arima<-rjd3modelling::r2p_spec_sarima(r$arima)
 
   #REGRESSION
 
   p$regression$mean=rjd3toolkit::r2p_parameter(r$regression$mean)
-  p$regression$outliers=rjd3modelling:::r2p_outliers(r$regression$outliers)
-  p$regression$ramps=rjd3modelling:::r2p_ramps(r$regression$ramps)
+  p$regression$outliers=rjd3modelling::r2p_outliers(r$regression$outliers)
+  p$regression$ramps=rjd3modelling::r2p_ramps(r$regression$ramps)
 
   #TD
   p$regression$td$td<-rjd3toolkit::enum_sof(modelling.TradingDays, r$regression$td$td)
@@ -303,7 +303,7 @@ p2r_spec_x13<-function(pspec){
   return (structure(list(
     regarima=p2r_spec_regarima(pspec$regarima),
     x11=p2r_spec_x11(pspec$x11),
-    benchmarking=rjd3sa:::p2r_spec_benchmarking(pspec$benchmarking)
+    benchmarking=rjd3sa::p2r_spec_benchmarking(pspec$benchmarking)
   ), class="JD3_X13_SPEC"))
 }
 
@@ -311,7 +311,7 @@ r2p_spec_x13<-function(r){
   p<-x13.Spec$new()
   p$regarima<-r2p_spec_regarima(r$regarima)
   p$x11<-r2p_spec_x11(r$x11)
-  p$benchmarking<-rjd3sa:::r2p_spec_benchmarking(r$benchmarking)
+  p$benchmarking<-rjd3sa::r2p_spec_benchmarking(r$benchmarking)
   return (p)
 }
 

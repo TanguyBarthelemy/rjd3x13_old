@@ -1,6 +1,6 @@
 Package: rjd3x13
 Type: Package
-Title: Interface to 'JDemetra+ 3.0' Seasonal Adjustment Software
+Title: Seasonal Adjustment with X-13 and 'JDemetra+ 3.0'
 Version: 0.3.2
 Authors@R: c(
   person("Jean", "Palate", role = c("aut", "cre"),
@@ -8,7 +8,9 @@ Authors@R: c(
   person("Alain", "Quartier-la-Tente", role = c("aut"),
                  email = "alain.quartier@yahoo.fr",
                  comment = c(ORCID = "0000-0001-7890-3857")))
-Description: Interface around 'JDemetra+ 3.x' arima-toolkit (<https://github.com/jdemetra/jdemetra-core>), STACE project. 
+Description: Interface around 'JDemetra+ 3.x' (<https://github.com/jdemetra/jdemetra-core>) seasonal adjustment software, STACE project.
+ It offers full acces to options and outputs of X-13, including RegARIMA modelling (automatic ARIMA model with outlier detection and 
+ trading days adjustment) and X-11 decomposition.
 Depends:
   R (>= 3.6.0),
   rjd3arima (>= 0.3.2)
@@ -18,19 +20,21 @@ Imports:
   rjd3toolkit (>= 0.3.2),
   rjd3modelling (>= 0.3.2),
   rjd3sa (>= 0.3.2)
-SystemRequirements: Java SE 8 or higher
+SystemRequirements: Java JRE 17 or higher
 License: EUPL
-URL: https://github.com/jdemetra/rjd3x13
-RoxygenNote: 7.1.2
+URL: https://github.com/palatej/rjd3x13
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
-BugReports: https://github.com/jdemetra/rjdemetra3/issues
+BugReports: https://github.com/palatej/rjd3x13/issues
 Encoding: UTF-8
 Collate: 
+    'print.R'
     'regarima_generic.R'
     'utils.R'
     'regarima_outliers.R'
     'regarima_spec.R'
     'set_x11_spec.R'
+    'udvar.R'
     'x13_rslts.R'
     'x13_spec.R'
     'x13.R'
