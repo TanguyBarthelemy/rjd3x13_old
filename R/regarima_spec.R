@@ -1,4 +1,4 @@
-#' @importFrom rjd3arima add_outlier
+#' @importFrom rjd3modelling add_outlier
 #' @export
 add_outlier.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -6,7 +6,7 @@ add_outlier.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima remove_outlier
+#' @importFrom rjd3modelling remove_outlier
 #' @export
 remove_outlier.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -14,7 +14,7 @@ remove_outlier.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima add_ramp
+#' @importFrom rjd3modelling add_ramp
 #' @export
 add_ramp.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -22,7 +22,7 @@ add_ramp.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima remove_ramp
+#' @importFrom rjd3modelling remove_ramp
 #' @export
 remove_ramp.JD3_X13_SPEC <- function(x,
                                   ...){
@@ -30,7 +30,7 @@ remove_ramp.JD3_X13_SPEC <- function(x,
                          ...)
   x
 }
-#' @importFrom rjd3arima set_arima
+#' @importFrom rjd3modelling set_arima
 #' @export
 set_arima.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -38,7 +38,7 @@ set_arima.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima set_automodel
+#' @importFrom rjd3modelling set_automodel
 #' @export
 set_automodel.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -46,7 +46,7 @@ set_automodel.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima set_easter
+#' @importFrom rjd3modelling set_easter
 #' @export
 set_easter.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -54,7 +54,7 @@ set_easter.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima set_estimate
+#' @importFrom rjd3modelling set_estimate
 #' @export
 set_estimate.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -62,7 +62,7 @@ set_estimate.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima set_outlier
+#' @importFrom rjd3modelling set_outlier
 #' @export
 set_outlier.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -70,7 +70,7 @@ set_outlier.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima set_tradingdays
+#' @importFrom rjd3modelling set_tradingdays
 #' @export
 set_tradingdays.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -78,7 +78,7 @@ set_tradingdays.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima set_transform
+#' @importFrom rjd3modelling set_transform
 #' @export
 set_transform.JD3_X13_SPEC <- function(x,
                                      ...){
@@ -86,7 +86,7 @@ set_transform.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
-#' @importFrom rjd3arima set_benchmarking
+#' @importFrom rjd3modelling set_benchmarking
 #' @export
 set_benchmarking.JD3_X13_SPEC <- function(x, ...) {
   x$benchmarking <- set_benchmarking(x$benchmarking, ...)

@@ -13,18 +13,18 @@ NULL
 #' @examples
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
 #' sp = spec_regarima_default("rg5c")
-#' sp = add_outlier(sp,
+#' sp = rjd3modelling::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 #' fast.regarima(y, spec = sp)
-#' sp = set_transform(
-#'   set_tradingdays(
-#'     set_easter(sp, enabled = FALSE),
+#' sp = rjd3modelling::set_transform(
+#'    rjd3modelling::set_tradingdays(
+#'      rjd3modelling::set_easter(sp, enabled = FALSE),
 #'     option = "workingdays"
 #'   ),
 #'   fun = "None"
 #' )
 #' fast.regarima(y, spec = sp)
-#' sp = set_outlier(sp, outliers.type = c("AO"))
+#' sp =  rjd3modelling::set_outlier(sp, outliers.type = c("AO"))
 #' fast.regarima(y, spec = sp)
 #' @export
 regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
@@ -96,11 +96,11 @@ regarima_output<-function(jq){
 #' sp = spec_x13_default("rg5c")
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
 #' fast.x13(y, spec = sp)
-#' sp = add_outlier(sp,
+#' sp = rjd3modelling::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-#' sp = set_transform(
-#'   set_tradingdays(
-#'     set_easter(sp, enabled = FALSE),
+#' sp =  rjd3modelling::set_transform(
+#'    rjd3modelling::set_tradingdays(
+#'      rjd3modelling::set_easter(sp, enabled = FALSE),
 #'     option = "workingdays"
 #'   ),
 #'   fun = "None"

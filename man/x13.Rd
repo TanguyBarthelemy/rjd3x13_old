@@ -48,11 +48,11 @@ Seasonal Adjustment with  X13-ARIMA
 sp = spec_x13_default("rg5c")
 y = rjd3toolkit::ABS$X0.2.09.10.M
 fast.x13(y, spec = sp)
-sp = add_outlier(sp,
+sp = rjd3modelling::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-sp = set_transform(
-  set_tradingdays(
-    set_easter(sp, enabled = FALSE),
+sp =  rjd3modelling::set_transform(
+   rjd3modelling::set_tradingdays(
+     rjd3modelling::set_easter(sp, enabled = FALSE),
     option = "workingdays"
   ),
   fun = "None"
