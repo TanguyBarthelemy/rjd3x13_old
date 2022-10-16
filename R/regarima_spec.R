@@ -86,6 +86,14 @@ set_transform.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
+#' @importFrom rjd3modelling add_usrdefvar
+#' @export
+add_usrdefvar.JD3_X13_SPEC <- function(x,
+                                       ...){
+  x$regarima <- add_usrdefvar(x$regarima,
+                              ...)
+  x
+}
 #' @importFrom rjd3modelling set_benchmarking
 #' @export
 set_benchmarking.JD3_X13_SPEC <- function(x, ...) {
@@ -93,3 +101,4 @@ set_benchmarking.JD3_X13_SPEC <- function(x, ...) {
 
   x
 }
+
