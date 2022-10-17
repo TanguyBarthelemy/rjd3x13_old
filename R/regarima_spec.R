@@ -62,6 +62,14 @@ set_estimate.JD3_X13_SPEC <- function(x,
                             ...)
   x
 }
+#' @importFrom rjd3modelling set_basic
+#' @export
+set_basic.JD3_X13_SPEC <- function(x,
+                                      ...){
+  x$regarima <- set_basic(x$regarima,
+                             ...)
+  x
+}
 #' @importFrom rjd3modelling set_outlier
 #' @export
 set_outlier.JD3_X13_SPEC <- function(x,
