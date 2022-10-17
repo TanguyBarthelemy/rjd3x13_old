@@ -38,9 +38,11 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
   }else{
     jspec<-r2jd_spec_regarima(spec)
     if (is.null(context)){
-      context<-.jnull("demetra/util/r/Dictionary")
+      jcontext <- .jnull("demetra/util/r/Dictionary")
+    } else {
+      jcontext <- rjd3modelling::context2dict(rjd3modelling::p2jd_context(rjd3modelling::.r2p_modellingcontext(context)))
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, context)
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -62,9 +64,11 @@ fast.regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
   }else{
     jspec<-r2jd_spec_regarima(spec)
     if (is.null(context)){
-      context<-.jnull("demetra/util/r/Dictionary")
+      jcontext <- .jnull("demetra/util/r/Dictionary")
+    } else {
+      jcontext <- rjd3modelling::context2dict(rjd3modelling::p2jd_context(rjd3modelling::.r2p_modellingcontext(context)))
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, context)
+    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -124,9 +128,11 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
-      context<-.jnull("demetra/util/r/Dictionary")
+      jcontext <- .jnull("demetra/util/r/Dictionary")
+    } else {
+      jcontext <- rjd3modelling::context2dict(rjd3modelling::p2jd_context(rjd3modelling::.r2p_modellingcontext(context)))
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, context)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -150,9 +156,11 @@ fast.x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
-      context<-.jnull("demetra/util/r/Dictionary")
+      jcontext <- .jnull("demetra/util/r/Dictionary")
+    } else {
+      jcontext <- rjd3modelling::context2dict(rjd3modelling::p2jd_context(rjd3modelling::.r2p_modellingcontext(context)))
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, context)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -175,9 +183,11 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
-      context<-.jnull("demetra/util/r/Dictionary")
+      jcontext <- .jnull("demetra/util/r/Dictionary")
+    } else {
+      jcontext <- rjd3modelling::context2dict(rjd3modelling::p2jd_context(rjd3modelling::.r2p_modellingcontext(context)))
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, context)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)

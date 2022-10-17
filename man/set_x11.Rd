@@ -36,8 +36,8 @@ is not estimated and its values are all set to 0 (additive decomposition) or 1 (
 
 \item{seasonal.filter}{a vector of character(s) specifying which seasonal moving average (i.e. seasonal filter)
 will be used to estimate the seasonal factors for the entire series. The vector can be of length:
-1 - same seasonal filters for all periods (e.g.: \code{seasonalma = "Msr"});
-or the period length - a seasonal filer is defined for each period (e.g. for quarterly series: \code{seasonalma = c("S3X3", "Msr", "S3X3", "Msr")}).
+1 - same seasonal filters for all periods (e.g.: \code{seasonal.filter = "Msr"});
+or the period length - a seasonal filer is defined for each period (e.g. for quarterly series: \code{seasonal.filter = c("S3X3", "Msr", "S3X3", "Msr")}).
 Possible filters are: \code{"Msr"}, \code{"Stable"}, \code{"X11Default"}, \code{"S3X1"}, \code{"S3X3"}, \code{"S3X5"}, \code{"S3X9"}, \code{"S3X15"}.
 \code{"Msr"} - the program chooses the final seasonal filter automatically.}
 
