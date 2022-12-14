@@ -6,6 +6,7 @@ import public "sa.proto";
 
 package x13;
 
+option java_multiple_files = true;
 option java_package = "demetra.x13.io.protobuf";
 option java_outer_classname = "X13Protos";
 
@@ -75,6 +76,14 @@ enum RegressionTest {
 	TEST_ADD = 1;
 	TEST_REMOVE = 2;
 }
+
+enum AutomaticTradingDays {
+	TD_AUTO_NO = 0;
+	TD_AUTO_WALD = 1;
+	TD_AUTO_AIC = 2;
+	TD_AUTO_BIC = 3;
+}
+	
 		
 message RegArimaSpec {
     
@@ -88,6 +97,7 @@ message RegArimaSpec {
 		modelling.Transformation transformation = 1;
 		modelling.LengthOfPeriod adjust = 2;
 		double aicdiff = 3;
+		bool outliers_correction = 4;
     }
 	
 	message OutlierSpec{
@@ -134,9 +144,12 @@ message RegArimaSpec {
 		repeated string users = 4;
 		int32 w = 5;
 		RegressionTest test = 6;
-		bool auto_adjust=7;
-		repeated jd3.Parameter tdcoefficients = 10;
-		jd3.Parameter lpcoefficient = 11;
+		AutomaticTradingDays auto = 7;
+		double ptest1 = 8;
+		double ptest2= 9;
+		bool auto_adjust=10;
+		repeated jd3.Parameter tdcoefficients = 11;
+		jd3.Parameter lpcoefficient = 12;
 	}
 
 	message RegressionSpec{

@@ -115,8 +115,9 @@ p2r_spec_regarima<-function(pspec){
   transform=list(
     fn=rjd3toolkit::enum_extract(modelling.Transformation, pspec$transform$transformation),
     adjust=rjd3toolkit::enum_extract(modelling.LengthOfPeriod, pspec$transform$adjust),
-    aicdiff=pspec$transform$aicdiff)
-
+    aicdiff=pspec$transform$aicdiff,
+    outliers=pspec$transform$outliers_correction
+	)
   automodel=list(
     enabled=pspec$automodel$enabled,
     ljungbox=pspec$automodel$ljungbox,
@@ -152,6 +153,7 @@ p2r_spec_regarima<-function(pspec){
     users=unlist(pspec$regression$td$users),
     w=pspec$regression$td$w,
     test=rjd3toolkit::enum_extract(x13.RegressionTest, pspec$regression$td$test),
+    auto=rjd3toolkit::enum_extract(x13.AutomaticTradingDays, pspec$regression$td$auto),
     autoadjust=pspec$regression$td$auto_adjust,
     tdcoefficients=rjd3toolkit::p2r_parameters(pspec$regression$td$tdcoefficients),
     lpcoefficient=rjd3toolkit::p2r_parameter(pspec$regression$td$lpcoefficient)
@@ -203,6 +205,7 @@ r2p_spec_regarima<-function(r){
   p$transform$transformation<-rjd3toolkit::enum_of(modelling.Transformation, r$transform$fn, "FN")
   p$transform$adjust<-rjd3toolkit::enum_of(modelling.LengthOfPeriod, r$transform$adjust, "LP")
   p$transform$aicdiff<-r$transform$aicdiff
+  p$transform$outliers_correction<-r$transform$outliers
 
   # OUTLIER
   p$outlier$outliers<-lapply(r$outlier$outliers, function(z)
@@ -246,6 +249,7 @@ r2p_spec_regarima<-function(r){
   p$regression$td$users<-r$regression$td$users
   p$regression$td$w<-r$regression$td$w
   p$regression$td$test <-rjd3toolkit::enum_of(x13.RegressionTest, r$regression$td$test, "TEST")
+  p$regression$td$auto <-rjd3toolkit::enum_of(x13.AutomaticTradingDays, r$regression$td$auto, "TD")
   p$regression$td$auto_adjust <-r$regression$td$autoadjust
   p$regression$td$tdcoefficients<-rjd3toolkit::r2p_parameters(r$regression$td$tdcoefficients)
   p$regression$td$lpcoefficient<-rjd3toolkit::r2p_parameter(r$regression$td$lpcoefficient)
