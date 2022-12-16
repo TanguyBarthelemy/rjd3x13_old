@@ -124,7 +124,7 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
     spec = match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, spec)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Output;", "fullProcess", jts, spec)
   }else{
     jspec<-r2jd_spec_x13(spec)
     if (is.null(context)){
@@ -132,7 +132,7 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
     } else {
       jcontext <- rjd3modelling::.r2jd_modellingcontext(context)
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/io/protobuf/X13Output;", "fullProcess", jts, jspec, jcontext)
+    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
