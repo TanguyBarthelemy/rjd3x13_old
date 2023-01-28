@@ -48,7 +48,7 @@ print_diagnostics <- function(x, digits = max(3L, getOption("digits") - 3L),
   invisible(x)
 }
 print_final <- function(x, ...){
-  print(rjd3sa::sa.decomposition(x), ...)
+  print(rjd3toolkit::sa.decomposition(x), ...)
   invisible(x)
 }
 
@@ -79,7 +79,7 @@ plot.JD3_X13_RSLTS <- function(x, first_date = NULL, last_date = NULL,
                                colors = c(y = "#F0B400", t = "#1E6C0B", sa = "#155692",
                                           s = "#1E6C0B", i = "#155692"),
                                ...){
-  plot(rjd3sa::sa.decomposition(x),
+  plot(rjd3toolkit::sa.decomposition(x),
        first_date = first_date, last_date = last_date,
        type_chart = type_chart,
        caption = caption,

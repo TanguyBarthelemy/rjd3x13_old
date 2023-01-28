@@ -16,9 +16,7 @@ Depends:
 Imports:
   rJava (>= 1.0-6),
   RProtoBuf (>= 0.4.17),
-  rjd3toolkit (>= 0.6.0),
-  rjd3modelling (>= 0.6.0),
-  rjd3sa (>= 0.6.0)
+  rjd3toolkit (>= 0.7.0)
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
 URL: https://github.com/palatej/rjd3x13

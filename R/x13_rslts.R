@@ -1,5 +1,5 @@
 #' @include utils.R
-#' @importFrom rjd3sa sa.decomposition
+#' @importFrom rjd3toolkit sa.decomposition
 NULL
 
 regarima_rslts <- function(jrslts){
@@ -7,7 +7,7 @@ regarima_rslts <- function(jrslts){
     return (NULL)
   q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(regarima.RegArimaModel, q)
-  return (rjd3modelling::p2r_regarima_rslts(rq))
+  return (rjd3toolkit::p2r_regarima_rslts(rq))
 }
 
 #' @export
@@ -32,12 +32,12 @@ p2r_x13_rslts<-function(p){
 
   return (structure(
     list(
-      preprocessing=rjd3modelling::p2r_regarima_rslts(p$preprocessing),
+      preprocessing=rjd3toolkit::p2r_regarima_rslts(p$preprocessing),
       preadjust=p2r_x13_preadjust(p$preadjustment),
       decomposition=p2r_x11_rslts(p$decomposition),
       final=p2r_x13_final(p$final),
       mstats=p$diagnostics_x13$mstatistics$as.list(),
-      diagnostics=rjd3sa::p2r_sa_diagnostics(p$diagnostics_sa)
+      diagnostics=rjd3toolkit::p2r_sa_diagnostics(p$diagnostics_sa)
       )
     ,
     class= "JD3_X13_RSLTS"))
@@ -99,10 +99,10 @@ p2r_x13_preadjust<-function(p){
 ############################# Generics
 
 #' @export
-#' @importFrom rjd3sa sa.decomposition
+#' @importFrom rjd3toolkit sa.decomposition
 sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
   if (is.null(x)) return (NULL)
-  return (rjd3sa::sadecomposition(x$preadjust$a1,
+  return (rjd3toolkit::sadecomposition(x$preadjust$a1,
                                   x$final$d11final,
                                   x$final$d12final,
                                   x$final$d10final,
@@ -115,7 +115,7 @@ sa.decomposition.JD3_X13_RSLTS<-function(x, ...){
 
 #' @export
 sa.decomposition.JD3_X13_OUTPUT<-function(x, ...){
-  return (rjd3sa::sadecomposition(x$result, ...))
+  return (rjd3toolkit::sadecomposition(x$result, ...))
 }
 
 

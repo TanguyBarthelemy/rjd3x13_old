@@ -37,17 +37,17 @@ RegARIMA model, pre-adjustment in X13
 \examples{
 y = rjd3toolkit::ABS$X0.2.09.10.M
 sp = spec_regarima_default("rg5c")
-sp = rjd3modelling::add_outlier(sp,
+sp = rjd3toolkit::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 fast.regarima(y, spec = sp)
-sp = rjd3modelling::set_transform(
-   rjd3modelling::set_tradingdays(
-     rjd3modelling::set_easter(sp, enabled = FALSE),
+sp = rjd3toolkit::set_transform(
+   rjd3toolkit::set_tradingdays(
+     rjd3toolkit::set_easter(sp, enabled = FALSE),
     option = "workingdays"
   ),
   fun = "None"
 )
 fast.regarima(y, spec = sp)
-sp =  rjd3modelling::set_outlier(sp, outliers.type = c("AO"))
+sp =  rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
 fast.regarima(y, spec = sp)
 }

@@ -13,18 +13,18 @@ NULL
 #' @examples
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
 #' sp = spec_regarima_default("rg5c")
-#' sp = rjd3modelling::add_outlier(sp,
+#' sp = rjd3toolkit::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 #' fast.regarima(y, spec = sp)
-#' sp = rjd3modelling::set_transform(
-#'    rjd3modelling::set_tradingdays(
-#'      rjd3modelling::set_easter(sp, enabled = FALSE),
+#' sp = rjd3toolkit::set_transform(
+#'    rjd3toolkit::set_tradingdays(
+#'      rjd3toolkit::set_easter(sp, enabled = FALSE),
 #'     option = "workingdays"
 #'   ),
 #'   fun = "None"
 #' )
 #' fast.regarima(y, spec = sp)
-#' sp =  rjd3modelling::set_outlier(sp, outliers.type = c("AO"))
+#' sp =  rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
 #' fast.regarima(y, spec = sp)
 #' @export
 regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), context=NULL, userdefined = NULL){
@@ -40,7 +40,7 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
     if (is.null(context)){
       jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
     } else {
-      jcontext <- rjd3modelling::.r2jd_modellingcontext(context)
+      jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext)
   }
@@ -66,7 +66,7 @@ fast.regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
     if (is.null(context)){
       jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
     } else {
-      jcontext <- rjd3modelling::.r2jd_modellingcontext(context)
+      jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
@@ -84,7 +84,7 @@ regarima_output<-function(jq){
   q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(x13.RegArimaOutput, q)
   return (structure(list(
-    result=rjd3modelling::p2r_regarima_rslts(p$result),
+    result=rjd3toolkit::p2r_regarima_rslts(p$result),
     estimation_spec=p2r_spec_regarima(p$estimation_spec),
     result_spec=p2r_spec_regarima(p$result_spec)
   ),
@@ -100,11 +100,11 @@ regarima_output<-function(jq){
 #' sp = spec_x13_default("rg5c")
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
 #' fast.x13(y, spec = sp)
-#' sp = rjd3modelling::add_outlier(sp,
+#' sp = rjd3toolkit::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-#' sp =  rjd3modelling::set_transform(
-#'    rjd3modelling::set_tradingdays(
-#'      rjd3modelling::set_easter(sp, enabled = FALSE),
+#' sp =  rjd3toolkit::set_transform(
+#'    rjd3toolkit::set_tradingdays(
+#'      rjd3toolkit::set_easter(sp, enabled = FALSE),
 #'     option = "workingdays"
 #'   ),
 #'   fun = "None"
@@ -130,7 +130,7 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
     if (is.null(context)){
       jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
     } else {
-      jcontext <- rjd3modelling::.r2jd_modellingcontext(context)
+      jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
@@ -158,7 +158,7 @@ fast.x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
     if (is.null(context)){
       jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
     } else {
-      jcontext <- rjd3modelling::.r2jd_modellingcontext(context)
+      jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
   }
@@ -185,7 +185,7 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
     if (is.null(context)){
       jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
     } else {
-      jcontext <- rjd3modelling::.r2jd_modellingcontext(context)
+      jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
     jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
   }

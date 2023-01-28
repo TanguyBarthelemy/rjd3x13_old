@@ -1,5 +1,5 @@
 #' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
-#' @import RProtoBuf rjd3modelling
+#' @import RProtoBuf rjd3toolkit
 #' @importFrom stats is.ts start
 NULL
 

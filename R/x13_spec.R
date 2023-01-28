@@ -134,7 +134,7 @@ p2r_spec_regarima<-function(pspec){
     balanced=pspec$automodel$balanced
   )
 
-  arima=rjd3modelling::p2r_spec_sarima(pspec$arima)
+  arima=rjd3toolkit::p2r_spec_sarima(pspec$arima)
 
   outlier<-list(
     outliers=lapply(pspec$outlier$outliers, function(z){list(type=z$code, va=z$va)} ),
@@ -171,9 +171,9 @@ p2r_spec_regarima<-function(pspec){
     mean=rjd3toolkit::p2r_parameter(pspec$regression$mean),
     td=td,
     easter=easter,
-    outliers=rjd3modelling::p2r_outliers(pspec$regression$outliers),
-    ramps=rjd3modelling::p2r_ramps(pspec$regression$ramps),
-    users=rjd3modelling:::p2r_uservars(pspec$regression$users)
+    outliers=rjd3toolkit::p2r_outliers(pspec$regression$outliers),
+    ramps=rjd3toolkit::p2r_ramps(pspec$regression$ramps),
+    users=rjd3toolkit:::p2r_uservars(pspec$regression$users)
   )
 
   estimate<-list(
@@ -234,13 +234,13 @@ r2p_spec_regarima<-function(r){
   p$automodel$balanced<-r$automodel$balanced
 
   #ARIMA
-  p$arima<-rjd3modelling::r2p_spec_sarima(r$arima)
+  p$arima<-rjd3toolkit::r2p_spec_sarima(r$arima)
 
   #REGRESSION
 
   p$regression$mean=rjd3toolkit::r2p_parameter(r$regression$mean)
-  p$regression$outliers=rjd3modelling::r2p_outliers(r$regression$outliers)
-  p$regression$ramps=rjd3modelling::r2p_ramps(r$regression$ramps)
+  p$regression$outliers=rjd3toolkit::r2p_outliers(r$regression$outliers)
+  p$regression$ramps=rjd3toolkit::r2p_ramps(r$regression$ramps)
 
   #TD
   p$regression$td$td<-rjd3toolkit::enum_sof(modelling.TradingDays, r$regression$td$td)
@@ -260,7 +260,7 @@ r2p_spec_regarima<-function(r){
   p$regression$easter$test<-rjd3toolkit::enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
   p$regression$easter$coefficient<-rjd3toolkit::r2p_parameter(r$regression$easter$coefficient)
 
-  p$regression$users <- rjd3modelling:::r2p_uservars(r$regression$users)
+  p$regression$users <- rjd3toolkit:::r2p_uservars(r$regression$users)
   #ESTIMATE
   p$estimate$span<-rjd3toolkit::r2p_span(r$estimate$span)
   p$estimate$tol<-r$estimate$tol
@@ -309,7 +309,7 @@ p2r_spec_x13<-function(pspec){
   return (structure(list(
     regarima=p2r_spec_regarima(pspec$regarima),
     x11=p2r_spec_x11(pspec$x11),
-    benchmarking=rjd3sa::p2r_spec_benchmarking(pspec$benchmarking)
+    benchmarking=rjd3toolkit::p2r_spec_benchmarking(pspec$benchmarking)
   ), class="JD3_X13_SPEC"))
 }
 
@@ -317,7 +317,7 @@ r2p_spec_x13<-function(r){
   p<-x13.Spec$new()
   p$regarima<-r2p_spec_regarima(r$regarima)
   p$x11<-r2p_spec_x11(r$x11)
-  p$benchmarking<-rjd3sa::r2p_spec_benchmarking(r$benchmarking)
+  p$benchmarking<-rjd3toolkit::r2p_spec_benchmarking(r$benchmarking)
   return (p)
 }
 
