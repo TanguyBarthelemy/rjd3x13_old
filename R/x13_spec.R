@@ -173,7 +173,7 @@ p2r_spec_regarima<-function(pspec){
     easter=easter,
     outliers=rjd3toolkit::p2r_outliers(pspec$regression$outliers),
     ramps=rjd3toolkit::p2r_ramps(pspec$regression$ramps),
-    users=rjd3toolkit:::p2r_uservars(pspec$regression$users)
+    users=rjd3toolkit::p2r_uservars(pspec$regression$users)
   )
 
   estimate<-list(
@@ -260,7 +260,7 @@ r2p_spec_regarima<-function(r){
   p$regression$easter$test<-rjd3toolkit::enum_of(x13.RegressionTest, r$regression$easter$test, "TEST")
   p$regression$easter$coefficient<-rjd3toolkit::r2p_parameter(r$regression$easter$coefficient)
 
-  p$regression$users <- rjd3toolkit:::r2p_uservars(r$regression$users)
+  p$regression$users <- rjd3toolkit::r2p_uservars(r$regression$users)
   #ESTIMATE
   p$estimate$span<-rjd3toolkit::r2p_span(r$estimate$span)
   p$estimate$tol<-r$estimate$tol
