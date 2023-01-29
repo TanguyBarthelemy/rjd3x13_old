@@ -36,7 +36,7 @@ RegARIMA model, pre-adjustment in X13
 }
 \examples{
 y = rjd3toolkit::ABS$X0.2.09.10.M
-sp = spec_regarima_default("rg5c")
+sp = spec_regarima("rg5c")
 sp = rjd3toolkit::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 fast_regarima(y, spec = sp)

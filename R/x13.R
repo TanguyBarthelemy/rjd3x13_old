@@ -12,7 +12,7 @@ NULL
 #'
 #' @examples
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' sp = spec_regarima_default("rg5c")
+#' sp = spec_regarima("rg5c")
 #' sp = rjd3toolkit::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 #' fast_regarima(y, spec = sp)
@@ -97,7 +97,7 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' @inheritParams regarima
 #'
 #' @examples
-#' sp = spec_x13_default("rg5c")
+#' sp = spec_x13("rg5c")
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
 #' fast_x13(y, spec = sp)
 #' sp = rjd3toolkit::add_outlier(sp,
@@ -219,12 +219,12 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
 #'
 #' @examples
 #' y <- rjd3toolkit::ABS$X0.2.09.10.M
-#' x11_spec <- spec_x11_default()
+#' x11_spec <- spec_x11()
 #' x11(y, x11_spec)
 #' x11_spec <- set_x11(x11_spec, henderson.filter = 13)
 #' x11(y, x11_spec)
 #' @export
-x11 <- function(ts, spec = spec_x11_default(), userdefined = NULL){
+x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
   jspec<-.r2jd_spec_x11(spec)
   jrslt<-.jcall("demetra/x13/r/X11", "Ljdplus/x11/X11Results;", "process", jts, jspec)
@@ -249,7 +249,7 @@ x11 <- function(ts, spec = spec_x11_default(), userdefined = NULL){
 #' @examples
 #' y = rjd3toolkit::ABS$X0.2.08.10.M
 #' y_anc = window(y,end = 2009)
-#' mod_anc = regarima(y_anc, spec_regarima_default())
+#' mod_anc = regarima(y_anc, spec_regarima())
 #' res_spec = mod_anc$result_spec
 #' mod_anc
 #' # ARIMA parameters fixed

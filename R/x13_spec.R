@@ -8,9 +8,9 @@ NULL
 #'
 #' @param name the name of a predefined specification.
 #'
-#' @return an object of class `"JD3_X13_SPEC"` (`spec_x13_default()`),
-#' `"JD3_REGARIMA_SPEC"` (`spec_regarima_default()`) or
-#' `"JD3_X11_SPEC"` (`spec_x11_default()`).
+#' @return an object of class `"JD3_X13_SPEC"` (`spec_x13()`),
+#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`) or
+#' `"JD3_X11_SPEC"` (`spec_x11()`).
 #'
 #' @details
 #' The available predefined 'JDemetra+' model specifications are described in the table below:
@@ -27,7 +27,7 @@ NULL
 #' @name x13_spec
 #' @rdname x13_spec
 #' @export
-spec_regarima_default<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")){
+spec_regarima<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")){
   name = gsub("sa", "g", tolower(name), fixed = TRUE)
   name = match.arg(name[1],
                    choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
@@ -38,7 +38,7 @@ spec_regarima_default<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c"
 
 #' @rdname x13_spec
 #' @export
-spec_x13_default<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
+spec_x13<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
   name = gsub("g", "sa", tolower(name), fixed = TRUE)
   name = match.arg(name[1],
                    choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
@@ -49,7 +49,7 @@ spec_x13_default<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa
 
 #' @rdname x13_spec
 #' @export
-spec_x11_default<-function(){
+spec_x11<-function(){
   return (.jd2r_spec_x11(.jfield("demetra/x11/X11Spec", "Ldemetra/x11/X11Spec;", "DEFAULT")))
 }
 

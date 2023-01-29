@@ -45,7 +45,7 @@ get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::r
 Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
-sp = spec_x13_default("rg5c")
+sp = spec_x13("rg5c")
 y = rjd3toolkit::ABS$X0.2.09.10.M
 fast_x13(y, spec = sp)
 sp = rjd3toolkit::add_outlier(sp,

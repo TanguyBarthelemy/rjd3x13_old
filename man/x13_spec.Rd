@@ -2,24 +2,24 @@
 % Please edit documentation in R/x13_spec.R
 \name{x13_spec}
 \alias{x13_spec}
-\alias{spec_regarima_default}
-\alias{spec_x13_default}
-\alias{spec_x11_default}
+\alias{spec_regarima}
+\alias{spec_x13}
+\alias{spec_x11}
 \title{RegARIMA/X-13 Default Specification}
 \usage{
-spec_regarima_default(name = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"))
+spec_regarima(name = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"))
 
-spec_x13_default(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
+spec_x13(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
 
-spec_x11_default()
+spec_x11()
 }
 \arguments{
 \item{name}{the name of a predefined specification.}
 }
 \value{
-an object of class \code{"JD3_X13_SPEC"} (\code{spec_x13_default()}),
-\code{"JD3_REGARIMA_SPEC"} (\code{spec_regarima_default()}) or
-\code{"JD3_X11_SPEC"} (\code{spec_x11_default()}).
+an object of class \code{"JD3_X13_SPEC"} (\code{spec_x13()}),
+\code{"JD3_REGARIMA_SPEC"} (\code{spec_regarima()}) or
+\code{"JD3_X11_SPEC"} (\code{spec_x11()}).
 }
 \description{
 Set of functions to create default specification associated to the X-13ARIMA seasonal adjustment method.
