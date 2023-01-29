@@ -113,7 +113,7 @@ diagnostics.JD3_X13_RSLTS<-function(x, ...){
   residuals_test = x$diagnostics[grep("test", names(x$diagnostics))]
   residuals_test = data.frame(Statistic = sapply(residuals_test, function(test) test[["value"]]),
                               P.value = sapply(residuals_test, function(test) test[["pvalue"]]),
-                              Description = sapply(residuals_test, function(test) test[["description"]]))
+                              Description =  sapply(residuals_test, function(test) attr(test, "distribution")))
   list(variance_decomposition = variance_decomposition,
        residuals_test = residuals_test)
 }
