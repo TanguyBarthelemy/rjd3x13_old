@@ -2,7 +2,7 @@
 #' @importFrom rjd3toolkit sa.decomposition
 NULL
 
-regarima_rslts <- function(jrslts){
+.regarima_rslts <- function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
   q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jrslts)
@@ -12,30 +12,30 @@ regarima_rslts <- function(jrslts){
 
 #' @export
 #' @rdname jd3_utilities
-x13_rslts<-function(jrslts){
+.x13_rslts<-function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
   q<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(x13.X13Results, q)
-  return (p2r_x13_rslts(rq))
+  return (.p2r_x13_rslts(rq))
 }
 
-x11_rslts<-function(jrslts){
+.x11_rslts<-function(jrslts){
   if (is.jnull(jrslts))
     return (NULL)
   q<-.jcall("demetra/x13/r/X11", "[B", "toBuffer", jrslts)
   rq<-RProtoBuf::read(x13.X11Results, q)
-  return (p2r_x11_rslts(rq))
+  return (.p2r_x11_rslts(rq))
 }
 
-p2r_x13_rslts<-function(p){
+.p2r_x13_rslts<-function(p){
 
   return (structure(
     list(
       preprocessing=rjd3toolkit::.p2r_regarima_rslts(p$preprocessing),
-      preadjust=p2r_x13_preadjust(p$preadjustment),
-      decomposition=p2r_x11_rslts(p$decomposition),
-      final=p2r_x13_final(p$final),
+      preadjust=.p2r_x13_preadjust(p$preadjustment),
+      decomposition=.p2r_x11_rslts(p$decomposition),
+      final=.p2r_x13_final(p$final),
       mstats=p$diagnostics_x13$mstatistics$as.list(),
       diagnostics=rjd3toolkit::.p2r_sa_diagnostics(p$diagnostics_sa)
       )
@@ -43,7 +43,7 @@ p2r_x13_rslts<-function(p){
     class= "JD3_X13_RSLTS"))
 }
 
-p2r_x11_rslts<-function(p){
+.p2r_x11_rslts<-function(p){
   return (structure(
     list(
       d1=rjd3toolkit::.p2r_ts(p$d1),
@@ -65,7 +65,7 @@ p2r_x11_rslts<-function(p){
 }
 
 
-p2r_x13_final<-function(p){
+.p2r_x13_final<-function(p){
   return (list(
       d11final=rjd3toolkit::.p2r_ts(p$d11final),
       d12final=rjd3toolkit::.p2r_ts(p$d12final),
@@ -83,7 +83,7 @@ p2r_x13_final<-function(p){
     ))
 }
 
-p2r_x13_preadjust<-function(p){
+.p2r_x13_preadjust<-function(p){
   return (list(
       a1=rjd3toolkit::.p2r_ts(p$a1),
       a1a=rjd3toolkit::.p2r_ts(p$a1a),

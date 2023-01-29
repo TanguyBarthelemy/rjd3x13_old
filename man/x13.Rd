@@ -2,7 +2,7 @@
 % Please edit documentation in R/x13.R
 \name{x13}
 \alias{x13}
-\alias{fast.x13}
+\alias{fast_x13}
 \alias{jx13}
 \title{Seasonal Adjustment with  X13-ARIMA}
 \usage{
@@ -13,7 +13,7 @@ x13(
   userdefined = NULL
 )
 
-fast.x13(
+fast_x13(
   ts,
   spec = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
   context = NULL,
@@ -37,7 +37,7 @@ jx13(
 \item{userdefined}{a vector containing the additional output variables.}
 }
 \value{
-the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{fast.x13()} is a faster function that only returns the results.
+the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{fast_x13()} is a faster function that only returns the results.
 The \code{jx13()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
 get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
 }
@@ -47,7 +47,7 @@ Seasonal Adjustment with  X13-ARIMA
 \examples{
 sp = spec_x13_default("rg5c")
 y = rjd3toolkit::ABS$X0.2.09.10.M
-fast.x13(y, spec = sp)
+fast_x13(y, spec = sp)
 sp = rjd3toolkit::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 sp =  rjd3toolkit::set_transform(
@@ -59,6 +59,6 @@ sp =  rjd3toolkit::set_transform(
 )
 sp = set_x11(sp,
              henderson.filter = 13)
-fast.x13(y, spec = sp)
+fast_x13(y, spec = sp)
 
 }

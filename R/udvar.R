@@ -1,4 +1,4 @@
-add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE){
+.add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE){
   if (is.null(userdefined)) {
     x$user_defined = rjd3toolkit::user_defined(x, NULL)
   } else {
@@ -168,7 +168,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
   # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("demetra/x13/r/X11", "Ljdplus/x11/X11Results;",
   #                       "process", jts,
-  #                       rjd3x13::r2jd_spec_x11(rjd3x13::spec_x11_default()))
+  #                       rjd3x13::.r2jd_spec_x11(rjd3x13::spec_x11_default()))
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>
   #   sort() |>
   #   dput()

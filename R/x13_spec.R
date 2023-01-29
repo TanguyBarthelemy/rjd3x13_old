@@ -32,7 +32,7 @@ spec_regarima_default<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c"
   name = match.arg(name[1],
                    choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
                    )
-  return (jd2r_spec_regarima(.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", name)))
+  return (.jd2r_spec_regarima(.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", name)))
 }
 
 
@@ -43,55 +43,50 @@ spec_x13_default<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa
   name = match.arg(name[1],
                    choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
   )
-  return (jd2r_spec_x13(.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", name)))
+  return (.jd2r_spec_x13(.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", name)))
 }
 
 
 #' @rdname x13_spec
 #' @export
 spec_x11_default<-function(){
-  return (jd2r_spec_x11(.jfield("demetra/x11/X11Spec", "Ldemetra/x11/X11Spec;", "DEFAULT")))
+  return (.jd2r_spec_x11(.jfield("demetra/x11/X11Spec", "Ldemetra/x11/X11Spec;", "DEFAULT")))
 }
 
 #' @export
 #' @rdname jd3_utilities
-jd2r_spec_x11<-function(spec){
+.jd2r_spec_x11<-function(spec){
   b<-.jcall("demetra/x13/r/X11", "[B", "toBuffer", spec)
   p<-RProtoBuf::read(x13.X11Spec, b)
-  return (p2r_spec_x11(p))
+  return (.p2r_spec_x11(p))
 }
 
 #' @export
 #' @rdname jd3_utilities
-r2jd_spec_x11<-function(spec){
-  p<-r2p_spec_x11(spec)
+.r2jd_spec_x11<-function(spec){
+  p<-.r2p_spec_x11(spec)
   b<-RProtoBuf::serialize(p, NULL)
   nspec<-.jcall("demetra/x13/r/X11", "Ldemetra/x11/X11Spec;", "of", b)
   return (nspec)
 }
 
-#' @export
-#' @rdname jd3_utilities
-r2jd_spec_regarima<-function(spec){
+.r2jd_spec_regarima<-function(spec){
   p<-r2p_spec_regarima(spec)
   b<-RProtoBuf::serialize(p, NULL)
   nspec<-.jcall("demetra/x13/r/RegArima", "Ldemetra/regarima/RegArimaSpec;", "specOf", b)
   return (nspec)
 }
 
-#' @export
-#' @rdname jd3_utilities
-jd2r_spec_regarima<-function(spec){
+.jd2r_spec_regarima<-function(spec){
   b<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", spec)
   p<-RProtoBuf::read(x13.RegArimaSpec, b)
-  return (p2r_spec_regarima(p))
+  return (..r2p_spec_regarima(p))
 }
-
 
 #' @export
 #' @rdname jd3_utilities
-r2jd_spec_x13<-function(spec){
-  p<-r2p_spec_x13(spec)
+.r2jd_spec_x13<-function(spec){
+  p<-.r2p_spec_x13(spec)
   b<-RProtoBuf::serialize(p, NULL)
   nspec<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/X13Spec;", "specOf", b)
   return (nspec)
@@ -99,15 +94,15 @@ r2jd_spec_x13<-function(spec){
 
 #' @export
 #' @rdname jd3_utilities
-jd2r_spec_x13<-function(spec){
+.jd2r_spec_x13<-function(spec){
   b<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", spec)
   p<-RProtoBuf::read(x13.Spec, b)
-  return (p2r_spec_x13(p))
+  return (.p2r_spec_x13(p))
 }
 
 ## P <-> R
 
-p2r_spec_regarima<-function(pspec){
+..r2p_spec_regarima<-function(pspec){
   basic<-list(
     span=rjd3toolkit::.p2r_span(pspec$basic$span),
     preprocessing = pspec$basic$preprocessing,
@@ -269,7 +264,7 @@ r2p_spec_regarima<-function(r){
 }
 
 
-p2r_spec_x11<-function(p){
+.p2r_spec_x11<-function(p){
 
   return (structure(list(
     mode=rjd3toolkit::.enum_extract(sa.DecompositionMode, p$mode),
@@ -288,7 +283,7 @@ p2r_spec_x11<-function(p){
 }
 
 
-r2p_spec_x11<-function(r){
+.r2p_spec_x11<-function(r){
   p<-x13.X11Spec$new()
   p$mode<- rjd3toolkit::.enum_of(x13.DecompositionMode, r$mode, "MODE")
   p$seasonal<-r$seasonal
@@ -305,18 +300,18 @@ r2p_spec_x11<-function(r){
   return (p)
 }
 
-p2r_spec_x13<-function(pspec){
+.p2r_spec_x13<-function(pspec){
   return (structure(list(
-    regarima=p2r_spec_regarima(pspec$regarima),
-    x11=p2r_spec_x11(pspec$x11),
+    regarima=..r2p_spec_regarima(pspec$regarima),
+    x11=.p2r_spec_x11(pspec$x11),
     benchmarking=rjd3toolkit::.p2r_spec_benchmarking(pspec$benchmarking)
   ), class="JD3_X13_SPEC"))
 }
 
-r2p_spec_x13<-function(r){
+.r2p_spec_x13<-function(r){
   p<-x13.Spec$new()
   p$regarima<-r2p_spec_regarima(r$regarima)
-  p$x11<-r2p_spec_x11(r$x11)
+  p$x11<-.r2p_spec_x11(r$x11)
   p$benchmarking<-rjd3toolkit::.r2p_spec_benchmarking(r$benchmarking)
   return (p)
 }
