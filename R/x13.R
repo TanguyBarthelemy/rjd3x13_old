@@ -85,8 +85,8 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
   p<-RProtoBuf::read(x13.RegArimaOutput, q)
   return (structure(list(
     result=rjd3toolkit::.p2r_regarima_rslts(p$result),
-    estimation_spec=..r2p_spec_regarima(p$estimation_spec),
-    result_spec=..r2p_spec_regarima(p$result_spec)
+    estimation_spec=.p2r_spec_regarima(p$estimation_spec),
+    result_spec=.p2r_spec_regarima(p$result_spec)
   ),
   class="JD3_.regarima_output")
   )

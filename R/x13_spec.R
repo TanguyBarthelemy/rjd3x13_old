@@ -71,7 +71,7 @@ spec_x11<-function(){
 }
 
 .r2jd_spec_regarima<-function(spec){
-  p<-r2p_spec_regarima(spec)
+  p<-.r2p_spec_regarima(spec)
   b<-RProtoBuf::serialize(p, NULL)
   nspec<-.jcall("demetra/x13/r/RegArima", "Ldemetra/regarima/RegArimaSpec;", "specOf", b)
   return (nspec)
@@ -80,7 +80,7 @@ spec_x11<-function(){
 .jd2r_spec_regarima<-function(spec){
   b<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", spec)
   p<-RProtoBuf::read(x13.RegArimaSpec, b)
-  return (..r2p_spec_regarima(p))
+  return (.p2r_spec_regarima(p))
 }
 
 #' @export
@@ -102,7 +102,7 @@ spec_x11<-function(){
 
 ## P <-> R
 
-..r2p_spec_regarima<-function(pspec){
+.p2r_spec_regarima<-function(pspec){
   basic<-list(
     span=rjd3toolkit::.p2r_span(pspec$basic$span),
     preprocessing = pspec$basic$preprocessing,
@@ -189,7 +189,7 @@ spec_x11<-function(){
 }
 
 
-r2p_spec_regarima<-function(r){
+.r2p_spec_regarima<-function(r){
   p<-x13.RegArimaSpec$new()
   # BIAS
   p$basic$preliminary_check<-r$basic$preliminaryCheck
@@ -302,7 +302,7 @@ r2p_spec_regarima<-function(r){
 
 .p2r_spec_x13<-function(pspec){
   return (structure(list(
-    regarima=..r2p_spec_regarima(pspec$regarima),
+    regarima=.p2r_spec_regarima(pspec$regarima),
     x11=.p2r_spec_x11(pspec$x11),
     benchmarking=rjd3toolkit::.p2r_spec_benchmarking(pspec$benchmarking)
   ), class="JD3_X13_SPEC"))
@@ -310,7 +310,7 @@ r2p_spec_regarima<-function(r){
 
 .r2p_spec_x13<-function(r){
   p<-x13.Spec$new()
-  p$regarima<-r2p_spec_regarima(r$regarima)
+  p$regarima<-.r2p_spec_regarima(r$regarima)
   p$x11<-.r2p_spec_x11(r$x11)
   p$benchmarking<-rjd3toolkit::.r2p_spec_benchmarking(r$benchmarking)
   return (p)
