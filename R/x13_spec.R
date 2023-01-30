@@ -55,8 +55,8 @@ spec_x11<-function(){
 
 #' @export
 #' @rdname jd3_utilities
-.jd2r_spec_x11<-function(spec){
-  b<-.jcall("demetra/x13/r/X11", "[B", "toBuffer", spec)
+.jd2r_spec_x11<-function(jspec){
+  b<-.jcall("demetra/x13/r/X11", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.X11Spec, b)
   return (.p2r_spec_x11(p))
 }
@@ -77,8 +77,8 @@ spec_x11<-function(){
   return (nspec)
 }
 
-.jd2r_spec_regarima<-function(spec){
-  b<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", spec)
+.jd2r_spec_regarima<-function(jspec){
+  b<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.RegArimaSpec, b)
   return (.p2r_spec_regarima(p))
 }
@@ -94,8 +94,8 @@ spec_x11<-function(){
 
 #' @export
 #' @rdname jd3_utilities
-.jd2r_spec_x13<-function(spec){
-  b<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", spec)
+.jd2r_spec_x13<-function(jspec){
+  b<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.Spec, b)
   return (.p2r_spec_x13(p))
 }

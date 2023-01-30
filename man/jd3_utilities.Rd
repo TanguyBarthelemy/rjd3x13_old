@@ -11,16 +11,16 @@
 \usage{
 .x13_rslts(jrslts)
 
-.jd2r_spec_x11(spec)
+.jd2r_spec_x11(jspec)
 
 .r2jd_spec_x11(spec)
 
 .r2jd_spec_x13(spec)
 
-.jd2r_spec_x13(spec)
+.jd2r_spec_x13(jspec)
 }
 \arguments{
-\item{spec, jrslts}{parameters.}
+\item{spec, jspec, jrslts}{parameters.}
 }
 \description{
 These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.

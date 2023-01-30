@@ -7,7 +7,7 @@ NULL
 #'
 #' These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.
 #'
-#' @param spec,jrslts parameters.
+#' @param spec,jspec,jrslts parameters.
 #'
 #' @name jd3_utilities
 NULL
