@@ -1,5 +1,5 @@
 #' @importFrom rJava .jpackage .jcall .jnull .jarray .jevalArray .jcast .jcastToArray .jinstanceof is.jnull .jnew .jclass .jfield
-#' @import RProtoBuf rjd3modelling
+#' @import RProtoBuf rjd3toolkit
 #' @importFrom stats is.ts start
 NULL
 
@@ -7,7 +7,7 @@ NULL
 #'
 #' These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.
 #'
-#' @param spec,jrslts parameters.
+#' @param spec,jspec,jrslts parameters.
 #'
 #' @name jd3_utilities
 NULL

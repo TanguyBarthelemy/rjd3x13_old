@@ -1,4 +1,4 @@
-add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE){
+.add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FALSE){
   if (is.null(userdefined)) {
     x$user_defined = rjd3toolkit::user_defined(x, NULL)
   } else {
@@ -11,7 +11,7 @@ add_ud_var <- function(x, jx, userdefined = NULL, out_class = NULL, result = FAL
         res = .jcall(jx, out_class, "getResult")
       }
     }
-    res = rjd3toolkit::jd3Object(res, result = TRUE)
+    res = rjd3toolkit::.jd3_object(res, result = TRUE)
     x$user_defined = rjd3toolkit::user_defined(res, userdefined = userdefined)
   }
   x
@@ -33,9 +33,9 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
                  choices = c("x13", "regarima", "x11"))
 
   # library(rjd3x13)
-  # jts<-rjd3toolkit::ts_r2jd(rjd3toolkit::ABS$X0.2.09.10.M)
+  # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, "RSA3")
-  # rjd3toolkit::dictionary(rjd3toolkit::jd3Object(jrslt, result = TRUE)) |>
+  # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>
   #   sort() |>
   #   dput()
 
@@ -125,9 +125,9 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
              "variancedecomposition.total", "y", "y_b(?)", "y_eb(?)", "y_ef(?)",
              "y_f(?)", "yc", "ycal")
 
-  # jts<-rjd3toolkit::ts_r2jd(rjd3toolkit::ABS$X0.2.09.10.M)
+  # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, "RG3")
-  # rjd3toolkit::dictionary(rjd3toolkit::jd3Object(jrslt, result = TRUE)) |>
+  # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>
   #   sort() |>
   #   dput()
 
@@ -165,11 +165,11 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
                   "span.n", "span.start", "tde", "tde_b(?)", "tde_f(?)", "y", "y_b(?)",
                   "y_eb(?)", "y_ef(?)", "y_f(?)", "yc", "ycal")
 
-  # jts<-rjd3toolkit::ts_r2jd(rjd3toolkit::ABS$X0.2.09.10.M)
+  # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
   # jrslt<- rJava::.jcall("demetra/x13/r/X11", "Ljdplus/x11/X11Results;",
   #                       "process", jts,
-  #                       rjd3x13::r2jd_spec_x11(rjd3x13::spec_x11_default()))
-  # rjd3toolkit::dictionary(rjd3toolkit::jd3Object(jrslt, result = TRUE)) |>
+  #                       rjd3x13::.r2jd_spec_x11(rjd3x13::spec_x11()))
+  # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>
   #   sort() |>
   #   dput()
 

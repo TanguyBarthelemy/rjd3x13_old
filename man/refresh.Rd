@@ -2,11 +2,11 @@
 % Please edit documentation in R/x13.R
 \name{refresh}
 \alias{refresh}
-\alias{regarima.refresh}
-\alias{x13.refresh}
+\alias{regarima_refresh}
+\alias{x13_refresh}
 \title{Refresh Policy}
 \usage{
-regarima.refresh(
+regarima_refresh(
   spec,
   refspec = NULL,
   policy = c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers",
@@ -16,7 +16,7 @@ regarima.refresh(
   end = NULL
 )
 
-x13.refresh(
+x13_refresh(
   spec,
   refspec = NULL,
   policy = c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers",
@@ -45,17 +45,17 @@ Refresh Policy
 \examples{
 y = rjd3toolkit::ABS$X0.2.08.10.M
 y_anc = window(y,end = 2009)
-mod_anc = regarima(y_anc, spec_regarima_default())
+mod_anc = regarima(y_anc, spec_regarima())
 res_spec = mod_anc$result_spec
 mod_anc
 # ARIMA parameters fixed
-fast.regarima(y,
-              regarima.refresh(res_spec,
+fast_regarima(y,
+              regarima_refresh(res_spec,
                                mod_anc$estimation_spec,
                                policy = "FixedParameters"))
 # Outlier detection
-fast.regarima(y,
-              regarima.refresh(res_spec,
+fast_regarima(y,
+              regarima_refresh(res_spec,
                                policy = "Outliers"))
 
 }

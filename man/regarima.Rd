@@ -2,7 +2,7 @@
 % Please edit documentation in R/x13.R
 \name{regarima}
 \alias{regarima}
-\alias{fast.regarima}
+\alias{fast_regarima}
 \title{RegARIMA model, pre-adjustment in X13}
 \usage{
 regarima(
@@ -12,7 +12,7 @@ regarima(
   userdefined = NULL
 )
 
-fast.regarima(
+fast_regarima(
   ts,
   spec = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"),
   context = NULL,
@@ -29,25 +29,25 @@ fast.regarima(
 \item{userdefined}{a vector containing the additional output variables.}
 }
 \value{
-the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast.regarima()} is a faster function that only returns the results.
+the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast_regarima()} is a faster function that only returns the results.
 }
 \description{
 RegARIMA model, pre-adjustment in X13
 }
 \examples{
 y = rjd3toolkit::ABS$X0.2.09.10.M
-sp = spec_regarima_default("rg5c")
-sp = rjd3modelling::add_outlier(sp,
+sp = spec_regarima("rg5c")
+sp = rjd3toolkit::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
-fast.regarima(y, spec = sp)
-sp = rjd3modelling::set_transform(
-   rjd3modelling::set_tradingdays(
-     rjd3modelling::set_easter(sp, enabled = FALSE),
+fast_regarima(y, spec = sp)
+sp = rjd3toolkit::set_transform(
+   rjd3toolkit::set_tradingdays(
+     rjd3toolkit::set_easter(sp, enabled = FALSE),
     option = "workingdays"
   ),
   fun = "None"
 )
-fast.regarima(y, spec = sp)
-sp =  rjd3modelling::set_outlier(sp, outliers.type = c("AO"))
-fast.regarima(y, spec = sp)
+fast_regarima(y, spec = sp)
+sp =  rjd3toolkit::set_outlier(sp, outliers.type = c("AO"))
+fast_regarima(y, spec = sp)
 }

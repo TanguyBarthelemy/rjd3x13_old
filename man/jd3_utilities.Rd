@@ -2,31 +2,25 @@
 % Please edit documentation in R/utils.R, R/x13_rslts.R, R/x13_spec.R
 \name{jd3_utilities}
 \alias{jd3_utilities}
-\alias{x13_rslts}
-\alias{jd2r_spec_x11}
-\alias{r2jd_spec_x11}
-\alias{r2jd_spec_regarima}
-\alias{jd2r_spec_regarima}
-\alias{r2jd_spec_x13}
-\alias{jd2r_spec_x13}
+\alias{.x13_rslts}
+\alias{.jd2r_spec_x11}
+\alias{.r2jd_spec_x11}
+\alias{.r2jd_spec_x13}
+\alias{.jd2r_spec_x13}
 \title{Java Utility Functions}
 \usage{
-x13_rslts(jrslts)
+.x13_rslts(jrslts)
 
-jd2r_spec_x11(spec)
+.jd2r_spec_x11(jspec)
 
-r2jd_spec_x11(spec)
+.r2jd_spec_x11(spec)
 
-r2jd_spec_regarima(spec)
+.r2jd_spec_x13(spec)
 
-jd2r_spec_regarima(spec)
-
-r2jd_spec_x13(spec)
-
-jd2r_spec_x13(spec)
+.jd2r_spec_x13(jspec)
 }
 \arguments{
-\item{spec, jrslts}{parameters.}
+\item{spec, jspec, jrslts}{parameters.}
 }
 \description{
 These functions are used in all JDemetra+ 3.0 packages to easily interact between R and Java objects.

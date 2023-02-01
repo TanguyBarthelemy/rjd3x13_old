@@ -16,34 +16,34 @@ NULL
 #' @return a `"JDSTS"` object.
 #'
 #' @examples
-#' regarima.outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+#' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #' @export
-regarima.outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
+regarima_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
                         X=NULL, X.td=NULL, ao=T, ls=T, tc=F, so=F, cv=0){
   if (!is.ts(y)){
     stop("y must be a time series")
   }
   if (! is.null(X.td)){
     sy<-start(y)
-    td<-rjd3modelling::td(s = y, groups = X.td)
+    td<-rjd3toolkit::td(s = y, groups = X.td)
     X<-cbind(X, td)
   }
 
 
   jregarima<-.jcall("demetra/x13/r/RegArimaOutliersDetection", "Ldemetra/x13/r/RegArimaOutliersDetection$Results;", "process",
-                    rjd3toolkit::ts_r2jd(y), as.integer(order), as.integer(seasonal), mean, rjd3toolkit::matrix_r2jd(X),
+                    rjd3toolkit::.r2jd_ts(y), as.integer(order), as.integer(seasonal), mean, rjd3toolkit::.r2jd_matrix(X),
                  ao, ls, tc, so, cv)
   model<-list(
     y=as.numeric(y),
-    variables=rjd3toolkit::proc_vector(jregarima, "variables"),
-    X=rjd3toolkit::proc_matrix(jregarima, "regressors"),
-    b=rjd3toolkit::proc_vector(jregarima, "b"),
-    bcov=rjd3toolkit::proc_matrix(jregarima, "bvar"),
-    linearized=rjd3toolkit::proc_vector(jregarima, "linearized")
+    variables=rjd3toolkit::.proc_vector(jregarima, "variables"),
+    X=rjd3toolkit::.proc_matrix(jregarima, "regressors"),
+    b=rjd3toolkit::.proc_vector(jregarima, "b"),
+    bcov=rjd3toolkit::.proc_matrix(jregarima, "bvar"),
+    linearized=rjd3toolkit::.proc_vector(jregarima, "linearized")
   )
 
-  ll0<-rjd3toolkit::proc_likelihood(jregarima, "initiallikelihood.")
-  ll1<-rjd3toolkit::proc_likelihood(jregarima, "finallikelihood.")
+  ll0<-rjd3toolkit::.proc_likelihood(jregarima, "initiallikelihood.")
+  ll1<-rjd3toolkit::.proc_likelihood(jregarima, "finallikelihood.")
 
   return(structure(list(
     model=model,
