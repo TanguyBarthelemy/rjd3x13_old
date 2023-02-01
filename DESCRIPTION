@@ -1,7 +1,7 @@
 Package: rjd3x13
 Type: Package
 Title: Seasonal Adjustment with X-13 and 'JDemetra+ 3.0'
-Version: 0.6.0
+Version: 0.8.0
 Authors@R: c(
   person("Jean", "Palate", role = c("aut", "cre"),
                 email = "jean.palate@nbb.be"),
@@ -12,10 +12,10 @@ Description: Interface around 'JDemetra+ 3.x' (<https://github.com/jdemetra/jdem
  It offers full acces to options and outputs of X-13, including RegARIMA modelling (automatic ARIMA model with outlier detection and 
  trading days adjustment) and X-11 decomposition.
 Depends:
-  R (>= 3.6.0),
-  rjd3toolkit (>= 0.7.0)
+  R (>= 3.6.0)
 Imports:
   rJava (>= 1.0-6),
+  rjd3toolkit (>= 0.8.0),
   RProtoBuf (>= 0.4.17)
 SystemRequirements: Java JRE 17 or higher
 License: EUPL
