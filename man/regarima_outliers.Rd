@@ -2,7 +2,7 @@
 % Please edit documentation in R/regarima_outliers.R
 \name{regarima_outliers}
 \alias{regarima_outliers}
-\title{Detect Outliers in RegARIMA Model}
+\title{Outlier Detection with a RegARIMA Model}
 \usage{
 regarima_outliers(
   y,
@@ -19,28 +19,29 @@ regarima_outliers(
 )
 }
 \arguments{
-\item{y}{the dependent variable (\code{ts} object).}
+\item{y}{the dependent variable (a \code{ts} object).}
 
 \item{order, seasonal}{the orders of the ARIMA model.}
 
 \item{mean}{boolean to include or not the mean.}
 
-\item{X}{explanatory varibales.}
+\item{X}{user defined regressors (other than calendar).}
 
-\item{X.td}{trading days regressors.}
+\item{X.td}{calendar regressors.}
 
-\item{ao, ls, so, tc}{boolean to indicate which outliers are detected.}
+\item{ao, ls, so, tc}{Boolean to indicate which type of outliers should be detected.}
 
-\item{cv}{\code{numeric}. The entered critical value for the outliers' detection procedure.
-If equal to 0 the critical value for the outliers' detection procedure is automatically determined
+\item{cv}{\code{numeric}. The entered critical value for the outlier detection procedure.
+If equal to 0 the critical value for the outlier detection procedure is automatically determined
 by the number of observations.}
 }
 \value{
-a \code{"JDSTS"} object.
+a \code{"JDSTS"} object, containing input variables and results
 }
 \description{
-Detect Outliers in RegARIMA Model
+Outlier Detection with a RegARIMA Model
 }
 \examples{
 regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+
 }

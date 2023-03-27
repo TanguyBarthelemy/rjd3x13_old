@@ -28,26 +28,32 @@ jx13(
 )
 }
 \arguments{
-\item{ts}{a univariate time series.}
+\item{ts}{an univariate time series.}
 
 \item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 
-\item{context}{the dictionnary of variables.}
+\item{context}{the dictionary of variables.}
 
 \item{userdefined}{a vector containing the additional output variables.}
 }
 \value{
 the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{fast_x13()} is a faster function that only returns the results.
-The \code{jx13()} functions only results the java object to custom outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
+The \code{jx13()} functions only returns results in a java object which will allow to customize outputs in other packages (use \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::dictionary()}} to
 get the list of variables and \code{\link[rjd3toolkit:dictionary]{rjd3toolkit::result()}} to get a specific variable).
+In the estimation functions \code{x13()} and \code{fast_x13()} you can directly use a specification name (string)
+#' If you want to customize a specification you have to create a specification object first
 }
 \description{
 Seasonal Adjustment with  X13-ARIMA
 }
 \examples{
-sp = spec_x13("rg5c")
 y = rjd3toolkit::ABS$X0.2.09.10.M
-fast_x13(y, spec = sp)
+fast_x13(y,"rsa3")
+x13(y,"rsa5c")
+fast_regarima(y,"rg0")
+regarima(y,"rg3")
+
+sp = spec_x13("rsa5c")
 sp = rjd3toolkit::add_outlier(sp,
                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 sp =  rjd3toolkit::set_transform(
@@ -57,6 +63,7 @@ sp =  rjd3toolkit::set_transform(
   ),
   fun = "None"
 )
+x13(y,spec=sp)
 sp = set_x11(sp,
              henderson.filter = 13)
 fast_x13(y, spec = sp)

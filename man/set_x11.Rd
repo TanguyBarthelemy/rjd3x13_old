@@ -22,7 +22,7 @@ set_x11(
 )
 }
 \arguments{
-\item{x}{the specification.}
+\item{x}{the specification to be modified, object of class "JD3_X11_SPEC", default X11 spec can be obtained as 'x=spec_x11()'}
 
 \item{mode}{character: the decomposition mode. Determines the mode of the seasonal adjustment decomposition to be performed:
 \code{"Undefined"} - no assumption concerning the relationship between the time series components is made;
@@ -36,8 +36,8 @@ is not estimated and its values are all set to 0 (additive decomposition) or 1 (
 
 \item{seasonal.filter}{a vector of character(s) specifying which seasonal moving average (i.e. seasonal filter)
 will be used to estimate the seasonal factors for the entire series. The vector can be of length:
-1 - same seasonal filters for all periods (e.g.: \code{seasonal.filter = "Msr"});
-or the period length - a seasonal filer is defined for each period (e.g. for quarterly series: \code{seasonal.filter = c("S3X3", "Msr", "S3X3", "Msr")}).
+1 - the same seasonal filter is used for all periods (e.g.: \code{seasonal.filter = "Msr"} or \code{seasonal.filter = "S3X3"} );
+or have a different value for each quarter (length 4) or each month (length 12) - (e.g. for quarterly series: \code{seasonal.filter = c("S3X3", "Msr", "S3X3", "Msr")}).
 Possible filters are: \code{"Msr"}, \code{"Stable"}, \code{"X11Default"}, \code{"S3X1"}, \code{"S3X3"}, \code{"S3X5"}, \code{"S3X9"}, \code{"S3X15"}.
 \code{"Msr"} - the program chooses the final seasonal filter automatically.}
 
@@ -53,18 +53,38 @@ for the trend estimation is enabled.}
 \item{calendar.sigma}{character to specify if the standard errors used for extreme values detection and adjustment are computed:
 from 5 year spans of irregulars (\code{"None"}, the default);
 separately for each calendar period (\code{"All"});
-separately for each period only if Cochran’s hypothesis test determines that the irregular component is heteroskedastic
+separately for each period only if Cochran's hypothesis test determines that the irregular component is heteroskedastic
 by calendar month/quarter (\code{"Signif"});
 separately for two complementary sets of calendar months/quarters specified by the x11.sigmaVector parameter (\code{"Select"},
 see parameter \code{sigma.vector}).}
 
-\item{sigma.vector}{a vector to specify one of the two groups of periods for whose standard errors used for extreme values
-detection and adjustment will be computed. Only used if \code{calendar.sigma = "Select"}. Possible values are: \code{1} or \code{2}.}
+\item{sigma.vector}{a vector to specify one of the two groups of periods for which standard errors used for extreme values
+detection and adjustment will be computed separately. Only used if \code{calendar.sigma = "Select"}. Possible values are: \code{1} or \code{2}.}
 
-\item{exclude.forecast}{boolean to exclude forecats and backcasts. If \code{TRUE}, the RegARIMA model forecasts and backcasts are not used during the detection of extreme values in the seasonal adjustment routines.}
+\item{exclude.forecast}{Boolean to exclude forecasts and backcasts. If \code{TRUE}, the RegARIMA model forecasts and backcasts are not used during the detection of extreme values in the seasonal adjustment routines.}
 
 \item{bias}{TODO.}
 }
+\value{
+a "JD3_X11_SPEC" object, containing all the parameters
+}
 \description{
 Set X-11 Specification
+}
+\examples{
+init_spec <- spec_x11()
+new_spec <- set_x11(init_spec,
+                   mode = "LogAdditive",
+                   seasonal.comp = 1,
+                   seasonal.filter = "S3X9",
+                   henderson.filter = 7,
+                   lsigma = 1.7,
+                   usigma = 2.7,
+                   fcasts = -1,
+                   bcasts = -1,
+                   calendar.sigma ="All",
+                   sigma.vector = NA,
+                   exclude.forecast = FALSE,
+                   bias = "LEGACY")
+
 }

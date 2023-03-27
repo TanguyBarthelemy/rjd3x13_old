@@ -1,22 +1,23 @@
 #' @include utils.R
 NULL
 
-#' Detect Outliers in RegARIMA Model
+#' Outlier Detection with a RegARIMA Model
 #'
-#' @param y the dependent variable (`ts` object).
+#' @param y the dependent variable (a `ts` object).
 #' @param order,seasonal the orders of the ARIMA model.
 #' @param mean boolean to include or not the mean.
-#' @param X explanatory varibales.
-#' @param X.td trading days regressors.
-#' @param ao,ls,so,tc boolean to indicate which outliers are detected.
-#' @param cv  `numeric`. The entered critical value for the outliers' detection procedure.
-#' If equal to 0 the critical value for the outliers' detection procedure is automatically determined
+#' @param X user defined regressors (other than calendar).
+#' @param X.td calendar regressors.
+#' @param ao,ls,so,tc Boolean to indicate which type of outliers should be detected.
+#' @param cv  `numeric`. The entered critical value for the outlier detection procedure.
+#' If equal to 0 the critical value for the outlier detection procedure is automatically determined
 #' by the number of observations.
 #'
-#' @return a `"JDSTS"` object.
+#' @return a `"JDSTS"` object, containing input variables and results
 #'
 #' @examples
 #' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
+#'
 #' @export
 regarima_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
                         X=NULL, X.td=NULL, ao=T, ls=T, tc=F, so=F, cv=0){

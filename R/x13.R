@@ -3,9 +3,9 @@ NULL
 
 #' RegARIMA model, pre-adjustment in X13
 #'
-#' @param ts a univariate time series.
+#' @param ts an univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
-#' @param context the dictionnary of variables.
+#' @param context the dictionary of variables.
 #' @param userdefined a vector containing the additional output variables.
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast_regarima()` is a faster function that only returns the results.
@@ -97,9 +97,14 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' @inheritParams regarima
 #'
 #' @examples
-#' sp = spec_x13("rg5c")
+
 #' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' fast_x13(y, spec = sp)
+#' fast_x13(y,"rsa3")
+#' x13(y,"rsa5c")
+#' fast_regarima(y,"rg0")
+#' regarima(y,"rg3")
+#'
+#' sp = spec_x13("rsa5c")
 #' sp = rjd3toolkit::add_outlier(sp,
 #'                  type = c("AO"), c("2015-01-01", "2010-01-01"))
 #' sp =  rjd3toolkit::set_transform(
@@ -109,13 +114,16 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #'   ),
 #'   fun = "None"
 #' )
+#' x13(y,spec=sp)
 #' sp = set_x11(sp,
 #'              henderson.filter = 13)
 #' fast_x13(y, spec = sp)
 #'
 #' @return the `x13()` function returns a list with the results, the estimation specification and the result specification, while `fast_x13()` is a faster function that only returns the results.
-#' The `jx13()` functions only results the java object to custom outputs in other packages (use [rjd3toolkit::dictionary()] to
+#' The `jx13()` functions only returns results in a java object which will allow to customize outputs in other packages (use [rjd3toolkit::dictionary()] to
 #' get the list of variables and [rjd3toolkit::result()] to get a specific variable).
+#' In the estimation functions `x13()` and `fast_x13()` you can directly use a specification name (string)
+#' #' If you want to customize a specification you have to create a specification object first
 #' @export
 x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), context=NULL, userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
@@ -239,7 +247,7 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #' Refresh Policy
 #'
 #' @param spec the current specification
-#' @param refspec the reference specification (used to defined the set of models considered).
+#' @param refspec the reference specification (used to define the set of models considered).
 #' By default this is the `"RG4"` or `"RSA4"` specification.
 #' @param policy the refresh policy
 #' @param period,start,end to specify the frozen domain when `policy` equals to `"Outliers"` or `"Outliers_StochasticComponent"`.
