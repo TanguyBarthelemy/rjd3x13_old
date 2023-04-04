@@ -125,9 +125,8 @@ message RegArimaSpec {
         double cancel = 8;
         double fct = 9;
         bool acceptdef = 10;
-        bool checkmu = 11;
-        bool mixed = 12;
-        bool balanced = 13;
+        bool mixed = 11;
+        bool balanced = 12;
     }
 
 	message EasterSpec{
@@ -154,12 +153,13 @@ message RegArimaSpec {
 
 	message RegressionSpec{
 		jd3.Parameter mean = 1;
-		TradingDaysSpec td = 2;
-		EasterSpec easter = 3;
-		repeated modelling.Outlier outliers = 4;
-		repeated modelling.TsVariable users = 5;
-		repeated modelling.InterventionVariable interventions=6;
-		repeated modelling.Ramp ramps = 7;
+		bool check_mean = 2;
+		TradingDaysSpec td = 3;
+		EasterSpec easter = 4;
+		repeated modelling.Outlier outliers = 5;
+		repeated modelling.TsVariable users = 6;
+		repeated modelling.InterventionVariable interventions=7;
+		repeated modelling.Ramp ramps = 8;
 	}
 
 	message EstimateSpec{

@@ -32,7 +32,7 @@ spec_regarima<-function(name=c("rg4","rg0", "rg1", "rg2c", "rg3", "rg5c")){
   name = match.arg(name[1],
                    choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
                    )
-  return (.jd2r_spec_regarima(.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", name)))
+  return (.jd2r_spec_regarima(.jcall("jdplus/x13/base/api/regarima/RegArimaSpec", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", name)))
 }
 
 
@@ -43,20 +43,20 @@ spec_x13<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
   name = match.arg(name[1],
                    choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
   )
-  return (.jd2r_spec_x13(.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", name)))
+  return (.jd2r_spec_x13(.jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", name)))
 }
 
 
 #' @rdname x13_spec
 #' @export
 spec_x11<-function(){
-  return (.jd2r_spec_x11(.jfield("demetra/x11/X11Spec", "Ldemetra/x11/X11Spec;", "DEFAULT")))
+  return (.jd2r_spec_x11(.jfield("jdplus/x13/base/api/x11/X11Spec", "Ljdplus/x13/base/api/x11/X11Spec;", "DEFAULT")))
 }
 
 #' @export
 #' @rdname jd3_utilities
 .jd2r_spec_x11<-function(jspec){
-  b<-.jcall("demetra/x13/r/X11", "[B", "toBuffer", jspec)
+  b<-.jcall("jdplus/x13/base/r/X11", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.X11Spec, b)
   return (.p2r_spec_x11(p))
 }
@@ -66,19 +66,19 @@ spec_x11<-function(){
 .r2jd_spec_x11<-function(spec){
   p<-.r2p_spec_x11(spec)
   b<-RProtoBuf::serialize(p, NULL)
-  nspec<-.jcall("demetra/x13/r/X11", "Ldemetra/x11/X11Spec;", "of", b)
+  nspec<-.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/api/x11/X11Spec;", "of", b)
   return (nspec)
 }
 
 .r2jd_spec_regarima<-function(spec){
   p<-.r2p_spec_regarima(spec)
   b<-RProtoBuf::serialize(p, NULL)
-  nspec<-.jcall("demetra/x13/r/RegArima", "Ldemetra/regarima/RegArimaSpec;", "specOf", b)
+  nspec<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "specOf", b)
   return (nspec)
 }
 
 .jd2r_spec_regarima<-function(jspec){
-  b<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jspec)
+  b<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.RegArimaSpec, b)
   return (.p2r_spec_regarima(p))
 }
@@ -88,14 +88,14 @@ spec_x11<-function(){
 .r2jd_spec_x13<-function(spec){
   p<-.r2p_spec_x13(spec)
   b<-RProtoBuf::serialize(p, NULL)
-  nspec<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/X13Spec;", "specOf", b)
+  nspec<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/api/x13/X13Spec;", "specOf", b)
   return (nspec)
 }
 
 #' @export
 #' @rdname jd3_utilities
 .jd2r_spec_x13<-function(jspec){
-  b<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", jspec)
+  b<-.jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jspec)
   p<-RProtoBuf::read(x13.Spec, b)
   return (.p2r_spec_x13(p))
 }
@@ -124,7 +124,6 @@ spec_x11<-function(){
     cancel=pspec$automodel$cancel,
     fct=pspec$automodel$fct,
     acceptdef=pspec$automodel$acceptdef,
-    checkmu=pspec$automodel$checkmu,
     mixed=pspec$automodel$mixed,
     balanced=pspec$automodel$balanced
   )
@@ -164,6 +163,7 @@ spec_x11<-function(){
   # TODO: complete regression
   regression<-list(
     mean=rjd3toolkit::.p2r_parameter(pspec$regression$mean),
+    check_mean=pspec$regression$check_mean,
     td=td,
     easter=easter,
     outliers=rjd3toolkit::.p2r_outliers(pspec$regression$outliers),
@@ -224,7 +224,6 @@ spec_x11<-function(){
   p$automodel$cancel<-r$automodel$cancel
   p$automodel$fct<-r$automodel$fct
   p$automodel$acceptdef<-r$automodel$acceptdef
-  p$automodel$checkmu<-r$automodel$checkmu
   p$automodel$mixed<-r$automodel$mixed
   p$automodel$balanced<-r$automodel$balanced
 
@@ -233,9 +232,10 @@ spec_x11<-function(){
 
   #REGRESSION
 
-  p$regression$mean=rjd3toolkit::.r2p_parameter(r$regression$mean)
-  p$regression$outliers=rjd3toolkit::.r2p_outliers(r$regression$outliers)
-  p$regression$ramps=rjd3toolkit::.r2p_ramps(r$regression$ramps)
+  p$regression$mean<-rjd3toolkit::.r2p_parameter(r$regression$mean)
+  p$regression$check_mean<-r$regression$check_mean
+  p$regression$outliers<-rjd3toolkit::.r2p_outliers(r$regression$outliers)
+  p$regression$ramps<-rjd3toolkit::.r2p_ramps(r$regression$ramps)
 
   #TD
   p$regression$td$td<-rjd3toolkit::.enum_sof(modelling.TradingDays, r$regression$td$td)
