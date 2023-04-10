@@ -34,7 +34,7 @@ jx13(
 
 \item{context}{the dictionary of variables.}
 
-\item{userdefined}{a vector containing the additional output variables.}
+\item{userdefined}{a vector containing additional output variables.}
 }
 \value{
 the \code{x13()} function returns a list with the results, the estimation specification and the result specification, while \code{fast_x13()} is a faster function that only returns the results.

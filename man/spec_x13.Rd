@@ -3,14 +3,11 @@
 \name{spec_x13}
 \alias{spec_x13}
 \alias{spec_regarima}
-\alias{spec_x11}
 \title{RegARIMA/X-13 Default Specifications}
 \usage{
 spec_regarima(name = c("rg4", "rg0", "rg1", "rg2c", "rg3", "rg5c"))
 
 spec_x13(name = c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"))
-
-spec_x11()
 }
 \arguments{
 \item{name}{the name of a predefined specification.}

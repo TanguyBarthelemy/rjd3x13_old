@@ -5,7 +5,7 @@ NULL
 #'
 #' @param y the dependent variable (a `ts` object).
 #' @param order,seasonal the orders of the ARIMA model.
-#' @param mean boolean to include or not the mean.
+#' @param mean Boolean to include or not the mean.
 #' @param X user defined regressors (other than calendar).
 #' @param X.td calendar regressors.
 #' @param ao,ls,so,tc Boolean to indicate which type of outliers should be detected.

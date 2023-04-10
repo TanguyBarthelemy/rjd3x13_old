@@ -23,7 +23,7 @@ regarima_outliers(
 
 \item{order, seasonal}{the orders of the ARIMA model.}
 
-\item{mean}{boolean to include or not the mean.}
+\item{mean}{Boolean to include or not the mean.}
 
 \item{X}{user defined regressors (other than calendar).}
 

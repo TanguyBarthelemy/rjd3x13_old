@@ -6,7 +6,7 @@ NULL
 #' @param ts an univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
 #' @param context the dictionary of variables.
-#' @param userdefined a vector containing the additional output variables.
+#' @param userdefined a vector containing additional output variables.
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast_regarima()` is a faster function that only returns the results.
 #'
@@ -95,6 +95,8 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 #' Seasonal Adjustment with  X13-ARIMA
 #'
 #' @inheritParams regarima
+#'
+#'
 #'
 #' @examples
 

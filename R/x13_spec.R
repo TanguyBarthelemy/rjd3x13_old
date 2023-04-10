@@ -61,7 +61,7 @@ spec_x13<-function(name = c("rsa4","rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c")){
 }
 
 
-#' @rdname spec_x13
+#' @rdname spec_x11
 #' @export
 spec_x11<-function(){
   return (.jd2r_spec_x11(.jfield("demetra/x11/X11Spec", "Ldemetra/x11/X11Spec;", "DEFAULT")))

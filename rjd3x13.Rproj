@@ -20,4 +20,4 @@ PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
 PackageBuildBinaryArgs: --no-multiarch
 PackageCheckArgs: --as-cran --no-multiarch
-PackageRoxygenize: rd,collate,namespace
+PackageRoxygenize: rd,collate,namespace,vignette
