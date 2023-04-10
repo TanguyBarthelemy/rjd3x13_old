@@ -49,7 +49,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
 
   # library(rjd3x13)
   # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
-  # jrslt<- rJava::.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, "RSA3")
+  # jrslt<- rJava::.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/X13Results;", "process", jts, "RSA3")
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>
   #   sort() |>
   #   dput()
@@ -141,7 +141,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
              "y_f(?)", "yc", "ycal")
 
   # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
-  # jrslt<- rJava::.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, "RG3")
+  # jrslt<- rJava::.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, "RG3")
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>
   #   sort() |>
   #   dput()
@@ -181,7 +181,7 @@ userdefined_variables_x13 <- function(x = c("X-13","RegArima","X-11")){
                   "y_eb(?)", "y_ef(?)", "y_f(?)", "yc", "ycal")
 
   # jts<-rjd3toolkit::.r2jd_ts(rjd3toolkit::ABS$X0.2.09.10.M)
-  # jrslt<- rJava::.jcall("demetra/x13/r/X11", "Ljdplus/x11/X11Results;",
+  # jrslt<- rJava::.jcall("jdplus/x13/base/r/X11", "Ljdplus/x11/X11Results;",
   #                       "process", jts,
   #                       rjd3x13::.r2jd_spec_x11(rjd3x13::spec_x11()))
   # rjd3toolkit::dictionary(rjd3toolkit::.jd3_object(jrslt, result = TRUE)) |>

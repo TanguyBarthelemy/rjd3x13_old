@@ -31,7 +31,7 @@ regarima_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
   }
 
 
-  jregarima<-.jcall("demetra/x13/r/RegArimaOutliersDetection", "Ldemetra/x13/r/RegArimaOutliersDetection$Results;", "process",
+  jregarima<-.jcall("jdplus/x13/base/r/RegArimaOutliersDetection", "Ljdplus/x13/base/r/RegArimaOutliersDetection$Results;", "process",
                     rjd3toolkit::.r2jd_ts(y), as.integer(order), as.integer(seasonal), mean, rjd3toolkit::.r2jd_matrix(X),
                  ao, ls, tc, so, cv)
   model<-list(

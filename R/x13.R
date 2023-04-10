@@ -34,15 +34,15 @@ regarima<-function(ts, spec=c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), contex
     spec = match.arg(spec[1],
                      choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
     )
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
+    jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, spec)
   }else{
     jspec<-.r2jd_spec_regarima(spec)
     if (is.null(context)){
-      jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
+      jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext)
+    jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/core/x13/regarima/RegArimaOutput;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -60,15 +60,15 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
     spec = match.arg(spec[1],
                      choices = c("rg0", "rg1", "rg2c", "rg3","rg4", "rg5c")
     )
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, spec)
+    jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, spec)
   }else{
     jspec<-.r2jd_spec_regarima(spec)
     if (is.null(context)){
-      jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
+      jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
-    jrslt<-.jcall("demetra/x13/r/RegArima", "Ljdplus/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/toolkit/base/core/regsarima/regular/RegSarimaModel;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -81,7 +81,7 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
 .regarima_output<-function(jq){
   if (is.jnull(jq))
     return (NULL)
-  q<-.jcall("demetra/x13/r/RegArima", "[B", "toBuffer", jq)
+  q<-.jcall("jdplus/x13/base/r/RegArima", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(x13.RegArimaOutput, q)
   return (structure(list(
     result=rjd3toolkit::.p2r_regarima_rslts(p$result),
@@ -134,15 +134,15 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
     spec = match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Output;", "fullProcess", jts, spec)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, spec)
   }else{
     jspec<-.r2jd_spec_x13(spec)
     if (is.null(context)){
-      jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
+      jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Output;", "fullProcess", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -162,15 +162,15 @@ fast_x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"),
     spec = match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Results;", "process", jts, spec)
   }else{
     jspec<-.r2jd_spec_x13(spec)
     if (is.null(context)){
-      jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
+      jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/core/x13/X13Results;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -189,15 +189,15 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
     spec = match.arg(spec[1],
                      choices = c("rsa0", "rsa1", "rsa2c", "rsa3","rsa4", "rsa5c")
     )
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/X13Results;", "process", jts, spec)
   }else{
     jspec<-.r2jd_spec_x13(spec)
     if (is.null(context)){
-      jcontext <- .jnull("demetra/timeseries/regression/ModellingContext")
+      jcontext <- .jnull("jdplus/toolkit/base/api/timeseries/regression/ModellingContext")
     } else {
       jcontext <- rjd3toolkit::.r2jd_modellingcontext(context)
     }
-    jrslt<-.jcall("demetra/x13/r/X13", "Ljdplus/x13/X13Results;", "process", jts, jspec, jcontext)
+    jrslt<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base_core/x13/X13Results;", "process", jts, jspec, jcontext)
   }
   if (is.jnull(jrslt)){
     return (NULL)
@@ -210,7 +210,7 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
 .x13_output<-function(jq){
   if (is.jnull(jq))
     return (NULL)
-  q<-.jcall("demetra/x13/r/X13", "[B", "toBuffer", jq)
+  q<-.jcall("jdplus/x13/base/r/X13", "[B", "toBuffer", jq)
   p<-RProtoBuf::read(x13.X13Output, q)
   return (structure(list(
     result=.p2r_x13_rslts(p$result),
@@ -237,7 +237,7 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
 x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
   jts<-rjd3toolkit::.r2jd_ts(ts)
   jspec<-.r2jd_spec_x11(spec)
-  jrslt<-.jcall("demetra/x13/r/X11", "Ljdplus/x11/X11Results;", "process", jts, jspec)
+  jrslt<-.jcall("jdplus/x13/base/r/X11", "Ljdplus/x13/base/core/x11/X11Results;", "process", jts, jspec)
   if (is.jnull(jrslt)){
     return (NULL)
   }else{
@@ -281,7 +281,7 @@ regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
     stop("Invalid specification type")
   jspec<-.r2jd_spec_regarima(spec)
   if (is.null(refspec)){
-    jrefspec<-.jcall("demetra/regarima/RegArimaSpec", "Ldemetra/regarima/RegArimaSpec;", "fromString", "rg4")
+    jrefspec<-.jcall("jdplus/x13/base/api/regarima/RegArimaSpec", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "fromString", "rg4")
 
   }else{
     if (!inherits(refspec, "JD3_REGARIMA_SPEC"))
@@ -289,7 +289,7 @@ regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Compl
     jrefspec<-.r2jd_spec_regarima(refspec)
   }
   jdom<-rjd3toolkit::.jdomain(period, start, end)
-  jnspec<-.jcall("demetra/x13/r/RegArima", "Ldemetra/regarima/RegArimaSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
+  jnspec<-.jcall("jdplus/x13/base/r/RegArima", "Ljdplus/x13/base/api/regarima/RegArimaSpec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (.jd2r_spec_regarima(jnspec))
 }
 
@@ -301,7 +301,7 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
     stop("Invalid specification type")
   jspec<-.r2jd_spec_x13(spec)
   if (is.null(refspec)){
-    jrefspec<-.jcall("demetra/x13/X13Spec", "Ldemetra/x13/X13Spec;", "fromString", "rsa4")
+    jrefspec<-.jcall("jdplus/x13/base/api/x13/X13Spec", "Ljdplus/x13/base/api/x13/X13Spec;", "fromString", "rsa4")
 
   }else{
     if (!inherits(refspec, "JD3_X13_SPEC"))
@@ -309,7 +309,7 @@ x13_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete",
     jrefspec<-.r2jd_spec_x13(refspec)
   }
   jdom<-rjd3toolkit::.jdomain(period, start, end)
-  jnspec<-.jcall("demetra/x13/r/X13", "Ldemetra/x13/X13Spec;", "refreshSpec", jspec, jrefspec, jdom, policy)
+  jnspec<-.jcall("jdplus/x13/base/r/X13", "Ljdplus/x13/base/api/x13/X13Spec;", "refreshSpec", jspec, jrefspec, jdom, policy)
   return (.jd2r_spec_x13(jnspec))
 }
 
