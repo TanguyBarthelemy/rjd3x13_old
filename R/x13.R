@@ -88,7 +88,7 @@ fast_regarima<-function(ts, spec= c("rg4", "rg0", "rg1", "rg2c", "rg3","rg5c"), 
     estimation_spec=.p2r_spec_regarima(p$estimation_spec),
     result_spec=.p2r_spec_regarima(p$result_spec)
   ),
-  class="JD3_regarima_output")
+  class="JD3_REGARIMA_OUTPUT")
   )
 }
 
@@ -207,7 +207,7 @@ jx13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), con
     estimation_spec=.p2r_spec_x13(p$estimation_spec),
     result_spec=.p2r_spec_x13(p$result_spec)
   ),
-  class="JD3_x13_output")
+  class="JD3_X13_OUTPUT")
   )
 
 }
