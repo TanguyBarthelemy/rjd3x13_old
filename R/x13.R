@@ -265,7 +265,7 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
 #' @name refresh
 #' @rdname refresh
 #' @export
-regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed"), period=0, start=NULL, end=NULL){
+regarima_refresh<-function(spec, refspec=NULL, policy=c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers", "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"), period=0, start=NULL, end=NULL){
   policy=match.arg(policy)
   if (!inherits(spec, "JD3_REGARIMA_SPEC"))
     stop("Invalid specification type")
