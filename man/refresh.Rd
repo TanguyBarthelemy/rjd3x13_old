@@ -10,7 +10,7 @@ regarima_refresh(
   spec,
   refspec = NULL,
   policy = c("FreeParameters", "Complete", "Outliers_StochasticComponent", "Outliers",
-    "FixedParameters", "FixedAutoRegressiveParameters", "Fixed"),
+    "FixedParameters", "FixedAutoRegressiveParameters", "Fixed", "Current"),
   period = 0,
   start = NULL,
   end = NULL
