@@ -25,9 +25,9 @@ Specification setting of sheer X-11 decomposition method (without reg-arima pre-
 and doesn't appear among the possible X13-Arima default specifications
 
 Specification setting can be restricted to the reg-arima part with the \code{spec_regarima()} function,
-without argument \code{spec_regarima()} yields a RG2c specification
+without argument \code{spec_regarima()} yields a RG5c specification
 
-When setting a complete X13-Arima spec, \code{spec_x13()} without argument  yields a RSA2c specification
+When setting a complete X13-Arima spec, \code{spec_x13()} without argument  yields a RSA5c specification
 
 The available predefined 'JDemetra+' model specifications are described in the table below:
 

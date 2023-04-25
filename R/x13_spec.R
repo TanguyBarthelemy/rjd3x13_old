@@ -10,9 +10,9 @@ NULL
 #' and doesn't appear among the possible X13-Arima default specifications
 #'
 #' Specification setting can be restricted to the reg-arima part with the `spec_regarima()` function,
-#' without argument `spec_regarima()` yields a RG2c specification
+#' without argument `spec_regarima()` yields a RG5c specification
 #'
-#' When setting a complete X13-Arima spec, `spec_x13()` without argument  yields a RSA2c specification
+#' When setting a complete X13-Arima spec, `spec_x13()` without argument  yields a RSA5c specification
 #'
 #'
 #' @param name the name of a predefined specification.

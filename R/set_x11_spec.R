@@ -32,12 +32,10 @@
 #' detection and adjustment will be computed separately. Only used if `calendar.sigma = "Select"`. Possible values are: `1` or `2`.
 #' @param exclude.forecast Boolean to exclude forecasts and backcasts. If `TRUE`, the RegARIMA model forecasts and backcasts are not used during the detection of extreme values in the seasonal adjustment routines.Default= FALSE.
 #' @param bias TODO.
-#'
 #' @return  a "JD3_X11_SPEC" object, containing all the parameters
-#'
 #' @examples
 #' init_spec <- spec_x11()
-#'new_spec <- set_x11(init_spec,
+#' new_spec <- set_x11(init_spec,
 #'                    mode = "LogAdditive",
 #'                    seasonal.comp = 1,
 #'                    seasonal.filter = "S3X9",
@@ -50,7 +48,7 @@
 #'                    sigma.vector = NA,
 #'                    exclude.forecast = FALSE,
 #'                    bias = "LEGACY")
-#'
+#' @rdname spec_x11
 #' @export
 set_x11 <- function(x,
                     mode = c(NA, "Undefined", "Additive", "Multiplicative", "LogAdditive", "PseudoAdditive"),

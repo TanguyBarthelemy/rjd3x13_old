@@ -32,12 +32,6 @@
 #' userdefined_variables_x13("x13")
 #' userdefined_variables_x13("regarima")
 #' userdefined_variables_x13("x11")
-#' y = rjd3toolkit::ABS$X0.2.09.10.M
-#' m <- x13(y,"rsa5c", userdefined=c("b20","ycal","residuals.kurtosis" ))
-#' m$user_defined$b20
-#' m$user_defined$ycal
-#' m$user_defined$residuals.kurtosis
-#'
 #' @return  a vector containing the names of all the available output objects (series, diagnostics, parameters)
 #' @references
 #' More information and examples related to 'JDemetra+' features in the online documentation:
