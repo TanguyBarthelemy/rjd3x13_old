@@ -20,13 +20,13 @@ fast_regarima(
 )
 }
 \arguments{
-\item{ts}{a univariate time series.}
+\item{ts}{an univariate time series.}
 
 \item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 
-\item{context}{the dictionnary of variables.}
+\item{context}{the dictionary of variables.}
 
-\item{userdefined}{a vector containing the additional output variables.}
+\item{userdefined}{a vector containing additional output variables.}
 }
 \value{
 the \code{regarima()} function returns a list with the results (\code{"JD3_REGARIMA_RSLTS"} object), the estimation specification and the result specification, while \code{fast_regarima()} is a faster function that only returns the results.

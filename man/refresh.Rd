@@ -29,7 +29,7 @@ x13_refresh(
 \arguments{
 \item{spec}{the current specification}
 
-\item{refspec}{the reference specification (used to defined the set of models considered).
+\item{refspec}{the reference specification (used to define the set of models considered).
 By default this is the \code{"RG4"} or \code{"RSA4"} specification.}
 
 \item{policy}{the refresh policy}

@@ -7,11 +7,11 @@
 x11(ts, spec = spec_x11(), userdefined = NULL)
 }
 \arguments{
-\item{ts}{a univariate time series.}
+\item{ts}{an univariate time series.}
 
 \item{spec}{the specification.}
 
-\item{userdefined}{a vector containing the additional output variables.}
+\item{userdefined}{a vector containing additional output variables.}
 }
 \description{
 X-11 Decomposition Algorithm
