@@ -15,7 +15,7 @@ Depends:
   R (>= 3.6.0)
 Imports:
   rJava (>= 1.0-6),
-  rjd3toolkit (>= 2.9.1),
+  rjd3toolkit (>= 2.9.2),
   RProtoBuf (>= 0.4.17)
 SystemRequirements: Java (>= 17)
 License: EUPL
