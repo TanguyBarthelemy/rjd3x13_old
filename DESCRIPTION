@@ -17,7 +17,7 @@ Imports:
   rJava (>= 1.0-6),
   rjd3toolkit (>= 2.9.1),
   RProtoBuf (>= 0.4.17)
-SystemRequirements: Java JRE 17 or higher
+SystemRequirements: Java (>= 17)
 License: EUPL
 URL: https://github.com/palatej/rjd3x13
 RoxygenNote: 7.2.3
