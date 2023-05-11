@@ -148,7 +148,7 @@ x13<-function(ts, spec=c("rsa4", "rsa0", "rsa1", "rsa2c", "rsa3", "rsa5c"), cont
     return (NULL)
   }else{
     res = .x13_output(jrslt)
-    return (.add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/X13Results;"))
+    return (.add_ud_var(res, jrslt, userdefined = userdefined, out_class = "Ljdplus/x13/base/core/x13/X13Results;"))
   }
 }
 
