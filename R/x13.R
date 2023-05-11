@@ -5,7 +5,7 @@ NULL
 #'
 #' @param ts an univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
-#' @param context the dictionary of variables.
+#' @param context list of external regressors (calendar or other) to be used for estiamtion
 #' @param userdefined a vector containing additional output variables.
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast_regarima()` is a faster function that only returns the results.
