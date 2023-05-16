@@ -122,3 +122,30 @@ diagnostics.JD3_X13_RSLTS<-function(x, ...){
 diagnostics.JD3_X13_OUTPUT<-function(x, ...){
   return (rjd3toolkit::diagnostics(x$result, ...))
 }
+
+#' @export
+print.JDSTS <- function(m) {
+
+  cat("Structural time series", "\n\n")
+  cat("Variances:\n")
+
+  s <- m$model$level
+  if (! is.na(s) && s >=0) cat("level: ", format(round(s, 6), scientific = FALSE), "\n")
+  s <- m$model$slope
+  if (! is.na(s) && s >=0) cat("slope: ", format(round(s, 6), scientific = FALSE), "\n")
+  s <- m$model$seas
+  if (! is.na(s) && s >=0) cat("seas: ", format(round(s, 6), scientific = FALSE), "\n")
+  s <- m$model$n
+  if (! is.na(s) && s >=0) cat("noise: ", format(round(s, 6), scientific = FALSE), "\n\n")
+
+  s <- m$likelihood$ll
+  cat("LogLikelihood: ", format(round(s, 5), scientific = FALSE), "\n")
+
+  s <- m$estimation$score
+  cat("Scores: ", format(round(s, 5), scientific = FALSE), "\n")
+
+  #      ll<-proc_numeric(object@internal,"likelihood.ll")
+  #      cat("Log likelihood = ", format(round(ll, 4), scientific = FALSE), "\n")
+}
+
+
