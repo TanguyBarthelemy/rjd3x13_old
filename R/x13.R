@@ -5,7 +5,7 @@ NULL
 #'
 #' @param ts an univariate time series.
 #' @param spec the model specification. Can be either the name of a predefined specification or a user-defined specification.
-#' @param context list of external regressors (calendar or other) to be used for estiamtion
+#' @param context list of external regressors (calendar or other) to be used for estimation
 #' @param userdefined a vector containing additional output variables.
 #'
 #' @return the `regarima()` function returns a list with the results (`"JD3_REGARIMA_RSLTS"` object), the estimation specification and the result specification, while `fast_regarima()` is a faster function that only returns the results.
@@ -246,31 +246,69 @@ x11 <- function(ts, spec = spec_x11(), userdefined = NULL){
   }
 }
 
-#' Refresh Policy
+#' Refresh a specification with constraints
 #'
-#' @param spec the current specification
-#' @param refspec the reference specification (used to define the set of models considered).
-#' By default this is the `"RG4"` or `"RSA4"` specification.
-#' @param policy the refresh policy
-#' @param period,start,end to specify the frozen domain when `policy` equals to `"Outliers"` or `"Outliers_StochasticComponent"`.
+#' @description
+#' Function allowing to create a new specification by updating a specification used for a previous estimation.
+#' Some selected parameters will be kept fixed (previous estimation results) while others will be freed for re-estimation
+#' in a domain of constraints. See details and examples.
 #'
-#' @return a new specification.
+#' @details
+#' The selection of constraints to be kept fixed or re-estimated is called a revision policy.
+#' User-defined parameters are always copied to the new refreshed specifications.
+#' In X-13 only the reg-arima part can be refreshed. X-11 decomposition will be completely re-run,
+#' keeping all the user-defined parameters from the original specification.
+#'
+#' Available refresh policies are:
+#'
+#' \strong{Current}: applying the current pre-adjustment reg-arima model and adding the new raw data points as Additive Outliers (defined as new intervention variables)
+#'
+#' \strong{Fixed}: applying the current pre-adjustment reg-arima model and replacing forecasts by new raw data points.
+#'
+#' \strong{FixedParameters}: pre-adjustment reg-arima model is partially modified: regression coefficients will be re-estimated but regression variables, Arima orders
+#' and coefficients are unchanged.
+#' \strong{FixedAutoRegressiveParameters}: same as FixedParameters but Arima Moving Average coefficients (MA) are also re-estimated, Auto-regressive (AR) coefficients are kept fixed.
+#'
+#' \strong{FreeParameters}: all regression and Arima model coefficients are re-estimated, regression variables and Arima orders are kept fixed.
+#'
+#' \strong{Outliers}: regression variables and Arima orders are kept fixed, but outliers will be re-detected on the defined span, thus all regression and Arima model coefficients are re-estimated
+#'
+#' \strong{Outliers_StochasticComponent}: same as "Outliers" but Arima model orders (p,d,q)(P,D,Q) can also be re-identified.
+#'
+#' @param spec the current specification to be refreshed ("result_spec")
+#' @param refspec the reference specification used to define the domain considered for re-estimation ("domain_spec")
+#' By default this is the `"RG5c"` or `"RSA5"` specification.
+#' @param policy the refresh policy to apply (see details)
+#' @param period,start,end to specify the span on which outliers will be re-identified when `policy` equals to `"Outliers"`
+#' or `"Outliers_StochasticComponent"`. Span definition: \code{period}: numeric, number of observations in a year (12,4...). \code{start}: vector
+#' indicating the start of the series in the format c(YYYY,MM). \code{end}: vector in the format c(YYYY,MM) indicating the date from which outliers
+#' will be re-identified. If span parameters are not specified outliers will be re-detected on the whole series.
+#'
+#' @return a new specification, an object of class `"JD3_X13_SPEC"` (`spec_x13()`),
+#' `"JD3_REGARIMA_SPEC"` (`spec_regarima()`)
+#'
+#' @references
+#' More information on revision policies in JDemetra+ online documentation:
+#' \url{https://jdemetra-new-documentation.netlify.app/t-rev-policies-production}
 #'
 #' @examples
-#' y = rjd3toolkit::ABS$X0.2.08.10.M
-#' y_anc = window(y,end = 2009)
-#' mod_anc = regarima(y_anc, spec_regarima())
-#' res_spec = mod_anc$result_spec
-#' mod_anc
-#' # ARIMA parameters fixed
-#' fast_regarima(y,
-#'               regarima_refresh(res_spec,
-#'                                mod_anc$estimation_spec,
-#'                                policy = "FixedParameters"))
-#' # Outlier detection
-#' fast_regarima(y,
-#'               regarima_refresh(res_spec,
-#'                                policy = "Outliers"))
+#'y<- rjd3toolkit::ABS$X0.2.08.10.M
+#'# raw series for first estimation
+#'y_raw <-window(y,end = 2009)
+#'# raw series for second (refreshed) estimation
+#'y_new <-window(y,end = 2010)
+#'# specification for first estimation
+#'spec_x13_1<-spec_x13("rsa5c")
+#'# first estimation
+#'sa_x13<- rjd3x13::x13(y_raw, spec_x13_1)
+#' # refreshing the specification
+#' current_result_spec <- sa_x13$result_spec
+#' current_domain_spec <- sa_x13$estimation_spec
+#' spec_x13_ref <- x13_refresh(current_result_spec, # point spec to be refreshed
+#'   current_domain_spec, #domain spec (set of constraints)
+#'   policy = "Fixed")
+#' # 2nd estimation with refreshed specification
+#' sa_x13_ref <- x13(y_new, spec_x13_ref)
 #'
 #' @name refresh
 #' @rdname refresh

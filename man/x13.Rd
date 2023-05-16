@@ -32,7 +32,7 @@ jx13(
 
 \item{spec}{the model specification. Can be either the name of a predefined specification or a user-defined specification.}
 
-\item{context}{the dictionary of variables.}
+\item{context}{list of external regressors (calendar or other) to be used for estimation}
 
 \item{userdefined}{a vector containing additional output variables.}
 }
