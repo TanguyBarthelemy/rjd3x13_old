@@ -12,15 +12,16 @@ NULL
 #' @param cv  `numeric`. The entered critical value for the outlier detection procedure.
 #' If equal to 0 the critical value for the outlier detection procedure is automatically determined
 #' by the number of observations.
+#' @param clean Clean missing values at the beginning/end of the series. Regression variables are automatically resized, if need be.
 #'
-#' @return a `"JDSTS"` object, containing input variables and results
+#' @return a `"JD3_REGARIMA_OUTLIERS"` object, containing input variables and results
 #'
 #' @examples
 #' regarima_outliers(rjd3toolkit::ABS$X0.2.09.10.M)
 #'
 #' @export
 regarima_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
-                        X=NULL, X.td=NULL, ao=T, ls=T, tc=F, so=F, cv=0){
+                        X=NULL, X.td=NULL, ao=T, ls=T, tc=F, so=F, cv=0, clean = F){
   if (!is.ts(y)){
     stop("y must be a time series")
   }
@@ -33,9 +34,9 @@ regarima_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
 
   jregarima<-.jcall("jdplus/x13/base/r/RegArimaOutliersDetection", "Ljdplus/x13/base/r/RegArimaOutliersDetection$Results;", "process",
                     rjd3toolkit::.r2jd_ts(y), as.integer(order), as.integer(seasonal), mean, rjd3toolkit::.r2jd_matrix(X),
-                 ao, ls, tc, so, cv)
+                 ao, ls, tc, so, cv, clean)
   model<-list(
-    y=as.numeric(y),
+    y=rjd3toolkit::.proc_ts(jregarima, "y"),
     variables=rjd3toolkit::.proc_vector(jregarima, "variables"),
     X=rjd3toolkit::.proc_matrix(jregarima, "regressors"),
     b=rjd3toolkit::.proc_vector(jregarima, "b"),
@@ -49,5 +50,5 @@ regarima_outliers<-function(y, order=c(0L,1L,1L), seasonal=c(0L,1L,1L), mean=F,
   return(structure(list(
     model=model,
     likelihood=list(initial=ll0, final=ll1)),
-    class="JDSTS"))
+    class="JD3_REGARIMA_OUTLIERS"))
 }

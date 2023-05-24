@@ -15,7 +15,8 @@ regarima_outliers(
   ls = T,
   tc = F,
   so = F,
-  cv = 0
+  cv = 0,
+  clean = F
 )
 }
 \arguments{
@@ -34,9 +35,11 @@ regarima_outliers(
 \item{cv}{\code{numeric}. The entered critical value for the outlier detection procedure.
 If equal to 0 the critical value for the outlier detection procedure is automatically determined
 by the number of observations.}
+
+\item{clean}{Clean missing values at the beginning/end of the series. Regression variables are automatically resized, if need be.}
 }
 \value{
-a \code{"JDSTS"} object, containing input variables and results
+a \code{"JD3_REGARIMA_OUTLIERS"} object, containing input variables and results
 }
 \description{
 Outlier Detection with a RegARIMA Model
